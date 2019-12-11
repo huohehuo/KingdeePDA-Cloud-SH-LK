@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".Activity.BackJsonActivity">
+    <EditText
+        android:id="@+id/et_json"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:textSize="23sp"
+        android:background="@drawable/bg_edittext_selector"
+        android:gravity="start"
+        />
+    <TextView
+        android:id="@+id/tv_result"
+        android:text="得到单据号"
+        android:textSize="18sp"
+        android:textColor="@color/gray"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+    <EditText
+        android:id="@+id/et_result"
+        android:layout_width="match_parent"
+        android:layout_height="90dp"
+        android:textSize="23sp"
+        android:background="@drawable/bg_edittext_selector"
+        android:gravity="start"
+        />
+    
+    <Button
+        android:id="@+id/btn_upload"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/btn_check"
+        android:text="上传"
+        android:textSize="@dimen/size_btn"
+        android:textColor="@android:color/white" />
+</LinearLayout>

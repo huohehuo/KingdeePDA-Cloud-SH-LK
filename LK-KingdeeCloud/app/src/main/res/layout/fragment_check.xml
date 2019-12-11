@@ -1,0 +1,49 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".Fragment.pushdown.DownLoadPushFragment">
+    <LinearLayout
+        android:background="#dedede"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:textColor="@color/black"
+            tools:text="总数量"
+            android:id="@+id/tv_num"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:gravity="center_vertical"
+            android:layout_marginLeft="4dp"
+            android:layout_height="match_parent" />
+        <TextView
+            android:textColor="@color/black"
+            tools:text="总支数"
+            android:id="@+id/tv_add_num"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:gravity="center_vertical"
+            android:layout_marginLeft="4dp"
+            android:layout_height="match_parent" />
+        <ImageView
+            android:id="@+id/iv_delete"
+            android:layout_width="30dp"
+            android:layout_marginRight="4dp"
+            android:layout_height="30dp"
+            android:src="@mipmap/delete" />
+    </LinearLayout>
+
+    <ListView
+        android:id="@+id/lv_result"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@id/rl11"
+        android:layout_below="@id/rl1"
+        android:divider="@color/divider_color"
+        android:dividerHeight="1.5dp" />
+
+
+</LinearLayout>

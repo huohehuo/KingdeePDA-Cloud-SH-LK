@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:text="报数汇总"
+            android:id="@+id/tv_title"
+            android:textSize="18sp"
+            android:layout_margin="8dp"
+            android:gravity="center"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+    <include layout="@layout/line_heng"/>
+
+    <com.jude.easyrecyclerview.EasyRecyclerView
+        android:id="@+id/ry_countoff"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:minHeight="200dp"
+        android:layout_weight="1"
+        android:foreground="?android:attr/selectableItemBackground"
+        app:recyclerClipToPadding="true"
+        app:recyclerPaddingTop="8dp"
+        app:scrollbarStyle="insideOverlay"/>
+</LinearLayout>

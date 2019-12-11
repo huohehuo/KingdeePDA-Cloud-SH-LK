@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+    <!--<include-->
+        <!--android:id="@+id/toolbar"-->
+        <!--layout="@layout/top_bar" />-->
+    <include layout="@layout/top_bar" />
+        <TextView
+            android:text="IP地址："
+            android:layout_margin="4dp"
+            android:textSize="18sp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <EditText
+            android:id="@+id/ed_ip"
+            android:layout_margin="4dp"
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:gravity="center_horizontal|center_vertical"
+            android:background="@drawable/bg_edittext_selector"
+            android:hint="@string/ip_hint"
+            android:selectAllOnFocus="true"
+            android:textSize="22sp" />
+        <TextView
+            android:text="端口："
+            android:layout_margin="4dp"
+            android:textSize="18sp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <EditText
+            android:id="@+id/ed_port"
+            android:layout_margin="4dp"
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:gravity="center_horizontal|center_vertical"
+            android:background="@drawable/bg_edittext_selector"
+            android:hint="@string/port_hint"
+            android:selectAllOnFocus="true"
+            android:textSize="22sp" />
+        <TextView
+            android:text="回单入口："
+            android:layout_margin="4dp"
+            android:textSize="18sp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <EditText
+            android:id="@+id/ed_url"
+            android:layout_margin="4dp"
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:gravity="center_horizontal|center_vertical"
+            android:background="@drawable/bg_edittext_selector"
+            android:hint="@string/backup_url"
+            android:selectAllOnFocus="true"
+            android:textSize="22sp" />
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:background="#a0cccbcb"/>
+        <android.support.design.widget.TextInputLayout
+            android:visibility="gone"
+            android:layout_marginTop="25dp"
+            android:layout_width="match_parent"
+            android:textColorHint="@color/colorPrimaryDark"
+            android:layout_height="wrap_content">
+            <EditText
+                android:id="@+id/ed_printnum"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="9"
+                android:background="@null"
+                android:gravity="top"
+                android:hint="@string/print_time"
+                android:padding="13dp"
+                android:singleLine="true"
+                android:inputType="number"
+                android:textColorHint="#888888" />
+
+        </android.support.design.widget.TextInputLayout>
+
+
+        <TextView
+            android:text="所属项目期："
+            android:layout_margin="4dp"
+            android:textSize="18sp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+        <EditText
+            android:id="@+id/ed_type"
+            android:layout_margin="4dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center_horizontal|center_vertical"
+            android:background="@drawable/bg_edittext_selector"
+            android:inputType="numberDecimal"
+            android:hint="输入(1/2)期"
+            android:selectAllOnFocus="true"
+            android:textSize="22sp" />
+
+    <TextView
+        android:visibility="gone"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="18sp"
+        android:text="选择PDA设备型号:"
+        android:textColor="@android:color/black"/>
+    <Spinner
+        android:visibility="gone"
+        android:id="@+id/sp_pda"
+        android:layout_width="200dp"
+        android:layout_height="40dp"
+        android:layout_above="@+id/tv_code"
+        android:layout_centerHorizontal="true"
+        android:gravity="center_horizontal" />
+    </LinearLayout>
+
+    <TextView
+        android:layout_above="@id/ll_btn"
+        android:id="@+id/tv_endtime"
+        android:textSize="10sp"
+        android:textColor="#cfa19e9e"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+    <TextView
+        android:id="@+id/tv_pda"
+        android:text="PDA信息"
+        android:textColor="#cfa19e9e"
+        android:textSize="15sp"
+        android:layout_marginBottom="20dp"
+        android:layout_marginLeft="4dp"
+        android:layout_above="@id/ll_btn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+    <LinearLayout
+        android:id="@+id/ll_btn"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        >
+        <Button
+            android:layout_width="0dp"
+            android:layout_weight="2"
+            android:layout_height="wrap_content"
+            android:background="#f92e2e"
+            android:text="@string/lgout"
+            android:id="@+id/btn_loginout"/>
+
+        <Button
+            android:layout_width="0dp"
+            android:layout_weight="8"
+            android:layout_height="wrap_content"
+            android:background="@drawable/btn_login"
+            android:text="@string/save"
+            android:id="@+id/btn_save"/>
+
+    </LinearLayout>
+
+
+</RelativeLayout>

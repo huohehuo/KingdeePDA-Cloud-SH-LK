@@ -1,0 +1,234 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+
+        <ListView
+            android:id="@+id/lv_pushsub"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@+id/rl_top" />
+
+        <com.journeyapps.barcodescanner.DecoratedBarcodeView
+            android:id="@+id/zxing_barcode_scanner"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:visibility="gone"
+            app:zxing_framing_rect_height="180dp"
+            app:zxing_framing_rect_width="180dp"
+            app:zxing_preview_scaling_strategy="centerCrop"
+            app:zxing_scanner_layout="@layout/custom_barcode_scanner"
+            app:zxing_use_texture_view="true" />
+    </RelativeLayout>
+
+    <ScrollView
+        android:id="@+id/sl_all"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <!--正式布局-->
+        <android.support.v7.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="#93d2d2d2"
+                android:layout_marginBottom="5dp"
+                android:orientation="vertical">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <EditText
+                        android:id="@+id/ed_search_pihao"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="6"
+                        android:focusableInTouchMode="true"
+                        android:background="@drawable/bg_edittext_selector"
+                        android:gravity="center_horizontal|center_vertical"
+                        android:hint="批次过滤(长按清空)"
+                        android:selectAllOnFocus="true"
+                        android:inputType="number"
+                        android:singleLine="true"
+                        android:textSize="22sp" />
+                    <Button
+                        android:id="@+id/btn_search_pihao"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/btn_check"
+                        android:text="查询"
+                        android:textSize="@dimen/size_btn"
+                        android:textColor="@android:color/white" />
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+                    <android.support.v7.widget.AppCompatTextView
+                        android:autoSizeTextType="uniform"
+                        android:autoSizeMaxTextSize="22dp"
+                        android:gravity="center"
+                        android:layout_width="0dp"
+                        android:layout_weight="4"
+                        android:layout_height="50dp"
+                        android:text="@string/lenght_dm"
+                        android:textColor="@android:color/black"
+                        android:textStyle="bold"/>
+
+                    <EditText
+                        android:id="@+id/ed_lenght"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="6"
+                        android:focusableInTouchMode="true"
+                        android:background="@drawable/bg_edittext_selector"
+                        android:gravity="center_horizontal|center_vertical"
+                        android:hint="@string/lenght_hint"
+                        android:selectAllOnFocus="true"
+                        android:inputType="number"
+                        android:singleLine="true"
+                        android:textSize="22sp" />
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <com.fangzuo.assist.cloud.widget.TextViewTitle
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="4"
+                        app:TextView_Title_justone="true"
+                        app:TextView_Title_one="@string/diameter"
+                        app:TextView_Title_size="@dimen/size_detail" />
+                    <!--<TextView-->
+                        <!--android:id="@+id/tv_diameter"-->
+                        <!--android:layout_width="0dp"-->
+                        <!--android:layout_weight="6"-->
+                        <!--android:layout_height="match_parent"-->
+                        <!--android:background="@drawable/tv_bg"-->
+                        <!--android:gravity="center"-->
+                        <!--android:singleLine="true"-->
+                        <!--android:textColor="@color/white"-->
+                        <!--android:textSize="16sp" />-->
+                    <EditText
+                        android:id="@+id/ed_diameter"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="6"
+                        android:background="@drawable/bg_edittext_selector"
+                        android:gravity="center_horizontal|center_vertical"
+                        android:hint="选择列表带出直径"
+                        android:focusableInTouchMode="true"
+                        android:inputType="numberDecimal"
+                        android:singleLine="true"
+                        android:textSize="22sp" />
+                </LinearLayout>
+                <include layout="@layout/line_heng" />
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+                    <android.support.v7.widget.AppCompatTextView
+                        android:autoSizeTextType="uniform"
+                        android:autoSizeMaxTextSize="22dp"
+                        android:gravity="center"
+                        android:layout_width="0dp"
+                        android:layout_weight="4"
+                        android:layout_height="50dp"
+                        android:text="@string/batch"
+                        android:textColor="@android:color/black"
+                        android:textStyle="bold"/>
+
+                    <EditText
+                        android:id="@+id/ed_pihao"
+                        android:layout_width="0dp"
+                        android:clickable="false"
+                        android:focusable="false"
+                        android:layout_height="match_parent"
+                        android:layout_weight="6"
+                        android:background="@drawable/bg_edittext_selector"
+                        android:gravity="center_horizontal|center_vertical"
+                        android:hint="选择列表带出批次"
+                        android:selectAllOnFocus="true"
+                        android:inputType="number"
+                        android:singleLine="true"
+                        android:textSize="22sp" />
+                </LinearLayout>
+                <include layout="@layout/line_heng" />
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <CheckBox
+                        android:id="@+id/cb_auto_pihao"
+                        android:clickable="false"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="18sp"/>
+                    <include layout="@layout/line_shu"/>
+                    <Button
+                        android:id="@+id/btn_add_pihao"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:background="@drawable/btn_check"
+                        android:text="新增批次"
+                        android:textSize="@dimen/size_btn"
+                        android:textColor="@android:color/white" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:visibility="gone"
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <!--<CheckBox
+                        android:id="@+id/cb_auto_pihao"
+                        android:layout_width="0dp"
+                        android:layout_weight="4"
+                        android:layout_height="wrap_content"
+                        android:text="@string/autoPihao"
+                        android:textSize="18sp"/>-->
+                    <include layout="@layout/line_shu"/>
+                    <com.fangzuo.assist.cloud.widget.TextViewTitle
+                        android:layout_width="0dp"
+                        android:layout_weight="6"
+                        android:layout_height="35dp"
+                        app:TextView_Title_justone="true"
+                        app:TextView_Title_one="@string/diameter_choose"
+                        app:TextView_Title_size="7sp" />
+                </LinearLayout>
+
+                <include layout="@layout/line_heng" />
+                <android.support.v7.widget.RecyclerView
+                    android:visibility="gone"
+                    android:id="@+id/rv_numChoose"
+                    android:layout_width="match_parent"
+                    android:background="@color/white"
+                    android:layout_height="match_parent"/>
+            </LinearLayout>
+
+            </LinearLayout>
+        </android.support.v7.widget.CardView>
+    </ScrollView>
+
+    <include
+        android:id="@+id/ll_btn"
+        layout="@layout/bottom_btn" />
+</LinearLayout>

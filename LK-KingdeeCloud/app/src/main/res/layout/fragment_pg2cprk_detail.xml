@@ -1,0 +1,136 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <com.fangzuo.assist.cloud.widget.TextViewTitle
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="4"
+            app:TextView_Title_justone="true"
+            app:TextView_Title_one="物料名称"
+            app:TextView_Title_size="@dimen/size_detail" />
+
+        <TextView
+            android:id="@+id/tv_goodName"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="6"
+            android:background="@drawable/tv_bg"
+            android:gravity="center"
+            android:singleLine="true"
+            android:textColor="@color/white"
+            android:textSize="@dimen/size_product" />
+    </LinearLayout>
+    <include layout="@layout/line_heng"/>
+
+    <include layout="@layout/item_pg2cprk_p1_detail_list_top" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+        <com.jude.easyrecyclerview.EasyRecyclerView
+            android:id="@+id/lv_pushsub"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:foreground="?android:attr/selectableItemBackground"
+            app:recyclerClipToPadding="true"
+            app:recyclerPaddingTop="2dp"
+            app:scrollbarStyle="insideOverlay" />
+        <!--<ListView-->
+            <!--android:id="@+id/lv_pushsub"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="match_parent"-->
+            <!--android:layout_below="@+id/rl_top" />-->
+
+        <com.journeyapps.barcodescanner.DecoratedBarcodeView
+            android:id="@+id/zxing_barcode_scanner"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:visibility="gone"
+            app:zxing_framing_rect_height="180dp"
+            app:zxing_framing_rect_width="180dp"
+            app:zxing_preview_scaling_strategy="centerCrop"
+            app:zxing_scanner_layout="@layout/custom_barcode_scanner"
+            app:zxing_use_texture_view="true" />
+    </RelativeLayout>
+    <LinearLayout
+        android:layout_marginTop="4dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <com.fangzuo.assist.cloud.widget.TextViewTitle
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="4"
+            app:TextView_Title_justone="true"
+            app:TextView_Title_one="PCS"
+            app:TextView_Title_size="@dimen/size_detail" />
+
+        <EditText
+            android:id="@+id/ed_pcs"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="6"
+            android:background="@drawable/bg_edittext_selector"
+            android:gravity="center_horizontal|center_vertical"
+            android:hint="请输入PCS"
+            android:inputType="number"
+            android:singleLine="true"
+            android:textSize="22sp" />
+        <Button
+            android:id="@+id/btn_add"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="4"
+            android:background="@drawable/btn_check"
+            android:text="@string/add"
+            android:textSize="@dimen/size_btn"
+            android:textColor="@android:color/white" />
+    </LinearLayout>
+    <include layout="@layout/line_heng"/>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <Button
+            android:id="@+id/btn_package"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:background="@drawable/btn_check"
+            android:text="装箱"
+            android:textSize="@dimen/size_btn"
+            android:textColor="@android:color/white" />
+        <include layout="@layout/line_shu"/>
+        <Button
+            android:visibility="gone"
+            android:id="@+id/btn_backorder"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:background="@drawable/btn_check"
+            android:text="@string/upload"
+            android:textSize="@dimen/size_btn"
+            android:textColor="@android:color/white" />
+        <include layout="@layout/line_shu"/>
+        <Button
+            android:id="@+id/btn_checkorder"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:background="@drawable/btn_check"
+            android:text="查看"
+            android:textSize="@dimen/size_btn"
+            android:textColor="@android:color/white" />
+    </LinearLayout>
+</LinearLayout>

@@ -1,0 +1,430 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <ScrollView
+        android:id="@+id/sl_all"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="9">
+        <!--正式布局-->
+        <android.support.v7.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+                <include
+                    android:visibility="gone"
+                    layout="@layout/item_scan"/>
+                <!--<com.journeyapps.barcodescanner.DecoratedBarcodeView-->
+                    <!--android:visibility="gone"-->
+                    <!--android:id="@+id/zxing_barcode_scanner"-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:layout_height="250dp"-->
+                    <!--app:zxing_preview_scaling_strategy="centerCrop"-->
+                    <!--app:zxing_use_texture_view="true"-->
+                    <!--app:zxing_scanner_layout="@layout/custom_barcode_scanner"-->
+                    <!--app:zxing_framing_rect_width="180dp"-->
+                    <!--app:zxing_framing_rect_height="180dp"/>-->
+
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:gravity="center_horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <CheckBox
+                        android:visibility="gone"
+                        android:id="@+id/cb_scaning"
+                        android:layout_margin="10dp"
+                        android:layout_gravity="center_vertical"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="连\n扫" />
+                    <TextView
+                        android:id="@+id/search"
+                        android:drawableLeft="@mipmap/scan"
+                        android:textSize="22sp"
+                        android:text="  物料选择  "
+                        android:layout_marginBottom="5dp"
+                        android:background="@drawable/btn_check"
+                        android:layout_gravity="center_horizontal"
+                        android:gravity="center_vertical"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+                </LinearLayout>
+
+            <LinearLayout
+                android:layout_marginBottom="5dp"
+                android:background="#93d2d2d2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+                <LinearLayout
+                    android:visibility="gone"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+                    <com.fangzuo.assist.cloud.widget.TextViewTitle
+                        android:layout_width="0dp"
+                        android:layout_weight="4"
+                        android:layout_height="wrap_content"
+                        app:TextView_Title_justone="true"
+                        app:TextView_Title_one="物料代码"
+                        app:TextView_Title_size="@dimen/size_detail" />
+                    <TextView
+                        android:id="@+id/tv_code"
+                        android:layout_width="0dp"
+                        android:layout_weight="6"
+                        android:layout_height="match_parent"
+                        android:background="@drawable/tv_bg"
+                        android:gravity="center"
+                        android:singleLine="true"
+                        android:textColor="@color/white"
+                        android:textSize="16sp" />
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+                    <com.fangzuo.assist.cloud.widget.TextViewTitle
+                        android:layout_width="0dp"
+                        android:layout_weight="4"
+                        android:layout_height="wrap_content"
+                        app:TextView_Title_justone="true"
+                        app:TextView_Title_one="物料名称"
+                        app:TextView_Title_size="@dimen/size_detail" />
+                    <TextView
+                        android:id="@+id/tv_goodName"
+                        android:layout_width="0dp"
+                        android:layout_weight="6"
+                        android:layout_height="match_parent"
+                        android:background="@drawable/tv_bg"
+                        android:gravity="center"
+                        android:singleLine="true"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/size_product" />
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+                    <com.fangzuo.assist.cloud.widget.TextViewTitle
+                        android:layout_width="0dp"
+                        android:layout_weight="4"
+                        android:layout_height="wrap_content"
+                        app:TextView_Title_justone="true"
+                        app:TextView_Title_one="批号"
+                        app:TextView_Title_size="@dimen/size_detail" />
+                    <TextView
+                        android:id="@+id/ed_pihao"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="6"
+                        android:gravity="center"
+                        android:singleLine="true"
+                        android:background="@drawable/tv_bg"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/size_product" />
+                    <!--<EditText
+                        android:id="@+id/ed_pihao"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="6"
+                        android:gravity="center_horizontal|center_vertical"
+                        android:background="@drawable/bg_edittext_selector"
+                        android:textSize="22sp" />-->
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+                    <com.fangzuo.assist.cloud.widget.TextViewTitle
+                        android:layout_width="0dp"
+                        android:layout_weight="4"
+                        android:layout_height="wrap_content"
+                        app:TextView_Title_justone="true"
+                        app:TextView_Title_one="货主"
+                        app:TextView_Title_size="@dimen/size_detail" />
+                    <TextView
+                        android:id="@+id/tv_huozhu"
+                        android:layout_width="0dp"
+                        android:layout_weight="6"
+                        android:layout_height="match_parent"
+                        android:background="@drawable/tv_bg"
+                        android:gravity="center"
+                        android:singleLine="true"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/size_product" />
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+                    <com.fangzuo.assist.cloud.widget.TextViewTitle
+                        android:layout_width="0dp"
+                        android:layout_weight="4"
+                        android:layout_height="wrap_content"
+                        app:TextView_Title_justone="true"
+                        app:TextView_Title_one="规格型号"
+                        app:TextView_Title_size="@dimen/size_detail" />
+                    <TextView
+                        android:id="@+id/tv_model"
+                        android:layout_width="0dp"
+                        android:layout_weight="6"
+                        android:layout_height="match_parent"
+                        android:gravity="center"
+                        android:singleLine="true"
+                        android:background="@drawable/tv_bg"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/size_product" />
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:orientation="horizontal">
+                    <com.fangzuo.assist.cloud.widget.TextViewTitle
+                        android:layout_width="0dp"
+                        android:layout_weight="4"
+                        android:layout_height="wrap_content"
+                        app:TextView_Title_justone="true"
+                        app:TextView_Title_one="库存"
+                        app:TextView_Title_size="@dimen/size_detail" />
+                    <TextView
+                        android:id="@+id/tv_storenum"
+                        android:layout_width="0dp"
+                        android:layout_weight="6"
+                        android:layout_height="match_parent"
+                        android:background="@drawable/tv_bg"
+                        android:gravity="center"
+                        android:singleLine="true"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/size_product" />
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+                    <com.fangzuo.assist.cloud.widget.TextViewTitle
+                        android:layout_width="0dp"
+                        android:layout_weight="4"
+                        android:layout_height="wrap_content"
+                        app:TextView_Title_justone="true"
+                        app:TextView_Title_one="层数"
+                        app:TextView_Title_size="@dimen/size_detail" />
+                    <TextView
+                        android:id="@+id/tv_ceng"
+                        android:layout_width="0dp"
+                        android:layout_weight="6"
+                        android:layout_height="match_parent"
+                        android:background="@drawable/tv_bg"
+                        android:gravity="center"
+                        android:singleLine="true"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/size_product" />
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:orientation="horizontal">
+                    <com.fangzuo.assist.cloud.widget.TextViewTitle
+                        android:layout_width="0dp"
+                        android:layout_weight="4"
+                        android:layout_height="wrap_content"
+                        app:TextView_Title_justone="true"
+                        app:TextView_Title_one="单位"
+                        app:TextView_Title_size="@dimen/size_detail" />
+                    <com.fangzuo.assist.cloud.widget.SpinnerUnit
+                        android:id="@+id/sp_unit"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="6"
+                        app:Uspinner_title="请选择单位" />
+                </LinearLayout>
+
+                <include layout="@layout/line_heng"/>
+                <LinearLayout
+                    android:visibility="gone"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+                    <com.fangzuo.assist.cloud.widget.TextViewTitle
+                        android:layout_width="0dp"
+                        android:layout_weight="4"
+                        android:layout_height="wrap_content"
+                        app:TextView_Title_justone="true"
+                        app:TextView_Title_one="调出仓库"
+                        app:TextView_Title_size="@dimen/size_detail" />
+                    <com.fangzuo.assist.cloud.widget.SpinnerStorage
+                        android:id="@+id/sp_which_storage_out"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="6"
+                        app:Uspinner_title="请选择调出仓库"/>
+                </LinearLayout>
+                <include layout="@layout/line_heng"/>
+                <LinearLayout
+                    android:visibility="gone"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+                    <com.fangzuo.assist.cloud.widget.TextViewTitle
+                        android:layout_width="0dp"
+                        android:layout_weight="4"
+                        android:layout_height="wrap_content"
+                        app:TextView_Title_justone="true"
+                        app:TextView_Title_one="调入仓库"
+                        app:TextView_Title_size="@dimen/size_detail" />
+                    <com.fangzuo.assist.cloud.widget.SpinnerStorageDlg
+                        android:id="@+id/sp_which_storage_in"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="6"
+                        app:Uspinner_title="请选择调入仓库"/>
+                </LinearLayout>
+                <include layout="@layout/line_heng"/>
+                <!--<LinearLayout-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:orientation="horizontal">-->
+                    <!--<com.fangzuo.assist.cloud.widget.TextViewTitle-->
+                        <!--android:layout_width="0dp"-->
+                        <!--android:layout_weight="4"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--app:TextView_Title_justone="true"-->
+                        <!--app:TextView_Title_one="调出仓位"-->
+                        <!--app:TextView_Title_size="@dimen/size_detail" />-->
+                    <!--<com.fangzuo.assist.cloud.widget.MyWaveHouseSpinner-->
+                        <!--android:id="@+id/sp_wavehouse_out"-->
+                        <!--android:layout_width="0dp"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--android:layout_weight="6"-->
+                        <!--android:singleLine="true"-->
+                        <!--app:Uspinner_title="请选择调出仓位"/>-->
+                <!--</LinearLayout>-->
+                <!--<include layout="@layout/line_heng"/>-->
+                <!--<LinearLayout-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:orientation="horizontal">-->
+                    <!--<com.fangzuo.assist.cloud.widget.TextViewTitle-->
+                        <!--android:layout_width="0dp"-->
+                        <!--android:layout_weight="4"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--app:TextView_Title_justone="true"-->
+                        <!--app:TextView_Title_one="调入仓位"-->
+                        <!--app:TextView_Title_size="@dimen/size_detail" />-->
+                    <!--<com.fangzuo.assist.cloud.widget.MyWaveHouseSpinner-->
+                        <!--android:id="@+id/sp_wavehouse_in"-->
+                        <!--android:layout_width="0dp"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--android:layout_weight="6"-->
+                        <!--android:singleLine="true"-->
+                        <!--app:Uspinner_title="请选择调入仓位"/>-->
+                <!--</LinearLayout>-->
+                <include layout="@layout/line_heng"/>
+
+            </LinearLayout>
+
+                <include layout="@layout/line_heng"/>
+                <LinearLayout
+                    android:visibility="gone"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+                    <com.fangzuo.assist.cloud.widget.TextViewTitle
+                        android:layout_width="0dp"
+                        android:layout_weight="4"
+                        android:layout_height="wrap_content"
+                        app:TextView_Title_justone="true"
+                        app:TextView_Title_one="辅助标识"
+                        app:TextView_Title_size="@dimen/size_detail" />
+                    <com.fangzuo.assist.cloud.widget.SpinnerAuxSign
+                        android:id="@+id/sp_auxsign"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="6"
+                        app:Uspinner_title="请选择辅助标识" />
+                </LinearLayout>
+                <include layout="@layout/line_heng"/>
+                <LinearLayout
+                    android:visibility="gone"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+                    <com.fangzuo.assist.cloud.widget.TextViewTitle
+                        android:layout_width="0dp"
+                        android:layout_weight="4"
+                        android:layout_height="wrap_content"
+                        app:TextView_Title_justone="true"
+                        app:TextView_Title_one="实际规格"
+                        app:TextView_Title_size="@dimen/size_detail" />
+                    <com.fangzuo.assist.cloud.widget.SpinnerActualModel
+                        android:id="@+id/sp_actualmodel"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="6"
+                        app:Uspinner_title="请选择实际规格" />
+                </LinearLayout>
+                <include layout="@layout/line_heng"/>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+                    <com.fangzuo.assist.cloud.widget.TextViewTitle
+                        android:layout_width="0dp"
+                        android:layout_weight="4"
+                        android:layout_height="wrap_content"
+                        app:TextView_Title_justone="true"
+                        app:TextView_Title_one="M3"
+                        app:TextView_Title_size="@dimen/size_detail" />
+                    <EditText
+                        android:id="@+id/ed_num"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="6"
+                        android:focusable="false"
+                        android:clickable="false"
+                        android:gravity="center_horizontal|center_vertical"
+                        android:background="@drawable/bg_edittext_selector"
+                        android:inputType="numberDecimal"
+                        android:hint="扫码带出数量"
+                        android:singleLine="true"
+                        android:textSize="22sp" />
+                </LinearLayout>
+
+
+
+                <!--<com.fangzuo.assist.cloud.widget.TextViewTitle
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:TextView_Title_justone="true"
+                    app:TextView_Title_one="生产编号"
+                    app:TextView_Title_size="@dimen/dp_8" />-->
+                <EditText
+                    android:visibility="gone"
+                    android:id="@+id/ed_purchase_no"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_marginRight="3dp"
+                    android:layout_weight="1"
+                    android:background="@android:drawable/edit_text"
+                    android:inputType="numberDecimal"
+                    android:singleLine="true"
+                    android:textSize="15sp" />
+
+            </LinearLayout>
+        </android.support.v7.widget.CardView>
+    </ScrollView>
+    <include
+        android:id="@+id/ll_btn"
+        layout="@layout/bottom_btn" />
+
+
+</LinearLayout>

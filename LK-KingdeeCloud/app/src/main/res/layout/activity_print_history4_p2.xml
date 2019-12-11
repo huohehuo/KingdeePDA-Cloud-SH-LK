@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <include
+            layout="@layout/top_bar"
+            android:id="@+id/toolbar"/>
+        <com.journeyapps.barcodescanner.DecoratedBarcodeView
+            android:visibility="gone"
+            android:id="@+id/zxing_barcode_scanner"
+            android:layout_width="match_parent"
+            android:layout_height="250dp"
+            app:zxing_framing_rect_height="180dp"
+            app:zxing_framing_rect_width="180dp"
+            app:zxing_preview_scaling_strategy="centerCrop"
+            app:zxing_scanner_layout="@layout/custom_barcode_scanner"
+            app:zxing_use_texture_view="true" />
+        <LinearLayout
+            android:layout_margin="5dp"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <EditText
+                android:id="@+id/ed_pihao"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="6"
+                android:imeOptions="actionNone"
+                android:gravity="center_horizontal|center_vertical"
+                android:background="@drawable/bg_edittext_selector"
+                android:singleLine="true"
+                android:hint="通过批号查找"
+                android:textSize="18sp" />
+            <ImageView
+                android:id="@+id/iv_find"
+                android:src="@mipmap/find"
+                android:layout_marginLeft="10dp"
+                android:layout_width="40dp"
+                android:layout_height="40dp" />
+            <ImageView
+                android:id="@+id/iv_scan"
+                android:layout_marginLeft="10dp"
+                android:src="@mipmap/scan"
+                android:layout_width="40dp"
+                android:layout_height="40dp" />
+        </LinearLayout>
+        <include layout="@layout/line_heng"/>
+
+        <com.jude.easyrecyclerview.EasyRecyclerView
+            android:id="@+id/ry_print_history"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:foreground="?android:attr/selectableItemBackground"
+            app:recyclerClipToPadding="true"
+            app:recyclerPaddingTop="8dp"
+            app:scrollbarStyle="insideOverlay"/>
+    </LinearLayout>
+</layout>

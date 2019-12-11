@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:padding="7dp"
+    android:layout_marginTop="15dp"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="18sp"
+        android:text="@string/ip_hint"
+        android:textColor="@android:color/black"/>
+    <EditText
+        android:id="@+id/ed_ip"
+        android:paddingLeft="10dp"
+        android:layout_width="match_parent"
+        android:singleLine="true"
+        android:layout_height="50dp"
+        android:background="@drawable/bg_edittext_selector"
+        android:textColorHint="@color/dividerLine"
+        android:hint="@string/ip_hint"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="18sp"
+        android:text="@string/port_hint"
+        android:textColor="@android:color/black"/>
+    <EditText
+        android:singleLine="true"
+        android:id="@+id/ed_port"
+        android:paddingLeft="10dp"
+        android:background="@drawable/bg_edittext_selector"
+        android:textColorHint="@color/dividerLine"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:hint="@string/port_hint"/>
+
+</LinearLayout>

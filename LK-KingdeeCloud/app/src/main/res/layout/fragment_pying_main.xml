@@ -1,0 +1,307 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".Fragment.pushdown.ChooseFragment">
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="right"
+        android:tag="LEFT">
+
+        <android.support.v7.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="2dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                android:orientation="vertical">
+
+                <CheckBox
+                    android:visibility="gone"
+                    android:id="@+id/cb_isStorage"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="是否带出默认仓库"
+                    android:textSize="18sp"
+                    android:textColor="@android:color/holo_red_light"/>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/in_store_date"
+                    android:textColor="@android:color/black"
+                    android:textSize="20sp" />
+
+                <TextView
+                    android:id="@+id/tv_date"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="22sp" />
+
+                <include layout="@layout/line_heng"/>
+                <TextView
+                    android:text="部门:"
+                    android:textSize="22sp"
+                    android:textColor="#1e1e1e"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+                <!--<com.fangzuo.assist.cloud.widget.SpinnerDepartMent-->
+                    <!--android:id="@+id/sp_department"-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--app:manspinner_name="@string/production_workshop"-->
+                    <!--app:manspinner_size="@dimen/dp_7" />-->
+                <com.fangzuo.assist.cloud.widget.SpinnerDepartMentDlg
+                    android:id="@+id/sp_department_dlg"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="6"
+                    app:Uspinner_title="请选择部门"/>
+                <include layout="@layout/line_heng"/>
+
+                <com.fangzuo.assist.cloud.widget.SpinnerOrg
+                    android:id="@+id/sp_org_send"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:manspinner_name="@string/store_org"
+                    app:manspinner_title="@string/store_org_hint"
+                    app:manspinner_size="@dimen/sp_title_size"/>
+                <include layout="@layout/line_heng"/>
+                <com.fangzuo.assist.cloud.widget.SpinnerCommon
+                    android:id="@+id/sp_hz_type"
+                    app:manspinner_name="@string/huozhu_type"
+                    app:manspinner_title="@string/huozhu_type_hint"
+                    app:manspinner_size="@dimen/sp_title_size"
+                    android:layout_marginBottom="10dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+                <include layout="@layout/line_heng"/>
+                <LinearLayout
+                    android:visibility="gone"
+                    android:id="@+id/ll_supplier_hz"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginBottom="5dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:weightSum="6">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1.5"
+                        android:gravity="center"
+                        android:text="@string/supplier"
+                        android:textColor="@android:color/black"
+                        android:textSize="18sp" />
+
+                    <EditText
+                        android:id="@+id/ed_supplier_hz"
+                        android:layout_width="0dp"
+                        android:layout_height="40dp"
+                        android:layout_weight="3.5"
+                        android:background="@drawable/bg_edittext_selector"
+                        android:gravity="center"
+                        android:selectAllOnFocus="true"
+                        android:singleLine="true" />
+
+                    <RelativeLayout
+                        android:id="@+id/search_supplier_hz"
+                        android:layout_width="0dp"
+                        android:layout_height="40dp"
+                        android:layout_marginRight="10dp"
+                        android:layout_weight="1">
+
+                        <ImageView
+                            android:layout_width="30dp"
+                            android:layout_height="wrap_content"
+                            android:layout_centerInParent="true"
+                            android:src="@mipmap/search" />
+                    </RelativeLayout>
+
+                </LinearLayout>
+                <LinearLayout
+                    android:visibility="gone"
+                    android:id="@+id/ll_client"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:weightSum="6">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1.5"
+                        android:gravity="center"
+                        android:text="客户:"
+                        android:textColor="@android:color/black"
+                        android:textSize="22sp" />
+
+                    <EditText
+                        android:id="@+id/ed_client"
+                        android:layout_width="0dp"
+                        android:layout_height="40dp"
+                        android:layout_weight="3.5"
+                        android:background="@android:drawable/edit_text"
+                        android:gravity="center"
+                        android:selectAllOnFocus="true"
+                        android:singleLine="true" />
+
+                    <RelativeLayout
+                        android:id="@+id/search_client"
+                        android:layout_width="0dp"
+                        android:layout_height="40dp"
+                        android:layout_marginRight="10dp"
+                        android:layout_weight="1">
+
+                        <ImageView
+                            android:layout_width="30dp"
+                            android:layout_height="wrap_content"
+                            android:layout_centerInParent="true"
+                            android:src="@mipmap/search" />
+                    </RelativeLayout>
+
+                </LinearLayout>
+                <com.fangzuo.assist.cloud.widget.SpinnerHuozhu
+                    android:id="@+id/sp_org_huozhu"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:manspinner_name="@string/huozhu"
+                    app:manspinner_title="@string/huozhu_hint"
+                    app:manspinner_size="@dimen/sp_title_size"/>
+                <include layout="@layout/line_heng"/>
+                <TextView
+                    android:layout_marginTop="10dp"
+                    android:id="@+id/tv_txt_detail"
+                    android:text="明细货主："
+                    android:textSize="@dimen/sp_in_size"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+                <include layout="@layout/line_heng"/>
+                <LinearLayout
+                    android:visibility="gone"
+                    android:id="@+id/ll_supplier_hz_detail"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginBottom="5dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:weightSum="6">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1.5"
+                        android:gravity="center"
+                        android:text="@string/supplier"
+                        android:textColor="@android:color/black"
+                        android:textSize="18sp" />
+
+                    <EditText
+                        android:id="@+id/ed_supplier_hz_detail"
+                        android:layout_width="0dp"
+                        android:layout_height="40dp"
+                        android:layout_weight="3.5"
+                        android:background="@drawable/bg_edittext_selector"
+                        android:gravity="center"
+                        android:selectAllOnFocus="true"
+                        android:singleLine="true" />
+
+                    <RelativeLayout
+                        android:id="@+id/search_supplier_hz_detail"
+                        android:layout_width="0dp"
+                        android:layout_height="40dp"
+                        android:layout_marginRight="10dp"
+                        android:layout_weight="1">
+
+                        <ImageView
+                            android:layout_width="30dp"
+                            android:layout_height="wrap_content"
+                            android:layout_centerInParent="true"
+                            android:src="@mipmap/search" />
+                    </RelativeLayout>
+
+                </LinearLayout>
+                <LinearLayout
+                    android:visibility="gone"
+                    android:id="@+id/ll_client_detail"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:weightSum="6">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1.5"
+                        android:gravity="center"
+                        android:text="客户:"
+                        android:textColor="@android:color/black"
+                        android:textSize="22sp" />
+
+                    <EditText
+                        android:id="@+id/ed_client_detail"
+                        android:layout_width="0dp"
+                        android:layout_height="40dp"
+                        android:layout_weight="3.5"
+                        android:background="@android:drawable/edit_text"
+                        android:gravity="center"
+                        android:selectAllOnFocus="true"
+                        android:singleLine="true" />
+
+                    <RelativeLayout
+                        android:id="@+id/search_client_detail"
+                        android:layout_width="0dp"
+                        android:layout_height="40dp"
+                        android:layout_marginRight="10dp"
+                        android:layout_weight="1">
+
+                        <ImageView
+                            android:layout_width="30dp"
+                            android:layout_height="wrap_content"
+                            android:layout_centerInParent="true"
+                            android:src="@mipmap/search" />
+                    </RelativeLayout>
+
+                </LinearLayout>
+                <include layout="@layout/line_heng"/>
+                <com.fangzuo.assist.cloud.widget.SpinnerStoreMan
+                    android:id="@+id/sp_storeman"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:manspinner_name="@string/store_man"
+                    app:manspinner_title="@string/store_man_hint"
+                    app:manspinner_size="@dimen/sp_people_title_size" />
+                <include layout="@layout/line_heng"/>
+                <TextView
+                    android:text="@string/note"
+                    android:textSize="@dimen/sp_size"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+                <EditText
+                    android:id="@+id/ed_not"
+                    android:paddingLeft="8dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="100dp"
+                    android:background="@drawable/bg_edittext_selector"
+                    android:textSize="21sp" />
+
+                <com.fangzuo.assist.cloud.widget.NumberClick
+                    android:id="@+id/cb_num"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+            </LinearLayout>
+        </android.support.v7.widget.CardView>
+    </ScrollView>
+
+
+</RelativeLayout>

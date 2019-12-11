@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:descendantFocusability="blocksDescendants"
+    android:layout_height="match_parent">
+    <RelativeLayout
+        android:layout_centerInParent="true"
+        android:layout_width="match_parent"
+        android:layout_height="60dp">
+        <CheckBox
+            android:id="@+id/cb_ischeck"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent" />
+        <TextView
+            android:id="@+id/tv_code"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="15sp"
+            android:singleLine="true"
+            tools:text="订单号"
+            android:textColor="@color/black"
+            android:layout_toRightOf="@id/cb_ischeck"/>
+
+        <LinearLayout
+            android:id="@+id/ll_supplier"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_below="@id/tv_code"
+            android:layout_toRightOf="@id/cb_ischeck"
+            android:layout_height="wrap_content">
+            <TextView
+                android:id="@+id/tv_supplier"
+                android:textSize="15sp"
+                android:singleLine="true"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                tools:text="供应商/客户"
+                android:textColor="@color/black"
+                />
+            <TextView
+                android:visibility="gone"
+                android:id="@+id/tv_car_no"
+                android:textSize="15sp"
+                android:singleLine="true"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                tools:text="供应商/客户"
+                android:textColor="@color/black"
+                />
+        </LinearLayout>
+
+
+        <TextView
+            android:id="@+id/tv_date"
+            android:layout_below="@id/ll_supplier"
+            android:textSize="15sp"
+            android:singleLine="true"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            tools:text="时间"
+            android:textColor="@color/black"
+            android:layout_toRightOf="@id/cb_ischeck"/>
+    </RelativeLayout>
+</RelativeLayout>

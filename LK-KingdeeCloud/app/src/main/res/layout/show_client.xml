@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="#7bfdfdfd"
+    android:orientation="vertical">
+
+    <android.support.v7.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp"
+        android:background="@mipmap/print">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <com.jude.easyrecyclerview.EasyRecyclerView
+                android:id="@+id/lv_client"
+                android:layout_width="match_parent"
+                android:layout_height="350dp"
+                android:foreground="?android:attr/selectableItemBackground"
+                app:recyclerClipToPadding="true"
+                app:recyclerPaddingTop="8dp"
+                app:scrollbarStyle="insideOverlay"/>
+
+        </LinearLayout>
+    </android.support.v7.widget.CardView>
+
+</LinearLayout>

@@ -1,0 +1,398 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+    <data>
+
+        <import type="com.fangzuo.assist.cloud.Utils.CommonUtil" />
+
+        <variable
+            name="product"
+            type="com.fangzuo.assist.cloud.Dao.Product" />
+    </data>
+    <android.support.v4.widget.DrawerLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/drawer_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fitsSystemWindows="true"
+        tools:openDrawer="start">
+
+        <RelativeLayout
+            android:id="@+id/container"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <RelativeLayout
+                android:id="@+id/rl_top"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/cpb_blue"
+                android:orientation="horizontal">
+
+                <CheckBox
+                    android:id="@+id/ishebing"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="合并"
+                    android:textColor="@color/red" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:text="调拨申请单下推分布式调入单"
+                    android:textColor="@color/white"
+                    android:textSize="20sp" />
+
+                <CheckBox
+                    android:id="@+id/isAutoAdd"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginRight="10dp"
+                    android:text="自动添加"
+                    android:textColor="@color/red"
+                    android:visibility="gone" />
+
+            </RelativeLayout>
+            <ListView
+                android:id="@+id/lv_pushsub"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:layout_below="@+id/rl_top" />
+
+            <ScrollView
+                android:id="@+id/scrollView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_above="@id/ll_btn"
+                android:layout_below="@+id/lv_pushsub">
+
+                <android.support.v7.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <com.fangzuo.assist.cloud.widget.TextViewTitle
+                            app:TextView_Title_one="调出仓库"
+                            app:TextView_Title_size="8sp"
+                            app:TextView_Title_two="调出仓位"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"/>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+
+                            <com.fangzuo.assist.cloud.widget.SpinnerStorage
+                                android:id="@+id/sp_storage_out"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:textSize="15sp" />
+
+                            <View
+                                android:layout_width="1dp"
+                                android:layout_height="match_parent"
+                                android:background="@color/divider_color" />
+
+                            <com.fangzuo.assist.cloud.widget.SpinnerWaveHouse
+                                android:id="@+id/sp_wavehouse_out"
+                                android:layout_width="0dp"
+                                android:layout_height="40dp"
+                                android:layout_weight="1" />
+                        </LinearLayout>
+                        <com.fangzuo.assist.cloud.widget.TextViewTitle
+                            app:TextView_Title_one="调入仓库"
+                            app:TextView_Title_size="8sp"
+                            app:TextView_Title_two="调入仓位"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"/>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+
+                            <com.fangzuo.assist.cloud.widget.SpinnerStorage
+                                android:id="@+id/sp_storage_in"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:textSize="15sp" />
+
+                            <View
+                                android:layout_width="1dp"
+                                android:layout_height="match_parent"
+                                android:background="@color/divider_color" />
+
+                            <com.fangzuo.assist.cloud.widget.SpinnerWaveHouse
+                                android:id="@+id/sp_wavehouse_in"
+                                android:layout_width="0dp"
+                                android:layout_height="40dp"
+                                android:layout_weight="1" />
+                        </LinearLayout>
+                        <com.fangzuo.assist.cloud.widget.TextViewTitle
+                            app:TextView_Title_one="名称"
+                            app:TextView_Title_size="8sp"
+                            app:TextView_Title_two="单位"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"/>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:id="@+id/productName"
+                                android:layout_width="0dp"
+                                android:layout_height="40dp"
+                                android:layout_weight="1"
+                                android:background="@drawable/tv_bg"
+                                android:gravity="center"
+                                android:maxLines="1"
+                                android:text="@{product.FName}"
+                                android:textColor="@color/white"
+                                android:textSize="15sp" />
+
+                            <View
+                                android:layout_width="1dp"
+                                android:layout_height="match_parent"
+                                android:background="@color/divider_color" />
+
+                            <com.fangzuo.assist.cloud.widget.SpinnerUnit
+                                android:id="@+id/sp_unit"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:textSize="15sp" />
+
+                        </LinearLayout>
+
+                        <com.fangzuo.assist.cloud.widget.TextViewTitle
+                            app:TextView_Title_one="批号"
+                            app:TextView_Title_size="8sp"
+                            app:TextView_Title_two="数量"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"/>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+
+                            <EditText
+                                android:id="@+id/ed_batchNo"
+                                android:layout_width="0dp"
+                                android:layout_height="40dp"
+                                android:layout_marginRight="3dp"
+                                android:layout_weight="1"
+                                android:background="@android:drawable/edit_text"
+                                android:enabled="@{CommonUtil.isOpen(product.FIsBatchManage)?true:false}"
+                                android:inputType="numberDecimal"
+                                android:singleLine="true"
+                                android:textSize="15sp" />
+
+                            <EditText
+                                android:id="@+id/ed_num"
+                                android:layout_width="0dp"
+                                android:layout_height="40dp"
+                                android:layout_weight="1"
+                                android:background="@android:drawable/edit_text"
+                                android:gravity="center"
+                                android:inputType="numberDecimal"
+                                android:singleLine="true"
+                                android:textSize="15sp" />
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+                            <com.fangzuo.assist.cloud.widget.TextViewTitle
+                                app:TextView_Title_one="库存"
+                                app:TextView_Title_size="8sp"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"/>
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:gravity="center"
+                                android:text="库存"
+                                android:textColor="@color/black"
+                                android:textSize="15sp"
+                                android:visibility="invisible" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:id="@+id/tv_kucun"
+                                android:layout_width="0dp"
+                                android:layout_height="40dp"
+                                android:layout_weight="1"
+                                android:background="@drawable/tv_bg"
+                                android:gravity="center"
+                                android:maxLines="1"
+                                android:textColor="@color/white"
+                                android:textSize="15sp" />
+
+                            <View
+                                android:layout_width="1dp"
+                                android:layout_height="match_parent"
+                                android:background="@color/divider_color" />
+
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_height="40dp"
+                                android:layout_weight="1"
+                                android:gravity="center"
+                                android:maxLines="1"
+                                android:textColor="@color/white"
+                                android:textSize="15sp" />
+                        </LinearLayout>
+                    </LinearLayout>
+                </android.support.v7.widget.CardView>
+
+            </ScrollView>
+
+            <LinearLayout
+                android:id="@+id/ll_btn"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_alignParentBottom="true"
+                android:orientation="horizontal">
+
+                <View
+                    android:layout_width="2dp"
+                    android:layout_height="match_parent"
+                    android:background="@color/divider_color" />
+
+                <Button
+                    android:id="@+id/btn_add"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@drawable/btn_check"
+                    android:text="添加"
+                    android:textColor="@android:color/white" />
+
+
+                <View
+                    android:layout_width="2dp"
+                    android:layout_height="match_parent"
+                    android:background="@color/divider_color" />
+
+                <Button
+                    android:id="@+id/btn_backorder"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@drawable/btn_check"
+                    android:text="回单"
+                    android:textColor="@android:color/white" />
+
+                <View
+                    android:layout_width="2dp"
+                    android:layout_height="match_parent"
+                    android:background="@color/divider_color" />
+
+                <Button
+                    android:id="@+id/btn_checkorder"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@drawable/btn_check"
+                    android:text="查看"
+                    android:textColor="@android:color/white" />
+
+                <View
+                    android:layout_width="2dp"
+                    android:layout_height="match_parent"
+                    android:background="@color/divider_color" />
+
+            </LinearLayout>
+        </RelativeLayout>
+
+        <android.support.design.widget.NavigationView
+            android:id="@+id/nav_view"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_gravity="right"
+            android:fitsSystemWindows="true">
+
+            <LinearLayout
+                android:layout_marginTop="28dp"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <ScrollView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+                    <android.support.v7.widget.CardView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_margin="2dp">
+
+                        <LinearLayout
+                            android:layout_width="250dp"
+                            android:layout_height="wrap_content"
+                            android:background="@color/white"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="日期:"
+                                android:textColor="@android:color/black"
+                                android:textSize="18sp" />
+
+                            <TextView
+                                android:id="@+id/tv_date"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:textSize="19sp" />
+
+                            <com.fangzuo.assist.cloud.widget.SpinnerOrg
+                                android:id="@+id/sp_org_store_out"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                app:manspinner_name="调出库存组织:"
+                                app:manspinner_size="9sp" />
+                            <com.fangzuo.assist.cloud.widget.SpinnerOrg
+                                android:id="@+id/sp_org_store_in"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                app:manspinner_name="调入库存组织:"
+                                app:manspinner_size="9sp" />
+
+
+                            <com.fangzuo.assist.cloud.widget.SpinnerStoreMan
+                                android:id="@+id/sp_storeman"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                app:manspinner_name="@string/store_man"
+                                app:manspinner_size="9sp" />
+
+                        </LinearLayout>
+                    </android.support.v7.widget.CardView>
+                </ScrollView>
+            </LinearLayout>
+        </android.support.design.widget.NavigationView>
+
+    </android.support.v4.widget.DrawerLayout>
+</layout>

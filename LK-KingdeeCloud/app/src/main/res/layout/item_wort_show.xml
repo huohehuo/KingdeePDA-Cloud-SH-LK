@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_margin="8dp"
+    android:layout_height="match_parent">
+    <LinearLayout
+        android:layout_margin="20dp"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="45dp">
+        <TextView
+            android:text="数量:"
+            android:textSize="25sp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <EditText
+            android:id="@+id/ed_num"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="6"
+            android:background="@drawable/bg_edittext_selector"
+            android:gravity="center_horizontal|center_vertical"
+            android:hint="请输入数量"
+            android:inputType="number"
+            android:singleLine="true"
+            android:textSize="22sp" />
+    </LinearLayout>
+
+</android.support.v7.widget.CardView>

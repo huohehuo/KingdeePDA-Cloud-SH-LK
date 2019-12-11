@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <include
+            android:id="@+id/toolbar"
+            layout="@layout/top_bar" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@id/toolbar"
+            android:orientation="vertical">
+            <android.support.v7.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp">
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+                    <LinearLayout
+                        android:orientation="horizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+                        <TextView
+                            android:layout_marginLeft="5dp"
+                            android:text="过滤选择:"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="12sp"/>
+                    </LinearLayout>
+                    <com.fangzuo.assist.cloud.widget.SpinnerPCheck
+                        android:id="@+id/sp_type1"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        app:manspinner_name="分类1:"
+                        app:manspinner_size="@dimen/size_product_check" />
+                    <com.fangzuo.assist.cloud.widget.SpinnerPCheck
+                        android:id="@+id/sp_type2"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        app:manspinner_name="分类2:"
+                        app:manspinner_size="@dimen/size_product_check" />
+                    <com.fangzuo.assist.cloud.widget.SpinnerPCheck
+                        android:id="@+id/sp_tree_type"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        app:manspinner_name="树种:"
+                        app:manspinner_size="@dimen/size_product_check" />
+
+                    <com.fangzuo.assist.cloud.widget.SpinnerPCheck
+                        android:id="@+id/sp_lv"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        app:manspinner_name="等级:"
+                        app:manspinner_size="@dimen/size_product_check" />
+                    <com.fangzuo.assist.cloud.widget.SpinnerPCheck
+                        android:visibility="gone"
+                        android:id="@+id/sp_ply"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        app:manspinner_name="厚度:"
+                        app:manspinner_size="@dimen/size_product_check" />
+                    <com.fangzuo.assist.cloud.widget.SpinnerPCheck
+                        android:visibility="gone"
+                        android:id="@+id/sp_ht"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        app:manspinner_name="宽度:"
+                        app:manspinner_size="@dimen/size_product_check" />
+                    <com.fangzuo.assist.cloud.widget.SpinnerPCheck
+                        android:visibility="gone"
+                        android:id="@+id/sp_wt"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        app:manspinner_name="长度:"
+                        app:manspinner_size="@dimen/size_product_check" />
+                </LinearLayout>
+
+
+            </android.support.v7.widget.CardView>
+
+            <LinearLayout
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:layout_width="match_parent"
+                android:orientation="horizontal"
+                android:layout_height="wrap_content"
+                >
+                <TextView
+                    android:visibility="gone"
+                    android:text="相关物料数据:"
+                    android:textSize="18sp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+                <TextView
+                    android:visibility="gone"
+                    android:id="@+id/tv_data_num"
+                    android:textSize="12sp"
+                    android:layout_marginRight="10dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+                <Button
+                    android:layout_marginLeft="30dp"
+                    android:layout_marginRight="30dp"
+                    android:id="@+id/btn_check"
+                    android:layout_weight="1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="40dp"
+                    android:background="@drawable/btn_login"
+                    android:text="确定"
+                    android:textSize="20sp"
+                    android:textColor="@android:color/white" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:visibility="gone"
+                android:layout_width="match_parent"
+                android:orientation="horizontal"
+                android:id="@+id/ll"
+                android:background="@color/divider_color"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:textColor="@android:color/white"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:id="@+id/model"
+                    android:layout_height="wrap_content"
+                    android:text="物料名称"
+                    android:gravity="center"
+                    android:textSize="18sp"/>
+                <ProgressBar
+                    android:visibility="invisible"
+                    android:id="@+id/pg"
+                    android:layout_width="25dp"
+                    android:layout_height="match_parent"
+                    android:layout_toLeftOf="@+id/title"
+                    android:indeterminateBehavior="repeat"
+                    android:indeterminateDrawable="@drawable/dialog_loading"
+                    android:indeterminateOnly="true" />
+                <View
+                    android:layout_width="1dp"
+                    android:layout_height="match_parent"
+                    android:background="@color/white"/>
+                <TextView
+                    android:id="@+id/name"
+                    android:textColor="@android:color/white"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:text="规格型号"
+                    android:gravity="center"
+                    android:textSize="18sp"/>
+            </LinearLayout>
+
+            <android.support.v7.widget.RecyclerView
+                android:visibility="gone"
+                android:id="@+id/ry_product_search_list"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="5"
+                android:scrollbars="vertical"
+                app:layoutManager="android.support.v7.widget.LinearLayoutManager" />
+        </LinearLayout>
+
+
+    </RelativeLayout>
+</layout>

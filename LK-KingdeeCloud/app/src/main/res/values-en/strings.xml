@@ -1,0 +1,562 @@
+<resources>
+    <string name="app_name">扫描助手Cloud版</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="wgrkxt">外购入库下推</string>
+    <string name="storage">Storage</string>
+    <string name="wavehouse">仓位</string>
+    <string name="name">Name</string>
+    <string name="address">Address：</string>
+    <string name="unit">单位</string>
+    <string name="pihao">批号</string>
+    <string name="num">Quantity</string>
+    <string name="add">Add</string>
+    <string name="push">Push</string>
+    <string name="review">ReView</string>
+    <string name="bring_storage">是否带出默认仓库</string>
+    <string name="auto_add">自动添加</string>
+    <string name="date">Date:</string>
+    <string name="purchase_method">采购方式:</string>
+    <string name="jh_adress">交货地点:</string>
+    <string name="manager">主管:</string>
+    <string name="hbdxtcprk">汇报单下推产品入库</string>
+    <string name="hebing">合并</string>
+    <string name="db">调拨</string>
+    <string name="out_storage">调出仓库</string>
+    <string name="out_wavehouse">调出仓位</string>
+    <string name="in_storage">调入仓库</string>
+    <string name="in_wavehouse">调入仓位</string>
+    <string name="product_code">物料编码</string>
+    <string name="product_name">物料名称</string>
+    <string name="out_store">调出库存</string>
+    <string name="in_store">调入库存</string>
+    <string name="model">规格型号</string>
+    <string name="finish_order">完单</string>
+    <string name="department">部门:</string>
+    <string name="employee">业务员:</string>
+    <string name="sign_person">验收:</string>
+    <string name="capture_person">保管:</string>
+    <string name="fhtzd_xt_dbd">发货通知单下推调拨单</string>
+    <string name="store">库存</string>
+    <string name="beizhu">备注</string>
+
+
+    <!--//自定义控件spinner的自动保存key===========================================================================-->
+    <string name="spEmployee_po">spEmployee_po</string>
+    <string name="spManager_po">spManager_po</string>
+    <string name="spDepartment_po">spDepartment_po</string>
+    <string name="spPayMethod_po">spPayMethod_po</string>
+    <string name="spYuandan_po">spYuandan_po</string>
+    <string name="spPurchaseMethod_po">spPurchaseMethod_po</string>
+    <string name="spPurchaseScope_po">spPurchaseScope_po</string>
+
+    <string name="spEmployee_pis">spEmployee_pis</string>
+    <string name="spBuyer_pis">spBuyer_pis</string>
+    <string name="spSaleMan_pis">spSaleMan_pis</string>
+    <string name="spStoreMan_pis">spStoreMan_pis</string>
+    <string name="spDepartmentGet_pis">spDepartmentGet_pis</string>
+    <string name="spOrgbuy_pis">spOrgbuy_pis</string>
+    <string name="spOrgget_pis">spOrgget_pis</string>
+
+    <!--简单生产领料-->
+    <string name="spBuyer_pg">spBuyer_pg</string>
+    <string name="spStoreman_pg">spStoreman_pg</string>
+    <string name="spOrgCreate_pg">spOrgCreate_pg</string>
+    <string name="spOrgSend_pg">spOrgSend_pg</string>
+    <string name="spOrgHuozhu_pg">spOrgHuozhu_pg</string>
+    <string name="spDepartmentCreate_pg">spDepartmentCreate_pg</string>
+
+    <!--//销售出库-->
+    <string name="spDepartmentSend_so">spDepartmentSend_so</string>
+    <string name="spDepartmentSale_so">spDepartmentSale_so</string>
+    <string name="spOrgSend_so">spOrgSend_so</string>
+    <string name="spStoreman_so">spStoreman_so</string>
+    <string name="spSaleman_so">spSaleman_so</string>
+
+    <string name="spDepartmentSale_sor">spDepartmentSale_sor</string>
+    <string name="spOrgSale_sor">spOrgSale_sor</string>
+    <string name="spSaleman_sor">spSaleman_sor</string>
+
+    <string name="spStoreman_ois">spStoreman_ois</string>
+    <string name="spCheck_ois">spCheck_ois</string>
+    <string name="spOrgStore_ois">spOrgStore_ois</string>
+    <string name="spDepartmentGet_ois">spDepartmentGet_ois</string>
+
+    <string name="spStoreman_oos">spStoreman_oos</string>
+    <string name="spGetMan_oos">spGetMan_oos</string>
+    <string name="spOrgStore_oos">spOrgStore_oos</string>
+    <string name="spOrgGet_oos">spOrgGet_oos</string>
+    <string name="spDepartmentGet_oos">spDepartmentGet_oos</string>
+
+    <string name="spDepartmentBuy_puo">spDepartmentBuy_puo</string>
+    <string name="spBuyer_puo">spBuyer_puo</string>
+    <string name="spOrgBuy_puo">spOrgBuy_puo</string>
+
+    <string name="spDepartmentSend_so_pd">spDepartmentSend_so_pd</string>
+    <string name="spOrgSend_so_pd">spOrgSend_so_pd</string>
+    <string name="spStoreman_so_pd">spStoreman_so_pd</string>
+    <string name="spSaleman_so_pd">spSaleman_so_pd</string>
+
+    <string name="spDepartmentStore_sr_bk_pd">spDepartmentStore_sr_bk_pd</string>
+    <string name="spDepartmentSale_sr_bk_pd">spDepartmentSale_sr_bk_pd</string>
+    <string name="spOrgStore_sr_bk_pd">spOrgStore_sr_bk_pd</string>
+    <string name="spOrgSale_sr_bk_pd">spOrgSale_sr_bk_pd</string>
+    <string name="spStoreman_sr_bk_pd">spStoreman_sr_bk_pd</string>
+    <string name="spSaleman_sr_bk_pd">spSaleman_ssr_bk_pd</string>
+
+    <string name="spDepartmentStore_so_bk_pd">spDepartmentStore_so_bk_pd</string>
+    <string name="spDepartmentSale_so_bk_pd">spDepartmentSale_so_bk_pd</string>
+    <string name="spOrgStore_so_bk_pd">spOrgStore_so_bk_pd</string>
+    <string name="spOrgSale_so_bk_pd">spOrgSale_so_bk_pd</string>
+    <string name="spStoreman_so_bk_pd">spStoreman_so_bk_pd</string>
+    <string name="spSaleman_so_bk_pd">spSaleman_sso_bk_pd</string>
+
+    <string name="spDepartmentStore_bkmsg_sbk_pd">spDepartmentStore_bkmsg_sbk_pd</string>
+    <string name="spDepartmentSale_bkmsg_sbk_pd">spDepartmentSale_bkmsg_sbk_pd</string>
+    <string name="spOrgStore_bkmsg_sbk_pd">spOrgStore_bkmsg_sbk_pd</string>
+    <string name="spOrgSale_bkmsg_sbk_pd">spOrgSale_bkmsg_sbk_pd</string>
+    <string name="spStoreman_bkmsg_sbk_pd">spStoreman_bkmsg_sbk_pd</string>
+    <string name="spSaleman_bkmsg_sbk_pd">spSaleman_sbkmsg_sbk_pd</string>
+
+    <string name="spOrgStore_In_db_in_pd">spOrgStore_In_db_in_pd</string>
+    <string name="spOrgStore_Out_db_in_sbk_pd">spOrgStore_Out_db_in_sbk_pd</string>
+    <string name="spStoreman_db_in_pd">spStoreman_db_in_pd</string>
+
+    <string name="spStorage_pd">spStorage_pd</string>
+
+
+    <string name="spManager_pis">spManager_pis</string>
+    <string name="spDepartmentbuy_pis">spDepartmentbuy_pis</string>
+    <string name="spDepartmentget_pis">spDepartmentget_pis</string>
+    <string name="spPayMethod_pis">spPayMethod_pis</string>
+    <string name="spYuandan_pis">spYuandan_pis</string>
+    <string name="spPurchaseMethod_pis">spPurchaseMethod_pis</string>
+    <string name="spPurchaseScope_pis">spPurchaseScope_pis</string>
+    <string name="spWanglaikemu_pis">spWanglaikemu_pis</string>
+    <string name="spSignPerson_pis">spSignPerson_pis</string>
+    <string name="spCapturePerson_pis">spCapturePerson_pis</string>
+
+    <!--退货通知单2销售退货单-->
+    <string name="spStoreman_bmsg2sb">spStoreman_bmsg2sb</string>
+    <string name="spHuozhu_bmsg2sb">spHuozhu_bmsg2sb</string>
+    <!--//采购订单下推外购入库-->
+    <string name="spDepartmentBuy_cg2wg">spDepartmentBuy_cg2wg</string>
+    <string name="spOrgBuy_cg2wg">spOrgBuy_cg2wg</string>
+    <string name="spBuyer_cg2wg">spBuyer_cg2wg</string>
+
+    <!--简单生产入库-->
+    <string name="spStoreman_pris">spStoreman_pris</string>
+    <string name="spDepartmentGet_pris">spDepartmentGet_pris</string>
+    <string name="spWhichStorage_pris">spWhichStorage_pris</string>
+    <string name="spOrgIn_pris">spOrgIn_pris</string>
+    <string name="spOrgCreate_pris">spOrgCreate_pris</string>
+    <string name="spOrgHuozhu_pris">spOrgHuozhu_pris</string>
+
+    <!--挑板领料-->
+    <string name="spBuyer_tbget">spBuyer_tbget</string>
+    <string name="spStoreman_tbget">spStoreman_tbget</string>
+    <string name="spOrgCreate_tbget">spOrgCreate_tbget</string>
+    <string name="spOrgSend_tbget">spOrgSend_tbget</string>
+    <string name="spOrgHuozhu_tbget">spOrgHuozhu_tbget</string>
+    <string name="spDepartmentCreate_tbget">spDepartmentCreate_tbget</string>
+    <!--挑板入库-->
+    <string name="spStoreman_pris_tb">spStoreman_pris_tb</string>
+    <string name="spDepartmentGet_pris_tb">spDepartmentGet_pris_tb</string>
+    <string name="spWhichStorage_pris_tb">spWhichStorage_pris_tb</string>
+    <string name="spOrgIn_pris_tb">spOrgIn_pris_tb</string>
+    <string name="spOrgCreate_pris_tb">spOrgCreate_pris_tb</string>
+    <string name="spOrgHuozhu_pris_tb">spOrgHuozhu_pris_tb</string>
+    <!--改板领料-->
+    <string name="spBuyer_gbget">spBuyer_gbget</string>
+    <string name="spStoreman_gbget">spStoreman_gbget</string>
+    <string name="spOrgCreate_gbget">spOrgCreate_gbget</string>
+    <string name="spOrgSend_gbget">spOrgSend_gbget</string>
+    <string name="spOrgHuozhu_gbget">spOrgHuozhu_gbget</string>
+    <string name="spDepartmentCreate_gbget">spDepartmentCreate_gbget</string>
+    <!--改板入库-->
+    <string name="spStoreman_pris_gbin">spStoreman_pris_gbin</string>
+    <string name="spDepartmentGet_pris_gbin">spDepartmentGet_pris_gbin</string>
+    <string name="spWhichStorage_pris_gbin">spWhichStorage_pris_gbin</string>
+    <string name="spOrgIn_pris_gbin">spOrgIn_pris_gbin</string>
+    <string name="spOrgCreate_pris_gbin">spOrgCreate_pris_gbin</string>
+    <string name="spOrgHuozhu_pris_gbin">spOrgHuozhu_pris_gbin</string>
+
+    <!--到货入库-->
+    <string name="spStoreman_pris_dh">spStoreman_pris_dh</string>
+    <string name="spDepartmentGet_pris_dh">spDepartmentGet_pris_dh</string>
+    <string name="spWhichStorage_pris_dh">spWhichStorage_pris_dh</string>
+    <string name="spOrgIn_pris_dh">spOrgIn_pris_dh</string>
+    <string name="spOrgCreate_pris_dh">spOrgCreate_pris_dh</string>
+    <string name="spOrgHuozhu_pris_dh">spOrgHuozhu_pris_dh</string>
+    <!--到柜入库-->
+    <string name="spStoreman_pris_dg">spStoreman_pris_dg</string>
+    <string name="spDepartmentGet_pris_dg">spDepartmentGet_pris_dg</string>
+    <string name="spWhichStorage_pris_dg">spWhichStorage_pris_dg</string>
+    <string name="spOrgIn_pris_dg">spOrgIn_pris_dg</string>
+    <string name="spOrgCreate_pris_dg">spOrgCreate_pris_dg</string>
+    <string name="spOrgHuozhu_pris_dg">spOrgHuozhu_pris_dg</string>
+    <!--简单生产入库-->
+    <string name="spStoreman_pris_simplein">spStoreman_pris_simplein</string>
+    <string name="spDepartmentGet_pris_simplein">spDepartmentGet_pris_simplein</string>
+    <string name="spWhichStorage_pris_simplein">spWhichStorage_pris_simplein</string>
+    <string name="spOrgIn_pris_simplein">spOrgIn_pris_simplein</string>
+    <string name="spOrgCreate_pris_simplein">spOrgCreate_pris_simplein</string>
+    <string name="spOrgHuozhu_pris_simplein">spOrgHuozhu_pris_simplein</string>
+    <!--其他入库-->
+    <string name="spStoreman_oin">spStoreman_oin</string>
+    <string name="spDepartmentGet_oin">spDepartmentGet_oin</string>
+    <string name="spWhichStorage_oin">spWhichStorage_oin</string>
+    <string name="spOrgIn_oin">spOrgIn_oin</string>
+    <string name="spOrgCreate_oin">spOrgCreate_oin</string>
+    <string name="spHzType_oin">spHzType_oin</string>
+    <string name="spOrgHuozhu_oin">spOrgHuozhu_oin</string>
+    <!--其他入库：第三方货物入库-->
+    <string name="spStoreman_oin3">spStoreman_oin3</string>
+    <string name="spDepartmentGet_oin3">spDepartmentGet_oin3</string>
+    <string name="spWhichStorage_oin3">spWhichStorage_oin3</string>
+    <string name="spOrgIn_oin3">spOrgIn_oin3</string>
+    <string name="spOrgCreate_oin3">spOrgCreate_oin3</string>
+    <string name="spHzType_oin3">spHzType_oin3</string>
+    <string name="spOrgHuozhu_oin3">spOrgHuozhu_oin3</string>
+    <!--//其他出库-->
+    <string name="spDepartmentSend_oout">spDepartmentSend_oout</string>
+    <string name="spDepartmentSale_oout">spDepartmentSale_oout</string>
+    <string name="spOrgSend_oout">spOrgSend_oout</string>
+    <string name="spOrgHuozhu_oout">spOrgHuozhu_oout</string>
+    <string name="spStoreman_oout">spStoreman_oout</string>
+    <string name="spSaleman_oout">spSaleman_oout</string>
+    <string name="spHzType_oout">spHzType_oout</string>
+    <!--//其他出库：第三方货物出库-->
+    <string name="spDepartmentSend_oout3">spDepartmentSend_oout3</string>
+    <string name="spDepartmentSale_oout3">spDepartmentSale_oout3</string>
+    <string name="spOrgSend_oout3">spOrgSend_oout3</string>
+    <string name="spOrgHuozhu_oout3">spOrgHuozhu_oout3</string>
+    <string name="spStoreman_oout3">spStoreman_oout3</string>
+    <string name="spSaleman_oout3">spSaleman_oout3</string>
+    <string name="spHzType_oout3">spHzType_oout3</string>
+    <!--//其他出库：样板出库-->
+    <string name="spDepartmentSend_oout_yb">spDepartmentSend_oout_yb</string>
+    <string name="spDepartmentSale_oout_yb">spDepartmentSale_oout_yb</string>
+    <string name="spOrgSend_oout_yb">spOrgSend_oout_yb</string>
+    <string name="spOrgHuozhu_oout_yb">spOrgHuozhu_oout_yb</string>
+    <string name="spStoreman_oout_yb">spStoreman_oout_yb</string>
+    <string name="spSaleman_oout_yb">spSaleman_oout_yb</string>
+    <string name="spHzType_oout_yb">spHzType_oout_yb</string>
+
+    <string name="spYuandan_so">spYuandan_so</string>
+    <string name="spPayMethod_so">spPayMethod_so</string>
+    <string name="spDepartment_so">spDepartment_so</string>
+    <string name="spEmployee_so">spEmployee_so</string>
+    <string name="spManager_so">spManager_so</string>
+    <string name="spSaleScope_so">spSaleScope_so</string>
+    <string name="spSaleMethod_so">spSaleMethod_so</string>
+    <string name="spSendMethod_so">spSendMethod_so</string>
+
+    <string name="spYuandan_soldo">spYuandan_soldo</string>
+    <string name="spManager_soldo">spManager_soldo</string>
+    <string name="spEmployee_soldo">spEmployee_soldo</string>
+    <string name="spDepartment_soldo">spDepartment_soldo</string>
+    <string name="spSendMethod_soldo">spSendMethod_soldo</string>
+    <string name="spSaleScope_soldo">spSaleScope_soldo</string>
+    <string name="spSaleMethod_soldo">spSaleMethod_soldo</string>
+    <string name="spPayMethod_soldo">spPayMethod_soldo</string>
+
+    <string name="spDepartment_pag">spDepartment_pag</string>
+    <string name="spGetType_pag">spGetType_pag</string>
+    <string name="spGetman_pag">spGetman_pag</string>
+    <string name="spSendman_pag">spSendman_pag</string>
+
+    <string name="spCapturePerson_db">spCapturePerson_db</string>
+    <string name="spEmployee_db">spEmployee_db</string>
+    <string name="spSignPerson_db">spSignPerson_db</string>
+    <string name="spDepartment_db">spDepartment_db</string>
+
+    <string name="spInStoreType_ois">spInStoreType_ois</string>
+    <string name="spCapturePerson_ois">spCapturePerson_ois</string>
+    <string name="spEmployee_ois">spEmployee_ois</string>
+    <string name="spManager_ois">spManager_ois</string>
+    <string name="spSignPerson_ois">spSignPerson_ois</string>
+    <string name="spDepartment_ois">spDepartment_ois</string>
+
+    <string name="spCapturePerson_oos">spCapturePerson_oos</string>
+    <string name="spDepartment_oos">spDepartment_oos</string>
+    <string name="spInStoreType_oos">spInStoreType_oos</string>
+    <string name="spSignPerson_oos">spSignPerson_oos</string>
+    <string name="spManager_oos">spManager_oos</string>
+    <string name="spEmployee_oos">spEmployee_oos</string>
+
+    <string name="spSaleScope_pd_mt">spSaleScope_pd_mt</string>
+    <string name="spSaleMethod_pd_mt">spSaleMethod_pd_mt</string>
+    <string name="spYuandan_pd_mt">spYuandan_pd_mt</string>
+    <string name="spPayMethod_pd_mt">spPayMethod_pd_mt</string>
+    <string name="spSendMethod_pd_mt">spSendMethod_pd_mt</string>
+    <string name="spManager_pd_mt">spManager_pd_mt</string>
+    <string name="spCapture_pd_mt">spCapture_pd_mt</string>
+    <string name="spSendman_pd_mt">spSendman_pd_mt</string>
+
+    <string name="spPurchaseMethod_pd_po">spPurchaseMethod_pd_po</string>
+    <string name="spPurchaseScope_pd_po">spPurchaseScope_pd_po</string>
+    <string name="spYuandan_pd_po">spYuandan_pd_po</string>
+    <string name="spPayMethod_pd_po">spPayMethod_pd_po</string>
+    <string name="spManager_pd_po">spManager_pd_po</string>
+    <string name="spCapture_pd_po">spCapture_pd_po</string>
+
+    <string name="spCapture_pd_sn">spCapture_pd_sn</string>
+    <string name="spSendman_pd_sn">spSendman_pd_sn</string>
+    <string name="spManager_pd_sn">spManager_pd_sn</string>
+    <string name="spSaleMethod_pd_sn">spSaleMethod_pd_sn</string>
+    <string name="spPayMethod_pd_sn">spPayMethod_pd_sn</string>
+
+    <string name="spPurchaseMethod_pd_sltz">spPurchaseMethod_pd_sltz</string>
+    <string name="spWanglaikemu_pd_sltz">spWanglaikemu_pd_sltz</string>
+    <string name="spSignPerson_pd_sltz">spSignPerson_pd_sltz</string>
+    <string name="spManager_pd_sltz">spManager_pd_sltz</string>
+    <string name="spCapture_pd_sltz">spCapture_pd_sltz</string>
+    <string name="spCapturePerson_pd_sltz">spCapturePerson_pd_sltz</string>
+
+    <string name="spCapturePerson_pd_oois">spCapturePerson_pd_oois</string>
+    <string name="spSignPerson_pd_oois">spSignPerson_pd_oois</string>
+
+    <string name="spCapturePerson_pd_ooos">spCapturePerson_pd_ooos</string>
+    <string name="spSignPerson_pd_ooos">spSignPerson_pd_ooos</string>
+
+    <string name="spManager_pd_ppis">spManager_pd_ppis</string>
+    <string name="spCapturePerson_pd_ppis">spCapturePerson_pd_ppis</string>
+    <string name="spCapture_pd_ppis">spCapture_pd_ppis</string>
+    <string name="spEmployee_pd_ppis">spEmployee_pd_ppis</string>
+    <string name="spPurchaseMethod_pd_ppis">spPurchaseMethod_pd_ppis</string>
+    <string name="spWanglaikemu_pd_ppis">spWanglaikemu_pd_ppis</string>
+
+    <string name="spGetdepartment_pd_scrwdxtll">spGetdepartment_pd_scrwdxtll</string>
+    <string name="spGetType_pd_scrwdxtll">spGetType_pd_scrwdxtll</string>
+    <string name="spGetman_pd_scrwdxtll">spGetman_pd_scrwdxtll</string>
+    <string name="spSendman_pd_scrwdxtll">spSendman_pd_scrwdxtll</string>
+
+    <string name="spManager_pd_cgsl">spManager_pd_cgsl</string>
+    <string name="spPurchaseMethod_pd_cgsl">spPurchaseMethod_pd_cgsl</string>
+
+    <string name="spManager_pd_ssfl">spManager_pd_ssfl</string>
+    <string name="spCapture_pd_ssfl">spCapture_pd_ssfl</string>
+
+    <string name="spCapture_pd_hbrk">spCapture_pd_hbrk</string>
+    <string name="spYanshou_pd_hbrk">spYanshou_pd_hbrk</string>
+    <string name="spManager_pd_hbrk">spManager_pd_hbrk</string>
+
+    <string name="spCapturePerson_pd_fhdb">spCapturePerson_pd_fhdb</string>
+    <string name="spEmployee_pd_fhdb">spEmployee_pd_fhdb</string>
+    <string name="spSignPerson_pd_fhdb">spSignPerson_pd_fhdb</string>
+    <string name="spDepartment_pd_fhdb">spDepartment_pd_fhdb</string>
+
+    <!--组织内调拨-->
+    <string name="spOrgOut_db">spOrgOut_db</string>
+    <string name="spOrgHuozhuOut_db">spOrgHuozhuOut_db</string>
+    <string name="spOrgIn_db">spOrgIn_db</string>
+    <string name="spOrgHuozhuIn_db">spOrgHuozhuIn_db</string>
+    <string name="spStoreman_db">spStoreman_db</string>
+    <string name="spDbType_db">spDbType_db</string>
+    <string name="spDbDirection_db">spDbDirection_db</string>
+    <!--跨组织调拨-->
+    <string name="spOrgOut_db2">spOrgOut_db2</string>
+    <string name="spOrgHuozhuOut_db2">spOrgHuozhuOut_db2</string>
+    <string name="spOrgIn_db2">spOrgIn_db2</string>
+    <string name="spOrgHuozhuIn_db2">spOrgHuozhuIn_db2</string>
+    <string name="spStoreman_db2">spStoreman_db2</string>
+    <string name="spDbType_db2">spDbType_db2</string>
+    <string name="spDbDirection_db2">spDbDirection_db2</string>
+
+    <!--===========================================================================-->
+
+
+    <string name="spCapturePerson_PPIS">spCapturePerson_PPIS</string>
+    <string name="spManager_PPIS">spManager_PPIS</string>
+    <string name="spEmployee_PPIS">spEmployee_PPIS</string>
+    <string name="spcapture_PPIS">spcapture_PPIS</string>
+    <string name="spCapturePerson_DB">spCapturePerson_DB</string>
+    <string name="spSignPerson_DB">spSignPerson_DB</string>
+    <string name="spCaptureperson_SN">spCaptureperson_SN</string>
+    <string name="spSend_SN">spSend_SN</string>
+    <string name="spManager_SN">spManager_SN</string>
+    <string name="title_activity_home">HomeActivity</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_title">Android Studio</string>
+    <string name="nav_header_subtitle">android.studio@android.com</string>
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="action_settings">Settings</string>
+    <string name="title_activity_pd_xs_order2_xsdd">PdXsOrder2XsddActivity</string>
+    <string name="scanGo">连\n扫</string>
+    <!--==========================================单据名称========================================-->
+    <string name="saleout">销售出库单</string>
+    <string name="dh_instore1">到货入库1</string>
+    <string name="dh_instore2">到货入库2</string>
+    <string name="purchase_instore">采购入库</string>
+    <string name="other_out_in_instore">其他出入库</string>
+    <string name="db_order">调拨单</string>
+    <string name="tb_mananger1">挑板业务1</string>
+    <string name="tb_mananger2">挑板业务2</string>
+    <string name="tb_mananger3">挑板业务3</string>
+    <string name="gb_mananger">改板业务</string>
+    <string name="py_instore">盘盈入库</string>
+    <string name="pk_instore">盘亏入库</string>
+    <string name="production_get">简单生产领料</string>
+    <string name="production_instore">简单产品入库</string>
+    <string name="scan">扫一扫</string>
+    <string name="print_tips_before">期初物料补打</string>
+    <string name="product_instore4p2">水板板材入库</string>
+    <string name="print_tips">标签补打</string>
+    <!--二期单据-->
+    <string name="p2_production_instore">ProductionInStore</string>
+    <string name="p2_production_instore2">ProductionInStore2</string>
+    <string name="p2_cgrk2production_get">PurchaseInStorePushProductionGet</string>
+    <!--==========================================================================================-->
+
+
+    <!--表头锁定的提示语-->
+    <string name="checkMainDlg_title">Whether the header data is confirmed to be correct</string>
+    <string name="checkMainDlg_msg">Make sure the rear header is locked until before uploading</string>
+    <string name="checkMainDlg_ok">Ok, continue adding</string>
+
+    <string name="username">UserName:</string>
+    <string name="password">PassWord:   </string>
+    <string name="password_hint">Please write your password</string>
+    <string name="login_text">Login</string>
+    <string name="set">Settings</string>
+    <string name="down_set">DownLoad Settings</string>
+    <string name="Wifi_set">WIFI Connection</string>
+    <string name="voice_set">Voice Settings</string>
+    <string name="updata_app">Updata</string>
+    <string name="server_set">Server Settings</string>
+    <string name="print_set">Printer Settings</string>
+    <string name="net_set">Network Settings</string>
+    <string name="language_set">Language Settings</string>
+    <string name="remaber">Remember the password</string>
+    <string name="server">Server:</string>
+    <string name="port">Port:</string>
+    <string name="Connection">Connection</string>
+    <string name="setup">Setting up</string>
+    <string name="account">Account Choice：</string>
+    <string name="ip_hint">Please Write the IP:</string>
+    <string name="port_hint">Please Write the Port:</string>
+    <string name="backup_url">Link url</string>
+    <string name="print_time">Print number:</string>
+    <string name="save">Save</string>
+    <string name="tomcat_test">Test the Tomcat Server</string>
+    <string name="db_test">Test the DataBase</string>
+    <string name="test_hint">Tip:If the result said the network connection error,that mean the Tomcat Server has something wrong, by the other way , connection Ok ~ XD</string>
+    <string name="error_print">Print error</string>
+    <string name="check_print">Please check out the Printer</string>
+    <string name="msg_print">The Message of Printer：</string>
+    <string name="lgout">Login Out</string>
+    <string name="language_cn">中文(简体)</string>
+    <string name="language_en">English</string>
+    <string name="language_set_title">Language Setting</string>
+    <string name="if_change_language">Change this Language ?</string>
+    <string name="str_app_will_restart">The App will Restart</string>
+    <string name="yes">Yes</string>
+    <string name="cancle">Cancle</string>
+    <string name="connect_wifi">Please connect the WIFI</string>
+    <string name="write_ip_port">Please write the ip and port</string>
+    <string name="get_permission">Most get those Permission</string>
+    <string name="error_time_getting">The app\'s time has something wrong,please check out</string>
+    <string name="error_app_past_time">The software has expired, please contact the supplier for service</string>
+    <string name="loading_getseting">Getting configuration information...</string>
+    <string name="error_check_fail">Checking Error</string>
+    <string name="error_check_accout">Have not choose the Accout,Please setting the Accout frome the DownLoad Setting</string>
+    <string name="error_choose_user">Please choose the User</string>
+    <string name="loading_checking">Checking...</string>
+    <string name="error_login_fail">Login Error</string>
+    <string name="retry">Click and Retry</string>
+    <string name="tip">Tips</string>
+    <string name="not_register">unregistered</string>
+    <string name="register">Register</string>
+    <string name="close_app">Close the app</string>
+    <string name="app_not_register">The software is not registered. Do you want to register again</string>
+    <string name="error_check_register">Error checking registration information, please check network connection</string>
+    <string name="register_error">Registration failed</string>
+    <string name="error_check_user">Check user error</string>
+    <string name="error_app_max_num">The amount of software used has reached the upper limit：</string>
+    <string name="error_check_usernum">Error checking the number of users, please check the network connection：</string>
+    <string name="error_get_app_usernum">Failed to get the number of software USES</string>
+    <string name="set_result">The results of Configure</string>
+    <string name="set_successful">The configuration succeeded. Please proceed to the next step</string>
+    <string name="download_successful">Download successful</string>
+    <string name="down_fail">Download error</string>
+    <string name="if_configuration">Configuration?</string>
+    <string name="configuration_tips">Configuration will empty all the data</string>
+    <string name="clear">Empty</string>
+    <string name="unclear">Don\'t empty</string>
+    <string name="choose_accout">Please select account set</string>
+    <string name="configurationing">Configuration...</string>
+    <string name="connection_going">Connecting...</string>
+    <string name="connect_fail">Connection Error</string>
+    <string name="upload">Upload</string>
+    <string name="in_store_date">InStoreDate:</string>
+    <string name="business_no">BusinessNo:</string>
+    <string name="business_no_hint">Please Write the BusinessNo</string>
+    <string name="production_workshop">ProductionWorkshop:</string>
+    <string name="note">Note：</string>
+    <string name="get_man">GetMan:</string>
+    <string name="get_man_hint">Please Choose the GetMan</string>
+    <string name="store_man">StoreMan:</string>
+    <string name="store_man_hint">Please Choose the StoreMan</string>
+    <string name="huozhu">Shipper:</string><!--货主-->
+    <string name="huozhu_hint">Please Choose the Shipper</string>
+    <string name="production_org">Production Org:</string>
+    <string name="production_org_hint">Please Choose Production Org</string>
+    <string name="send_org">Send Org:</string>
+    <string name="send_org_hint">Please Choose Send Org</string>
+    <string name="supplier">Supplier:</string>
+    <string name="storage_hint">Please Choose Storage</string>
+    <string name="store_org">Store Org:</string>
+    <string name="store_org_hint">Pleas Choose the Store Org</string>
+    <string name="huozhu_type">Shipper Type:</string>
+    <string name="huozhu_type_hint">Please Choose the Shipper Type</string>
+    <string name="lenght_dm">Lenght(dm)</string>
+    <string name="lenght_hint">Please Write the Lenght</string>
+    <string name="diameter">Diameter</string>
+    <string name="diameter_choose">Diameter Choise</string>
+    <string name="production_workshop_hint">Please Choose the Production workshop</string>
+    <string name="in_store_org">InStore Org:</string>
+    <string name="in_store_org_hint">请选择入库组织</string>
+    <string name="attention">注意</string>
+    <string name="main_load_fail">表头数据获取失败，请重新下载单据...</string>
+    <string name="product_find_nothing">找不到物料数据</string>
+    <string name="product_find_error">查询列表物料错误:</string>
+    <string name="find_nothing">未查询到数据</string>
+    <string name="product_nothing">商品不存在</string>
+    <string name="if_down_update_file">Download The New Apk File?</string>
+    <string name="new_version">New Version</string>
+    <string name="downing">Downloading...</string>
+    <string name="bluetooth_set">Bluetooth Setting</string>
+    <string name="print_test">PrintTest</string>
+    <string name="setting">Setting...</string>
+    <string name="get_printer">Geted the Printer</string>
+    <string name="autoPihao">AutoCreateBatch</string>
+    <string name="basic_information">Basic Information</string>
+    <string name="detail_information">Detail Information</string>
+    <string name="print_num">Print the number</string>
+    <string name="tip_print_is_max">The number of prints has been exceeded</string>
+    <string name="tip_print_is_mix">While the number is 0,Barcode will not be printed</string>
+    <string name="start_date">Start Date:</string>
+    <string name="ending_date">Ending Date:</string>
+    <string name="longclick_clear">Long press to empty</string>
+    <string name="download">DownLoad</string>
+    <string name="find">Find</string>
+    <string name="download_order">Download Order</string>
+    <string name="choose_order">Choose Order</string>
+    <string name="order_no">OrderNo:</string>
+    <string name="delete">Delete</string>
+    <string name="createOrder">Create Order</string>
+    <string name="this_user">User:</string>
+    <string name="data_center">DC:</string>
+    <string name="version_no">version:</string>
+    <string name="scan_helper">Scan Helper</string>
+    <string name="down_successful">Download Successful</string>
+    <string name="loading">Loading...</string>
+    <string name="batch">批次</string>
+    <string name="wort_instore">刨光干板入库</string>
+    <string name="boxcode_print">箱码补打</string>
+    <string name="product_get_p2">原木领料</string>
+
+</resources>

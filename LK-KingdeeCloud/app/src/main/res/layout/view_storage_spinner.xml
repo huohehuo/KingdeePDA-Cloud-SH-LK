@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <TextView
+        android:id="@+id/tv"
+        android:layout_weight="1"
+        android:textColor="#595858"
+        android:textSize="@dimen/sp_in_size"
+        android:layout_gravity="center_vertical"
+        android:layout_width="0dp"
+        android:gravity="center_horizontal"
+        android:layout_height="wrap_content" />
+    <ImageView
+        android:id="@+id/iv_find"
+        android:background="@mipmap/find"
+        android:layout_width="40dp"
+        android:layout_height="40dp" />
+    <Spinner
+        android:id="@+id/sp"
+        android:layout_width="1dp"
+        android:overScrollMode="never"
+        android:padding="50dp"
+        android:layout_height="40dp"
+        android:spinnerMode="dialog"
+        android:textSize="9sp"
+        />
+
+
+</LinearLayout>

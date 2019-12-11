@@ -1,0 +1,482 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+
+    <data>
+
+        <import type="com.fangzuo.assist.cloud.Utils.CommonUtil" />
+
+        <variable
+            name="product"
+            type="com.fangzuo.assist.cloud.Dao.Product" />
+        <variable
+            name="print"
+            type="com.fangzuo.assist.cloud.Beans.PrintHistory" />
+    </data>
+
+    <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <com.journeyapps.barcodescanner.DecoratedBarcodeView
+            android:id="@+id/zxing_barcode_scanner"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:zxing_framing_rect_height="180dp"
+            app:zxing_framing_rect_width="180dp"
+            app:zxing_preview_scaling_strategy="centerCrop"
+            app:zxing_scanner_layout="@layout/custom_barcode_scanner"
+            app:zxing_use_texture_view="true" />
+        <android.support.v7.widget.CardView
+            android:id="@+id/cv_show"
+            android:visibility="gone"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="10dp"
+            app:cardCornerRadius="20dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_horizontal"
+                    android:text="货物详细信息"
+                    android:textSize="22sp" />
+
+                <include layout="@layout/line_heng" />
+
+                <ScrollView
+                    android:layout_weight="1"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="5dp"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_height="@dimen/height_scan_product"
+                                android:layout_weight="4"
+                                android:gravity="center_vertical"
+                                android:text="物料代码"
+                                android:textSize="@dimen/height_scan_product_size" />
+
+                            <include layout="@layout/line_shu" />
+
+                            <android.support.v7.widget.AppCompatTextView
+                                android:autoSizeTextType="uniform"                                android:layout_width="0dp"
+                                android:layout_height="@dimen/height_scan_product"
+                                android:layout_weight="6"
+                                android:gravity="center_vertical"
+                                android:text="@{print.FNumber}"
+                                android:textSize="@dimen/height_scan_product_size" />
+                        </LinearLayout>
+
+                        <include layout="@layout/line_heng" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="5dp"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_height="@dimen/height_scan_product"
+                                android:layout_weight="4"
+                                android:gravity="center_vertical"
+                                android:text="物料名称"
+                                android:textSize="@dimen/height_scan_product_size" />
+
+                            <include layout="@layout/line_shu" />
+
+                            <android.support.v7.widget.AppCompatTextView
+                                android:autoSizeTextType="uniform"                                android:layout_width="0dp"
+                                android:layout_height="@dimen/height_scan_product"
+                                android:layout_weight="6"
+                                android:gravity="center_vertical"
+                                android:text="@{print.FName}"
+                                android:textSize="@dimen/height_scan_product_size" />
+                        </LinearLayout>
+
+                        <include layout="@layout/line_heng" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="5dp"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_height="@dimen/height_scan_product"
+                                android:layout_weight="4"
+                                android:gravity="center_vertical"
+                                android:text="规格型号"
+                                android:textSize="@dimen/height_scan_product_size" />
+
+                            <include layout="@layout/line_shu" />
+
+                            <android.support.v7.widget.AppCompatTextView
+                                android:autoSizeTextType="uniform"                                android:layout_width="0dp"
+                                android:layout_height="@dimen/height_scan_product"
+                                android:layout_weight="6"
+                                android:gravity="center_vertical"
+                                android:text="@{print.FModel}"
+                                android:textSize="@dimen/height_scan_product_size" />
+                        </LinearLayout>
+
+                        <include layout="@layout/line_heng" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="5dp"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_height="@dimen/height_scan_product"
+                                android:layout_weight="4"
+                                android:gravity="center_vertical"
+                                android:text="批号"
+                                android:textSize="@dimen/height_scan_product_size" />
+
+                            <include layout="@layout/line_shu" />
+
+                            <android.support.v7.widget.AppCompatTextView
+                                android:autoSizeTextType="uniform"
+                                android:layout_width="0dp"
+                                android:layout_height="@dimen/height_scan_product"
+                                android:layout_weight="6"
+                                android:gravity="center_vertical"
+                                android:text="@{print.FBatch}"
+                                android:textSize="@dimen/height_scan_product_size" />
+                        </LinearLayout>
+
+                        <include layout="@layout/line_heng" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="5dp"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_height="@dimen/height_scan_product"
+                                android:layout_weight="4"
+                                android:gravity="center_vertical"
+                                android:text="货主描述"
+                                android:textSize="@dimen/height_scan_product_size" />
+
+                            <include layout="@layout/line_shu" />
+
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_height="@dimen/height_scan_product"
+                                android:layout_weight="6"
+                                android:gravity="center_vertical"
+                                android:text="@{print.FHuoquan}"
+                                android:textSize="@dimen/height_scan_product_size" />
+                        </LinearLayout>
+
+                        <include layout="@layout/line_heng" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="5dp"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_height="@dimen/height_scan_product"
+                                android:layout_weight="4"
+                                android:gravity="center_vertical"
+                                android:text="@string/storage"
+                                android:textSize="@dimen/height_scan_product_size" />
+
+                            <include layout="@layout/line_shu" />
+
+                            <android.support.v7.widget.AppCompatTextView
+                                android:autoSizeTextType="uniform"
+                                android:layout_width="0dp"
+                                android:layout_height="@dimen/height_scan_product"
+                                android:layout_weight="6"
+                                android:gravity="center_vertical"
+                                android:text="@{print.FStorage}"
+                                android:textSize="@dimen/height_scan_product_size" />
+                        </LinearLayout>
+
+                        <include layout="@layout/line_heng" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="5dp"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_height="@dimen/height_scan_product"
+                                android:layout_weight="4"
+                                android:gravity="center_vertical"
+                                android:text="仓位"
+                                android:textSize="@dimen/height_scan_product_size" />
+
+                            <include layout="@layout/line_shu" />
+
+                            <android.support.v7.widget.AppCompatTextView
+                                android:autoSizeTextType="uniform"
+                                android:layout_width="0dp"
+                                android:layout_height="@dimen/height_scan_product"
+                                android:layout_weight="6"
+                                android:gravity="center_vertical"
+                                android:text="@{print.FWaveHouse}"
+                                android:textSize="@dimen/height_scan_product_size" />
+                        </LinearLayout>
+
+                        <include layout="@layout/line_heng" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="5dp"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_height="@dimen/height_scan_product"
+                                android:layout_weight="4"
+                                android:gravity="center_vertical"
+                                android:text="库存单位"
+                                android:textSize="@dimen/height_scan_product_size" />
+
+                            <include layout="@layout/line_shu" />
+
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_height="@dimen/height_scan_product"
+                                android:layout_weight="6"
+                                android:gravity="center_vertical"
+                                android:text="@{print.FUnit}"
+                                android:textSize="@dimen/height_scan_product_size" />
+                        </LinearLayout>
+
+                        <include layout="@layout/line_heng" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="5dp"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_height="@dimen/height_scan_product"
+                                android:layout_weight="4"
+                                android:gravity="center_vertical"
+                                android:text="库存数量"
+                                android:textSize="@dimen/height_scan_product_size" />
+
+                            <include layout="@layout/line_shu" />
+
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_height="@dimen/height_scan_product"
+                                android:layout_weight="6"
+                                android:gravity="center_vertical"
+                                android:text="@{print.FNum}"
+                                android:textSize="@dimen/height_scan_product_size" />
+                        </LinearLayout>
+
+                        <include layout="@layout/line_heng" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="5dp"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_height="@dimen/height_scan_product"
+                                android:layout_weight="4"
+                                android:gravity="center_vertical"
+                                android:text="基本单位"
+                                android:textSize="@dimen/height_scan_product_size" />
+
+                            <include layout="@layout/line_shu" />
+
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_height="@dimen/height_scan_product"
+                                android:layout_weight="6"
+                                android:gravity="center_vertical"
+                                android:text="@{print.FUnitAux}"
+                                android:textSize="@dimen/height_scan_product_size" />
+                        </LinearLayout>
+
+                        <include layout="@layout/line_heng" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="5dp"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_height="@dimen/height_scan_product"
+                                android:layout_weight="4"
+                                android:gravity="center_vertical"
+                                android:text="基本数量"
+                                android:textSize="@dimen/height_scan_product_size" />
+
+                            <include layout="@layout/line_shu" />
+
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_height="@dimen/height_scan_product"
+                                android:layout_weight="6"
+                                android:gravity="center_vertical"
+                                android:text="@{print.FNum2}"
+                                android:textSize="@dimen/height_scan_product_size" />
+                        </LinearLayout>
+
+                        <include layout="@layout/line_heng" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="5dp"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_height="@dimen/height_scan_product"
+                                android:layout_weight="4"
+                                android:gravity="center_vertical"
+                                android:text="辅助标识"
+                                android:textSize="@dimen/height_scan_product_size" />
+
+                            <include layout="@layout/line_shu" />
+
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_height="@dimen/height_scan_product"
+                                android:layout_weight="6"
+                                android:gravity="center_vertical"
+                                android:text="@{print.FAuxSign}"
+                                android:textSize="@dimen/height_scan_product_size" />
+                        </LinearLayout>
+
+                        <include layout="@layout/line_heng" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="5dp"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_height="@dimen/height_scan_product"
+                                android:layout_weight="4"
+                                android:gravity="center_vertical"
+                                android:text="实际规格"
+                                android:textSize="@dimen/height_scan_product_size" />
+
+                            <include layout="@layout/line_shu" />
+
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_height="@dimen/height_scan_product"
+                                android:layout_weight="6"
+                                android:gravity="center_vertical"
+                                android:text="@{print.FActualModel}"
+                                android:textSize="@dimen/height_scan_product_size" />
+                        </LinearLayout>
+
+                        <include layout="@layout/line_heng" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="5dp"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_height="@dimen/height_scan_product"
+                                android:layout_weight="4"
+                                android:gravity="center_vertical"
+                                android:text="@string/in_store_date"
+                                android:textSize="@dimen/height_scan_product_size" />
+
+                            <include layout="@layout/line_shu" />
+
+                            <android.support.v7.widget.AppCompatTextView
+                                android:autoSizeTextType="uniform"
+                                android:layout_width="0dp"
+                                android:layout_height="@dimen/height_scan_product"
+                                android:layout_weight="6"
+                                android:gravity="center_vertical"
+                                android:text="@{print.FDate}"
+                                android:textSize="@dimen/height_scan_product_size" />
+                        </LinearLayout>
+
+                        <include layout="@layout/line_heng" />
+
+                        <LinearLayout
+                            android:visibility="gone"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="5dp"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_height="@dimen/height_scan_product"
+                                android:layout_weight="4"
+                                android:gravity="center_vertical"
+                                android:text="标签打印人"
+                                android:textSize="@dimen/height_scan_product_size" />
+
+                            <include layout="@layout/line_shu" />
+
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_height="@dimen/height_scan_product"
+                                android:layout_weight="6"
+                                android:gravity="center_vertical"
+                                android:text="@{print.FPrintMan}"
+                                android:textSize="@dimen/height_scan_product_size" />
+                        </LinearLayout>
+                    </LinearLayout>
+                </ScrollView>
+                <ImageView
+                    android:id="@+id/iv_scan"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:src="@mipmap/scan" />
+            </LinearLayout>
+
+        </android.support.v7.widget.CardView>
+
+    </FrameLayout>
+</layout>

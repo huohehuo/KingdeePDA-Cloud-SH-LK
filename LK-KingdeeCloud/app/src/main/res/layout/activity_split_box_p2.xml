@@ -1,0 +1,299 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+    <include layout="@layout/top_bar"/>
+    <!--正式布局-->
+    <android.support.v7.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
+        android:layout_marginTop="5dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+            <include
+                android:visibility="gone"
+                layout="@layout/item_scan"/>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/search"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginBottom="5dp"
+                    android:background="@drawable/btn_check"
+                    android:drawableLeft="@mipmap/scan"
+                    android:gravity="center_vertical"
+                    android:text="  物料选择  "
+                    android:textSize="22sp" />
+
+                <TextView
+                    android:id="@+id/tv_print"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginLeft="@dimen/dp_5"
+                    android:layout_marginRight="10dp"
+                    android:text=""
+                    android:textColor="@android:color/black"
+                    android:textSize="15sp" />
+            </RelativeLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="5dp"
+                android:background="#93d2d2d2"
+                android:orientation="vertical">
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <com.fangzuo.assist.cloud.widget.TextViewTitle
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="4"
+                        app:TextView_Title_justone="true"
+                        app:TextView_Title_one="物料名称"
+                        app:TextView_Title_size="@dimen/size_detail" />
+
+                    <TextView
+                        android:id="@+id/tv_goodName"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="6"
+                        android:background="@drawable/tv_bg"
+                        android:gravity="center"
+                        android:singleLine="true"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/size_product" />
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <com.fangzuo.assist.cloud.widget.TextViewTitle
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="4"
+                        app:TextView_Title_justone="true"
+                        app:TextView_Title_one="总长"
+                        app:TextView_Title_size="@dimen/size_detail" />
+
+                    <TextView
+                        android:id="@+id/tv_lenght"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="6"
+                        android:background="@drawable/tv_bg"
+                        android:gravity="center"
+                        android:singleLine="true"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/size_product" />
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <com.fangzuo.assist.cloud.widget.TextViewTitle
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="4"
+                        app:TextView_Title_justone="true"
+                        app:TextView_Title_one="宽"
+                        app:TextView_Title_size="@dimen/size_detail" />
+
+                    <TextView
+                        android:id="@+id/tv_wide"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="6"
+                        android:background="@drawable/tv_bg"
+                        android:gravity="center"
+                        android:singleLine="true"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/size_product" />
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <com.fangzuo.assist.cloud.widget.TextViewTitle
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="4"
+                        app:TextView_Title_justone="true"
+                        app:TextView_Title_one="厚度"
+                        app:TextView_Title_size="@dimen/size_detail" />
+
+                    <TextView
+                        android:id="@+id/tv_thick"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="6"
+                        android:background="@drawable/tv_bg"
+                        android:gravity="center"
+                        android:singleLine="true"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/size_product" />
+                </LinearLayout>
+                <include layout="@layout/line_heng" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <com.fangzuo.assist.cloud.widget.TextViewTitle
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="2"
+                        app:TextView_Title_justone="true"
+                        app:TextView_Title_one="L"
+                        app:TextView_Title_size="8dp" />
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="6"
+                        android:background="#ffffff"
+                        android:orientation="vertical">
+
+                        <Spinner
+                            android:id="@+id/sp_lenght"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_weight="6" />
+                    </LinearLayout>
+
+                    <com.fangzuo.assist.cloud.widget.TextViewTitle
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="2"
+                        app:TextView_Title_justone="true"
+                        app:TextView_Title_one="PCS"
+                        app:TextView_Title_size="8dp" />
+
+                    <EditText
+                        android:id="@+id/ed_num"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="5"
+                        android:background="@drawable/bg_edittext_selector"
+                        android:gravity="center_horizontal|center_vertical"
+                        android:hint="请输入数量"
+                        android:inputType="number"
+                        android:singleLine="true"
+                        android:textSize="21sp" />
+                </LinearLayout>
+
+                <include layout="@layout/line_heng" />
+
+                <Button
+                    android:id="@+id/btn_add_wide"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/btn_check"
+                    android:text="@string/add"
+                    android:textColor="@android:color/white"
+                    android:textSize="@dimen/size_btn" />
+            </LinearLayout>
+
+            <include layout="@layout/line_heng" />
+
+            <include layout="@layout/item_split_detail_list_top" />
+
+            <include layout="@layout/line_heng" />
+
+        </LinearLayout>
+
+
+    </android.support.v7.widget.CardView>
+    <!--</ScrollView>-->
+
+    <com.jude.easyrecyclerview.EasyRecyclerView
+        android:id="@+id/ry_wide"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:foreground="?android:attr/selectableItemBackground"
+        app:recyclerClipToPadding="true"
+        app:recyclerPaddingTop="2dp"
+        app:scrollbarStyle="insideOverlay" />
+    <!--</RelativeLayout>-->
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:background="@android:color/white"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/btn_add"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@drawable/btn_check"
+            android:text="拆箱"
+            android:textColor="@android:color/white"
+            android:textSize="@dimen/size_btn" />
+
+        <include layout="@layout/line_shu" />
+
+        <Button
+            android:id="@+id/btn_finishorder"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@drawable/btn_check"
+            android:text="完单"
+            android:textColor="@android:color/white"
+            android:textSize="@dimen/size_btn"
+            android:visibility="gone" />
+
+        <Button
+            android:visibility="gone"
+            android:id="@+id/btn_backorder"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@drawable/btn_check"
+            android:text="上传"
+            android:textColor="@android:color/white"
+            android:textSize="@dimen/size_btn" />
+
+        <include layout="@layout/line_shu" />
+
+        <Button
+            android:id="@+id/btn_checkorder"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@drawable/btn_check"
+            android:text="@string/review"
+            android:textColor="@android:color/white"
+            android:textSize="@dimen/size_btn" />
+
+    </LinearLayout>
+
+
+</LinearLayout>
