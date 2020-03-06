@@ -89,7 +89,7 @@ public class SpinnerSupplier extends RelativeLayout {
         mSp.setAdapter(adapter);
         SuppliersDao inStoreTypeDao = daoSession.getSuppliersDao();
         List<Suppliers> inStoreTypes = inStoreTypeDao.loadAll();
-        container.add(new Suppliers("","","","","","","","","","","","",""));
+        container.add(new Suppliers("","","","","","","","","","","","","",""));
         container.addAll(inStoreTypes);
         adapter.notifyDataSetChanged();
 //        if (share.getIsOL()) {
@@ -115,7 +115,7 @@ public class SpinnerSupplier extends RelativeLayout {
                         payTypeDao.deleteAll();
                         payTypeDao.insertOrReplaceInTx(dBean.suppliers);
                         payTypeDao.detachAll();
-                        container.add(new Suppliers("","","","","","","","","","","","",""));
+                        container.add(new Suppliers("","","","","","","","","","","","","",""));
                         container.addAll(dBean.suppliers);
                         adapter.notifyDataSetChanged();
 //                        setAutoSelection(saveKeyString,autoString);
@@ -170,7 +170,7 @@ public class SpinnerSupplier extends RelativeLayout {
                     adapter.clear();
                     SuppliersDao inStoreTypeDao = daoSession.getSuppliersDao();
                     List<Suppliers> inStoreTypes = inStoreTypeDao.loadAll();
-                    container.add(new Suppliers("","","","","","","","","","","","",""));
+                    container.add(new Suppliers("","","","","","","","","","","","","",""));
                     container.addAll(inStoreTypes);
                     mSp.setAdapter(adapter);
                     adapter.notifyDataSetChanged();

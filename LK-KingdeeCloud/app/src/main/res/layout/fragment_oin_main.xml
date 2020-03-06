@@ -116,20 +116,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="6"
                     app:Uspinner_title="请选择部门"/>
-                <include
-                    layout="@layout/line_heng"/>
-                <TextView
-                    android:text="@string/storage"
-                    android:textSize="22sp"
-                    android:textColor="#1e1e1e"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
-                <com.fangzuo.assist.cloud.widget.SpinnerStorage
-                    android:id="@+id/sp_which_storage"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="6"
-                    app:Uspinner_title="@string/storage_hint"/>
+
                 <include
                     layout="@layout/line_heng"/>
                 <com.fangzuo.assist.cloud.widget.SpinnerOrg
@@ -234,10 +221,10 @@
                     android:layout_height="100dp"
                     android:background="@drawable/bg_edittext_selector"
                     android:textSize="21sp" />
-                <com.fangzuo.assist.cloud.widget.NumberClick
+               <!-- <com.fangzuo.assist.cloud.widget.NumberClick
                     android:id="@+id/cb_num"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"/>
+                    android:layout_height="wrap_content"/>-->
             </LinearLayout>
         </android.support.v7.widget.CardView>
     </ScrollView>

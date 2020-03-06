@@ -32,6 +32,10 @@ public class InStorageNumDao extends AbstractDao<InStorageNum, Long> {
         public final static Property FStoreOrgID = new Property(5, String.class, "FStoreOrgID", false, "FSTORE_ORG_ID");
         public final static Property FBatchNo = new Property(6, String.class, "FBatchNo", false, "FBATCH_NO");
         public final static Property FUnitID = new Property(7, String.class, "FUnitID", false, "FUNIT_ID");
+        public final static Property FKFDate = new Property(8, String.class, "FKFDate", false, "FKFDATE");
+        public final static Property FKFPeriod = new Property(9, String.class, "FKFPeriod", false, "FKFPERIOD");
+        public final static Property FStockPlaceID = new Property(10, String.class, "FStockPlaceID", false, "FSTOCK_PLACE_ID");
+        public final static Property FHuozhuID = new Property(11, String.class, "FHuozhuID", false, "FHUOZHU_ID");
     }
 
 
@@ -54,7 +58,11 @@ public class InStorageNumDao extends AbstractDao<InStorageNum, Long> {
                 "\"FSTORE_STATE\" TEXT," + // 4: FStoreState
                 "\"FSTORE_ORG_ID\" TEXT," + // 5: FStoreOrgID
                 "\"FBATCH_NO\" TEXT," + // 6: FBatchNo
-                "\"FUNIT_ID\" TEXT);"); // 7: FUnitID
+                "\"FUNIT_ID\" TEXT," + // 7: FUnitID
+                "\"FKFDATE\" TEXT," + // 8: FKFDate
+                "\"FKFPERIOD\" TEXT," + // 9: FKFPeriod
+                "\"FSTOCK_PLACE_ID\" TEXT," + // 10: FStockPlaceID
+                "\"FHUOZHU_ID\" TEXT);"); // 11: FHuozhuID
     }
 
     /** Drops the underlying database table. */
@@ -106,6 +114,26 @@ public class InStorageNumDao extends AbstractDao<InStorageNum, Long> {
         if (FUnitID != null) {
             stmt.bindString(8, FUnitID);
         }
+ 
+        String FKFDate = entity.getFKFDate();
+        if (FKFDate != null) {
+            stmt.bindString(9, FKFDate);
+        }
+ 
+        String FKFPeriod = entity.getFKFPeriod();
+        if (FKFPeriod != null) {
+            stmt.bindString(10, FKFPeriod);
+        }
+ 
+        String FStockPlaceID = entity.getFStockPlaceID();
+        if (FStockPlaceID != null) {
+            stmt.bindString(11, FStockPlaceID);
+        }
+ 
+        String FHuozhuID = entity.getFHuozhuID();
+        if (FHuozhuID != null) {
+            stmt.bindString(12, FHuozhuID);
+        }
     }
 
     @Override
@@ -151,6 +179,26 @@ public class InStorageNumDao extends AbstractDao<InStorageNum, Long> {
         if (FUnitID != null) {
             stmt.bindString(8, FUnitID);
         }
+ 
+        String FKFDate = entity.getFKFDate();
+        if (FKFDate != null) {
+            stmt.bindString(9, FKFDate);
+        }
+ 
+        String FKFPeriod = entity.getFKFPeriod();
+        if (FKFPeriod != null) {
+            stmt.bindString(10, FKFPeriod);
+        }
+ 
+        String FStockPlaceID = entity.getFStockPlaceID();
+        if (FStockPlaceID != null) {
+            stmt.bindString(11, FStockPlaceID);
+        }
+ 
+        String FHuozhuID = entity.getFHuozhuID();
+        if (FHuozhuID != null) {
+            stmt.bindString(12, FHuozhuID);
+        }
     }
 
     @Override
@@ -168,7 +216,11 @@ public class InStorageNumDao extends AbstractDao<InStorageNum, Long> {
             cursor.isNull(offset + 4) ? null : cursor.getString(offset + 4), // FStoreState
             cursor.isNull(offset + 5) ? null : cursor.getString(offset + 5), // FStoreOrgID
             cursor.isNull(offset + 6) ? null : cursor.getString(offset + 6), // FBatchNo
-            cursor.isNull(offset + 7) ? null : cursor.getString(offset + 7) // FUnitID
+            cursor.isNull(offset + 7) ? null : cursor.getString(offset + 7), // FUnitID
+            cursor.isNull(offset + 8) ? null : cursor.getString(offset + 8), // FKFDate
+            cursor.isNull(offset + 9) ? null : cursor.getString(offset + 9), // FKFPeriod
+            cursor.isNull(offset + 10) ? null : cursor.getString(offset + 10), // FStockPlaceID
+            cursor.isNull(offset + 11) ? null : cursor.getString(offset + 11) // FHuozhuID
         );
         return entity;
     }
@@ -183,6 +235,10 @@ public class InStorageNumDao extends AbstractDao<InStorageNum, Long> {
         entity.setFStoreOrgID(cursor.isNull(offset + 5) ? null : cursor.getString(offset + 5));
         entity.setFBatchNo(cursor.isNull(offset + 6) ? null : cursor.getString(offset + 6));
         entity.setFUnitID(cursor.isNull(offset + 7) ? null : cursor.getString(offset + 7));
+        entity.setFKFDate(cursor.isNull(offset + 8) ? null : cursor.getString(offset + 8));
+        entity.setFKFPeriod(cursor.isNull(offset + 9) ? null : cursor.getString(offset + 9));
+        entity.setFStockPlaceID(cursor.isNull(offset + 10) ? null : cursor.getString(offset + 10));
+        entity.setFHuozhuID(cursor.isNull(offset + 11) ? null : cursor.getString(offset + 11));
      }
     
     @Override

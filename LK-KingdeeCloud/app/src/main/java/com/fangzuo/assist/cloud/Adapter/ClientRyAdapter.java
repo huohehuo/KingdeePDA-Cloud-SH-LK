@@ -1,6 +1,7 @@
 package com.fangzuo.assist.cloud.Adapter;
 
 import android.content.Context;
+import android.support.v7.widget.AppCompatTextView;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
@@ -44,8 +45,8 @@ public class ClientRyAdapter extends RecyclerArrayAdapter<Client> {
 
     class MarkHolder extends BaseViewHolder<Client> {
 
-        private TextView huoquan;
-        private TextView batch;
+        private AppCompatTextView huoquan;
+        private AppCompatTextView batch;
         private TextView name;
         private TextView model;
         private TextView num;

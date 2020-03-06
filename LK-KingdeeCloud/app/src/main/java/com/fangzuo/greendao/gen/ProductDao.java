@@ -25,47 +25,56 @@ public class ProductDao extends AbstractDao<Product, Void> {
      */
     public static class Properties {
         public final static Property FProduceUnitID = new Property(0, String.class, "FProduceUnitID", false, "FPRODUCE_UNIT_ID");
-        public final static Property FPurchaseUnitID = new Property(1, String.class, "FPurchaseUnitID", false, "FPURCHASE_UNIT_ID");
-        public final static Property FPurchasePriceUnitID = new Property(2, String.class, "FPurchasePriceUnitID", false, "FPURCHASE_PRICE_UNIT_ID");
-        public final static Property FSaleUnitID = new Property(3, String.class, "FSaleUnitID", false, "FSALE_UNIT_ID");
-        public final static Property FSalePriceUnitID = new Property(4, String.class, "FSalePriceUnitID", false, "FSALE_PRICE_UNIT_ID");
-        public final static Property FStoreUnitID = new Property(5, String.class, "FStoreUnitID", false, "FSTORE_UNIT_ID");
-        public final static Property FAuxUnitID = new Property(6, String.class, "FAuxUnitID", false, "FAUX_UNIT_ID");
-        public final static Property FStockID = new Property(7, String.class, "FStockID", false, "FSTOCK_ID");
-        public final static Property FStockPlaceID = new Property(8, String.class, "FStockPlaceID", false, "FSTOCK_PLACE_ID");
-        public final static Property FIsBatchManage = new Property(9, String.class, "FIsBatchManage", false, "FIS_BATCH_MANAGE");
-        public final static Property FIsKFperiod = new Property(10, String.class, "FIsKFperiod", false, "FIS_KFPERIOD");
-        public final static Property FExpperiod = new Property(11, String.class, "FExpperiod", false, "FEXPPERIOD");
-        public final static Property FExpUnit = new Property(12, String.class, "FExpUnit", false, "FEXP_UNIT");
-        public final static Property FIsPurchase = new Property(13, String.class, "FIsPurchase", false, "FIS_PURCHASE");
-        public final static Property FIsSale = new Property(14, String.class, "FIsSale", false, "FIS_SALE");
-        public final static Property FIsInventory = new Property(15, String.class, "FIsInventory", false, "FIS_INVENTORY");
-        public final static Property FIsProduce = new Property(16, String.class, "FIsProduce", false, "FIS_PRODUCE");
-        public final static Property FIsSubContract = new Property(17, String.class, "FIsSubContract", false, "FIS_SUB_CONTRACT");
-        public final static Property FIsAsset = new Property(18, String.class, "FIsAsset", false, "FIS_ASSET");
-        public final static Property FBaseUnitID = new Property(19, String.class, "FBaseUnitID", false, "FBASE_UNIT_ID");
-        public final static Property FFWeightUnitID = new Property(20, String.class, "FFWeightUnitID", false, "FFWEIGHT_UNIT_ID");
-        public final static Property FVolumeUnitID = new Property(21, String.class, "FVolumeUnitID", false, "FVOLUME_UNIT_ID");
-        public final static Property FBarcode = new Property(22, String.class, "FBarcode", false, "FBARCODE");
-        public final static Property FGrossWeight = new Property(23, String.class, "FGrossWeight", false, "FGROSS_WEIGHT");
-        public final static Property FNetWeight = new Property(24, String.class, "FNetWeight", false, "FNET_WEIGHT");
-        public final static Property FLenght = new Property(25, String.class, "FLenght", false, "FLENGHT");
-        public final static Property FWidth = new Property(26, String.class, "FWidth", false, "FWIDTH");
-        public final static Property FHeight = new Property(27, String.class, "FHeight", false, "FHEIGHT");
-        public final static Property FVolume = new Property(28, String.class, "FVolume", false, "FVOLUME");
-        public final static Property FMaterialid = new Property(29, String.class, "FMaterialid", false, "FMATERIALID");
-        public final static Property FNumber = new Property(30, String.class, "FNumber", false, "FNUMBER");
-        public final static Property FoldNumber = new Property(31, String.class, "FoldNumber", false, "FOLD_NUMBER");
-        public final static Property FName = new Property(32, String.class, "FName", false, "FNAME");
-        public final static Property FModel = new Property(33, String.class, "FModel", false, "FMODEL");
-        public final static Property FMnemoniccode = new Property(34, String.class, "FMnemoniccode", false, "FMNEMONICCODE");
-        public final static Property FOrg = new Property(35, String.class, "FOrg", false, "FORG");
-        public final static Property FMASTERID = new Property(36, String.class, "FMASTERID", false, "FMASTERID");
-        public final static Property FStr1 = new Property(37, String.class, "FStr1", false, "FSTR1");
-        public final static Property FStr2 = new Property(38, String.class, "FStr2", false, "FSTR2");
-        public final static Property FStr3 = new Property(39, String.class, "FStr3", false, "FSTR3");
-        public final static Property FStr4 = new Property(40, String.class, "FStr4", false, "FSTR4");
-        public final static Property FStr5 = new Property(41, String.class, "FStr5", false, "FSTR5");
+        public final static Property FProduceUnitNumber = new Property(1, String.class, "FProduceUnitNumber", false, "FPRODUCE_UNIT_NUMBER");
+        public final static Property FPurchaseUnitID = new Property(2, String.class, "FPurchaseUnitID", false, "FPURCHASE_UNIT_ID");
+        public final static Property FPurchaseUnitNumber = new Property(3, String.class, "FPurchaseUnitNumber", false, "FPURCHASE_UNIT_NUMBER");
+        public final static Property FPurchasePriceUnitID = new Property(4, String.class, "FPurchasePriceUnitID", false, "FPURCHASE_PRICE_UNIT_ID");
+        public final static Property FPurchasePriceUnitNumber = new Property(5, String.class, "FPurchasePriceUnitNumber", false, "FPURCHASE_PRICE_UNIT_NUMBER");
+        public final static Property FSaleUnitID = new Property(6, String.class, "FSaleUnitID", false, "FSALE_UNIT_ID");
+        public final static Property FSaleUnitNumber = new Property(7, String.class, "FSaleUnitNumber", false, "FSALE_UNIT_NUMBER");
+        public final static Property FSalePriceUnitID = new Property(8, String.class, "FSalePriceUnitID", false, "FSALE_PRICE_UNIT_ID");
+        public final static Property FSalePriceUnitNumber = new Property(9, String.class, "FSalePriceUnitNumber", false, "FSALE_PRICE_UNIT_NUMBER");
+        public final static Property FStoreUnitID = new Property(10, String.class, "FStoreUnitID", false, "FSTORE_UNIT_ID");
+        public final static Property FStoreUnitNumber = new Property(11, String.class, "FStoreUnitNumber", false, "FSTORE_UNIT_NUMBER");
+        public final static Property FAuxUnitID = new Property(12, String.class, "FAuxUnitID", false, "FAUX_UNIT_ID");
+        public final static Property FAuxUnitNumber = new Property(13, String.class, "FAuxUnitNumber", false, "FAUX_UNIT_NUMBER");
+        public final static Property FBaseUnitID = new Property(14, String.class, "FBaseUnitID", false, "FBASE_UNIT_ID");
+        public final static Property FBaseUnitNumber = new Property(15, String.class, "FBaseUnitNumber", false, "FBASE_UNIT_NUMBER");
+        public final static Property FUnitGroupID = new Property(16, String.class, "FUnitGroupID", false, "FUNIT_GROUP_ID");
+        public final static Property FStockID = new Property(17, String.class, "FStockID", false, "FSTOCK_ID");
+        public final static Property FStockPlaceID = new Property(18, String.class, "FStockPlaceID", false, "FSTOCK_PLACE_ID");
+        public final static Property FIsBatchManage = new Property(19, String.class, "FIsBatchManage", false, "FIS_BATCH_MANAGE");
+        public final static Property FIsKFperiod = new Property(20, String.class, "FIsKFperiod", false, "FIS_KFPERIOD");
+        public final static Property FExpperiod = new Property(21, String.class, "FExpperiod", false, "FEXPPERIOD");
+        public final static Property FExpUnit = new Property(22, String.class, "FExpUnit", false, "FEXP_UNIT");
+        public final static Property FIsPurchase = new Property(23, String.class, "FIsPurchase", false, "FIS_PURCHASE");
+        public final static Property FIsSale = new Property(24, String.class, "FIsSale", false, "FIS_SALE");
+        public final static Property FIsInventory = new Property(25, String.class, "FIsInventory", false, "FIS_INVENTORY");
+        public final static Property FIsProduce = new Property(26, String.class, "FIsProduce", false, "FIS_PRODUCE");
+        public final static Property FIsSubContract = new Property(27, String.class, "FIsSubContract", false, "FIS_SUB_CONTRACT");
+        public final static Property FIsAsset = new Property(28, String.class, "FIsAsset", false, "FIS_ASSET");
+        public final static Property FFWeightUnitID = new Property(29, String.class, "FFWeightUnitID", false, "FFWEIGHT_UNIT_ID");
+        public final static Property FVolumeUnitID = new Property(30, String.class, "FVolumeUnitID", false, "FVOLUME_UNIT_ID");
+        public final static Property FBarcode = new Property(31, String.class, "FBarcode", false, "FBARCODE");
+        public final static Property FGrossWeight = new Property(32, String.class, "FGrossWeight", false, "FGROSS_WEIGHT");
+        public final static Property FNetWeight = new Property(33, String.class, "FNetWeight", false, "FNET_WEIGHT");
+        public final static Property FLenght = new Property(34, String.class, "FLenght", false, "FLENGHT");
+        public final static Property FWidth = new Property(35, String.class, "FWidth", false, "FWIDTH");
+        public final static Property FHeight = new Property(36, String.class, "FHeight", false, "FHEIGHT");
+        public final static Property FVolume = new Property(37, String.class, "FVolume", false, "FVOLUME");
+        public final static Property FMaterialid = new Property(38, String.class, "FMaterialid", false, "FMATERIALID");
+        public final static Property FNumber = new Property(39, String.class, "FNumber", false, "FNUMBER");
+        public final static Property FoldNumber = new Property(40, String.class, "FoldNumber", false, "FOLD_NUMBER");
+        public final static Property FName = new Property(41, String.class, "FName", false, "FNAME");
+        public final static Property FModel = new Property(42, String.class, "FModel", false, "FMODEL");
+        public final static Property FMnemoniccode = new Property(43, String.class, "FMnemoniccode", false, "FMNEMONICCODE");
+        public final static Property FOrg = new Property(44, String.class, "FOrg", false, "FORG");
+        public final static Property FMASTERID = new Property(45, String.class, "FMASTERID", false, "FMASTERID");
+        public final static Property FStr1 = new Property(46, String.class, "FStr1", false, "FSTR1");
+        public final static Property FStr2 = new Property(47, String.class, "FStr2", false, "FSTR2");
+        public final static Property FStr3 = new Property(48, String.class, "FStr3", false, "FSTR3");
+        public final static Property FStr4 = new Property(49, String.class, "FStr4", false, "FSTR4");
+        public final static Property FStr5 = new Property(50, String.class, "FStr5", false, "FSTR5");
     }
 
 
@@ -82,47 +91,56 @@ public class ProductDao extends AbstractDao<Product, Void> {
         String constraint = ifNotExists? "IF NOT EXISTS ": "";
         db.execSQL("CREATE TABLE " + constraint + "\"PRODUCT\" (" + //
                 "\"FPRODUCE_UNIT_ID\" TEXT," + // 0: FProduceUnitID
-                "\"FPURCHASE_UNIT_ID\" TEXT," + // 1: FPurchaseUnitID
-                "\"FPURCHASE_PRICE_UNIT_ID\" TEXT," + // 2: FPurchasePriceUnitID
-                "\"FSALE_UNIT_ID\" TEXT," + // 3: FSaleUnitID
-                "\"FSALE_PRICE_UNIT_ID\" TEXT," + // 4: FSalePriceUnitID
-                "\"FSTORE_UNIT_ID\" TEXT," + // 5: FStoreUnitID
-                "\"FAUX_UNIT_ID\" TEXT," + // 6: FAuxUnitID
-                "\"FSTOCK_ID\" TEXT," + // 7: FStockID
-                "\"FSTOCK_PLACE_ID\" TEXT," + // 8: FStockPlaceID
-                "\"FIS_BATCH_MANAGE\" TEXT," + // 9: FIsBatchManage
-                "\"FIS_KFPERIOD\" TEXT," + // 10: FIsKFperiod
-                "\"FEXPPERIOD\" TEXT," + // 11: FExpperiod
-                "\"FEXP_UNIT\" TEXT," + // 12: FExpUnit
-                "\"FIS_PURCHASE\" TEXT," + // 13: FIsPurchase
-                "\"FIS_SALE\" TEXT," + // 14: FIsSale
-                "\"FIS_INVENTORY\" TEXT," + // 15: FIsInventory
-                "\"FIS_PRODUCE\" TEXT," + // 16: FIsProduce
-                "\"FIS_SUB_CONTRACT\" TEXT," + // 17: FIsSubContract
-                "\"FIS_ASSET\" TEXT," + // 18: FIsAsset
-                "\"FBASE_UNIT_ID\" TEXT," + // 19: FBaseUnitID
-                "\"FFWEIGHT_UNIT_ID\" TEXT," + // 20: FFWeightUnitID
-                "\"FVOLUME_UNIT_ID\" TEXT," + // 21: FVolumeUnitID
-                "\"FBARCODE\" TEXT," + // 22: FBarcode
-                "\"FGROSS_WEIGHT\" TEXT," + // 23: FGrossWeight
-                "\"FNET_WEIGHT\" TEXT," + // 24: FNetWeight
-                "\"FLENGHT\" TEXT," + // 25: FLenght
-                "\"FWIDTH\" TEXT," + // 26: FWidth
-                "\"FHEIGHT\" TEXT," + // 27: FHeight
-                "\"FVOLUME\" TEXT," + // 28: FVolume
-                "\"FMATERIALID\" TEXT," + // 29: FMaterialid
-                "\"FNUMBER\" TEXT," + // 30: FNumber
-                "\"FOLD_NUMBER\" TEXT," + // 31: FoldNumber
-                "\"FNAME\" TEXT," + // 32: FName
-                "\"FMODEL\" TEXT," + // 33: FModel
-                "\"FMNEMONICCODE\" TEXT," + // 34: FMnemoniccode
-                "\"FORG\" TEXT," + // 35: FOrg
-                "\"FMASTERID\" TEXT," + // 36: FMASTERID
-                "\"FSTR1\" TEXT," + // 37: FStr1
-                "\"FSTR2\" TEXT," + // 38: FStr2
-                "\"FSTR3\" TEXT," + // 39: FStr3
-                "\"FSTR4\" TEXT," + // 40: FStr4
-                "\"FSTR5\" TEXT);"); // 41: FStr5
+                "\"FPRODUCE_UNIT_NUMBER\" TEXT," + // 1: FProduceUnitNumber
+                "\"FPURCHASE_UNIT_ID\" TEXT," + // 2: FPurchaseUnitID
+                "\"FPURCHASE_UNIT_NUMBER\" TEXT," + // 3: FPurchaseUnitNumber
+                "\"FPURCHASE_PRICE_UNIT_ID\" TEXT," + // 4: FPurchasePriceUnitID
+                "\"FPURCHASE_PRICE_UNIT_NUMBER\" TEXT," + // 5: FPurchasePriceUnitNumber
+                "\"FSALE_UNIT_ID\" TEXT," + // 6: FSaleUnitID
+                "\"FSALE_UNIT_NUMBER\" TEXT," + // 7: FSaleUnitNumber
+                "\"FSALE_PRICE_UNIT_ID\" TEXT," + // 8: FSalePriceUnitID
+                "\"FSALE_PRICE_UNIT_NUMBER\" TEXT," + // 9: FSalePriceUnitNumber
+                "\"FSTORE_UNIT_ID\" TEXT," + // 10: FStoreUnitID
+                "\"FSTORE_UNIT_NUMBER\" TEXT," + // 11: FStoreUnitNumber
+                "\"FAUX_UNIT_ID\" TEXT," + // 12: FAuxUnitID
+                "\"FAUX_UNIT_NUMBER\" TEXT," + // 13: FAuxUnitNumber
+                "\"FBASE_UNIT_ID\" TEXT," + // 14: FBaseUnitID
+                "\"FBASE_UNIT_NUMBER\" TEXT," + // 15: FBaseUnitNumber
+                "\"FUNIT_GROUP_ID\" TEXT," + // 16: FUnitGroupID
+                "\"FSTOCK_ID\" TEXT," + // 17: FStockID
+                "\"FSTOCK_PLACE_ID\" TEXT," + // 18: FStockPlaceID
+                "\"FIS_BATCH_MANAGE\" TEXT," + // 19: FIsBatchManage
+                "\"FIS_KFPERIOD\" TEXT," + // 20: FIsKFperiod
+                "\"FEXPPERIOD\" TEXT," + // 21: FExpperiod
+                "\"FEXP_UNIT\" TEXT," + // 22: FExpUnit
+                "\"FIS_PURCHASE\" TEXT," + // 23: FIsPurchase
+                "\"FIS_SALE\" TEXT," + // 24: FIsSale
+                "\"FIS_INVENTORY\" TEXT," + // 25: FIsInventory
+                "\"FIS_PRODUCE\" TEXT," + // 26: FIsProduce
+                "\"FIS_SUB_CONTRACT\" TEXT," + // 27: FIsSubContract
+                "\"FIS_ASSET\" TEXT," + // 28: FIsAsset
+                "\"FFWEIGHT_UNIT_ID\" TEXT," + // 29: FFWeightUnitID
+                "\"FVOLUME_UNIT_ID\" TEXT," + // 30: FVolumeUnitID
+                "\"FBARCODE\" TEXT," + // 31: FBarcode
+                "\"FGROSS_WEIGHT\" TEXT," + // 32: FGrossWeight
+                "\"FNET_WEIGHT\" TEXT," + // 33: FNetWeight
+                "\"FLENGHT\" TEXT," + // 34: FLenght
+                "\"FWIDTH\" TEXT," + // 35: FWidth
+                "\"FHEIGHT\" TEXT," + // 36: FHeight
+                "\"FVOLUME\" TEXT," + // 37: FVolume
+                "\"FMATERIALID\" TEXT," + // 38: FMaterialid
+                "\"FNUMBER\" TEXT," + // 39: FNumber
+                "\"FOLD_NUMBER\" TEXT," + // 40: FoldNumber
+                "\"FNAME\" TEXT," + // 41: FName
+                "\"FMODEL\" TEXT," + // 42: FModel
+                "\"FMNEMONICCODE\" TEXT," + // 43: FMnemoniccode
+                "\"FORG\" TEXT," + // 44: FOrg
+                "\"FMASTERID\" TEXT," + // 45: FMASTERID
+                "\"FSTR1\" TEXT," + // 46: FStr1
+                "\"FSTR2\" TEXT," + // 47: FStr2
+                "\"FSTR3\" TEXT," + // 48: FStr3
+                "\"FSTR4\" TEXT," + // 49: FStr4
+                "\"FSTR5\" TEXT);"); // 50: FStr5
     }
 
     /** Drops the underlying database table. */
@@ -140,209 +158,254 @@ public class ProductDao extends AbstractDao<Product, Void> {
             stmt.bindString(1, FProduceUnitID);
         }
  
+        String FProduceUnitNumber = entity.getFProduceUnitNumber();
+        if (FProduceUnitNumber != null) {
+            stmt.bindString(2, FProduceUnitNumber);
+        }
+ 
         String FPurchaseUnitID = entity.getFPurchaseUnitID();
         if (FPurchaseUnitID != null) {
-            stmt.bindString(2, FPurchaseUnitID);
+            stmt.bindString(3, FPurchaseUnitID);
+        }
+ 
+        String FPurchaseUnitNumber = entity.getFPurchaseUnitNumber();
+        if (FPurchaseUnitNumber != null) {
+            stmt.bindString(4, FPurchaseUnitNumber);
         }
  
         String FPurchasePriceUnitID = entity.getFPurchasePriceUnitID();
         if (FPurchasePriceUnitID != null) {
-            stmt.bindString(3, FPurchasePriceUnitID);
+            stmt.bindString(5, FPurchasePriceUnitID);
+        }
+ 
+        String FPurchasePriceUnitNumber = entity.getFPurchasePriceUnitNumber();
+        if (FPurchasePriceUnitNumber != null) {
+            stmt.bindString(6, FPurchasePriceUnitNumber);
         }
  
         String FSaleUnitID = entity.getFSaleUnitID();
         if (FSaleUnitID != null) {
-            stmt.bindString(4, FSaleUnitID);
+            stmt.bindString(7, FSaleUnitID);
+        }
+ 
+        String FSaleUnitNumber = entity.getFSaleUnitNumber();
+        if (FSaleUnitNumber != null) {
+            stmt.bindString(8, FSaleUnitNumber);
         }
  
         String FSalePriceUnitID = entity.getFSalePriceUnitID();
         if (FSalePriceUnitID != null) {
-            stmt.bindString(5, FSalePriceUnitID);
+            stmt.bindString(9, FSalePriceUnitID);
+        }
+ 
+        String FSalePriceUnitNumber = entity.getFSalePriceUnitNumber();
+        if (FSalePriceUnitNumber != null) {
+            stmt.bindString(10, FSalePriceUnitNumber);
         }
  
         String FStoreUnitID = entity.getFStoreUnitID();
         if (FStoreUnitID != null) {
-            stmt.bindString(6, FStoreUnitID);
+            stmt.bindString(11, FStoreUnitID);
+        }
+ 
+        String FStoreUnitNumber = entity.getFStoreUnitNumber();
+        if (FStoreUnitNumber != null) {
+            stmt.bindString(12, FStoreUnitNumber);
         }
  
         String FAuxUnitID = entity.getFAuxUnitID();
         if (FAuxUnitID != null) {
-            stmt.bindString(7, FAuxUnitID);
+            stmt.bindString(13, FAuxUnitID);
         }
  
-        String FStockID = entity.getFStockID();
-        if (FStockID != null) {
-            stmt.bindString(8, FStockID);
-        }
- 
-        String FStockPlaceID = entity.getFStockPlaceID();
-        if (FStockPlaceID != null) {
-            stmt.bindString(9, FStockPlaceID);
-        }
- 
-        String FIsBatchManage = entity.getFIsBatchManage();
-        if (FIsBatchManage != null) {
-            stmt.bindString(10, FIsBatchManage);
-        }
- 
-        String FIsKFperiod = entity.getFIsKFperiod();
-        if (FIsKFperiod != null) {
-            stmt.bindString(11, FIsKFperiod);
-        }
- 
-        String FExpperiod = entity.getFExpperiod();
-        if (FExpperiod != null) {
-            stmt.bindString(12, FExpperiod);
-        }
- 
-        String FExpUnit = entity.getFExpUnit();
-        if (FExpUnit != null) {
-            stmt.bindString(13, FExpUnit);
-        }
- 
-        String FIsPurchase = entity.getFIsPurchase();
-        if (FIsPurchase != null) {
-            stmt.bindString(14, FIsPurchase);
-        }
- 
-        String FIsSale = entity.getFIsSale();
-        if (FIsSale != null) {
-            stmt.bindString(15, FIsSale);
-        }
- 
-        String FIsInventory = entity.getFIsInventory();
-        if (FIsInventory != null) {
-            stmt.bindString(16, FIsInventory);
-        }
- 
-        String FIsProduce = entity.getFIsProduce();
-        if (FIsProduce != null) {
-            stmt.bindString(17, FIsProduce);
-        }
- 
-        String FIsSubContract = entity.getFIsSubContract();
-        if (FIsSubContract != null) {
-            stmt.bindString(18, FIsSubContract);
-        }
- 
-        String FIsAsset = entity.getFIsAsset();
-        if (FIsAsset != null) {
-            stmt.bindString(19, FIsAsset);
+        String FAuxUnitNumber = entity.getFAuxUnitNumber();
+        if (FAuxUnitNumber != null) {
+            stmt.bindString(14, FAuxUnitNumber);
         }
  
         String FBaseUnitID = entity.getFBaseUnitID();
         if (FBaseUnitID != null) {
-            stmt.bindString(20, FBaseUnitID);
+            stmt.bindString(15, FBaseUnitID);
+        }
+ 
+        String FBaseUnitNumber = entity.getFBaseUnitNumber();
+        if (FBaseUnitNumber != null) {
+            stmt.bindString(16, FBaseUnitNumber);
+        }
+ 
+        String FUnitGroupID = entity.getFUnitGroupID();
+        if (FUnitGroupID != null) {
+            stmt.bindString(17, FUnitGroupID);
+        }
+ 
+        String FStockID = entity.getFStockID();
+        if (FStockID != null) {
+            stmt.bindString(18, FStockID);
+        }
+ 
+        String FStockPlaceID = entity.getFStockPlaceID();
+        if (FStockPlaceID != null) {
+            stmt.bindString(19, FStockPlaceID);
+        }
+ 
+        String FIsBatchManage = entity.getFIsBatchManage();
+        if (FIsBatchManage != null) {
+            stmt.bindString(20, FIsBatchManage);
+        }
+ 
+        String FIsKFperiod = entity.getFIsKFperiod();
+        if (FIsKFperiod != null) {
+            stmt.bindString(21, FIsKFperiod);
+        }
+ 
+        String FExpperiod = entity.getFExpperiod();
+        if (FExpperiod != null) {
+            stmt.bindString(22, FExpperiod);
+        }
+ 
+        String FExpUnit = entity.getFExpUnit();
+        if (FExpUnit != null) {
+            stmt.bindString(23, FExpUnit);
+        }
+ 
+        String FIsPurchase = entity.getFIsPurchase();
+        if (FIsPurchase != null) {
+            stmt.bindString(24, FIsPurchase);
+        }
+ 
+        String FIsSale = entity.getFIsSale();
+        if (FIsSale != null) {
+            stmt.bindString(25, FIsSale);
+        }
+ 
+        String FIsInventory = entity.getFIsInventory();
+        if (FIsInventory != null) {
+            stmt.bindString(26, FIsInventory);
+        }
+ 
+        String FIsProduce = entity.getFIsProduce();
+        if (FIsProduce != null) {
+            stmt.bindString(27, FIsProduce);
+        }
+ 
+        String FIsSubContract = entity.getFIsSubContract();
+        if (FIsSubContract != null) {
+            stmt.bindString(28, FIsSubContract);
+        }
+ 
+        String FIsAsset = entity.getFIsAsset();
+        if (FIsAsset != null) {
+            stmt.bindString(29, FIsAsset);
         }
  
         String FFWeightUnitID = entity.getFFWeightUnitID();
         if (FFWeightUnitID != null) {
-            stmt.bindString(21, FFWeightUnitID);
+            stmt.bindString(30, FFWeightUnitID);
         }
  
         String FVolumeUnitID = entity.getFVolumeUnitID();
         if (FVolumeUnitID != null) {
-            stmt.bindString(22, FVolumeUnitID);
+            stmt.bindString(31, FVolumeUnitID);
         }
  
         String FBarcode = entity.getFBarcode();
         if (FBarcode != null) {
-            stmt.bindString(23, FBarcode);
+            stmt.bindString(32, FBarcode);
         }
  
         String FGrossWeight = entity.getFGrossWeight();
         if (FGrossWeight != null) {
-            stmt.bindString(24, FGrossWeight);
+            stmt.bindString(33, FGrossWeight);
         }
  
         String FNetWeight = entity.getFNetWeight();
         if (FNetWeight != null) {
-            stmt.bindString(25, FNetWeight);
+            stmt.bindString(34, FNetWeight);
         }
  
         String FLenght = entity.getFLenght();
         if (FLenght != null) {
-            stmt.bindString(26, FLenght);
+            stmt.bindString(35, FLenght);
         }
  
         String FWidth = entity.getFWidth();
         if (FWidth != null) {
-            stmt.bindString(27, FWidth);
+            stmt.bindString(36, FWidth);
         }
  
         String FHeight = entity.getFHeight();
         if (FHeight != null) {
-            stmt.bindString(28, FHeight);
+            stmt.bindString(37, FHeight);
         }
  
         String FVolume = entity.getFVolume();
         if (FVolume != null) {
-            stmt.bindString(29, FVolume);
+            stmt.bindString(38, FVolume);
         }
  
         String FMaterialid = entity.getFMaterialid();
         if (FMaterialid != null) {
-            stmt.bindString(30, FMaterialid);
+            stmt.bindString(39, FMaterialid);
         }
  
         String FNumber = entity.getFNumber();
         if (FNumber != null) {
-            stmt.bindString(31, FNumber);
+            stmt.bindString(40, FNumber);
         }
  
         String FoldNumber = entity.getFoldNumber();
         if (FoldNumber != null) {
-            stmt.bindString(32, FoldNumber);
+            stmt.bindString(41, FoldNumber);
         }
  
         String FName = entity.getFName();
         if (FName != null) {
-            stmt.bindString(33, FName);
+            stmt.bindString(42, FName);
         }
  
         String FModel = entity.getFModel();
         if (FModel != null) {
-            stmt.bindString(34, FModel);
+            stmt.bindString(43, FModel);
         }
  
         String FMnemoniccode = entity.getFMnemoniccode();
         if (FMnemoniccode != null) {
-            stmt.bindString(35, FMnemoniccode);
+            stmt.bindString(44, FMnemoniccode);
         }
  
         String FOrg = entity.getFOrg();
         if (FOrg != null) {
-            stmt.bindString(36, FOrg);
+            stmt.bindString(45, FOrg);
         }
  
         String FMASTERID = entity.getFMASTERID();
         if (FMASTERID != null) {
-            stmt.bindString(37, FMASTERID);
+            stmt.bindString(46, FMASTERID);
         }
  
         String FStr1 = entity.getFStr1();
         if (FStr1 != null) {
-            stmt.bindString(38, FStr1);
+            stmt.bindString(47, FStr1);
         }
  
         String FStr2 = entity.getFStr2();
         if (FStr2 != null) {
-            stmt.bindString(39, FStr2);
+            stmt.bindString(48, FStr2);
         }
  
         String FStr3 = entity.getFStr3();
         if (FStr3 != null) {
-            stmt.bindString(40, FStr3);
+            stmt.bindString(49, FStr3);
         }
  
         String FStr4 = entity.getFStr4();
         if (FStr4 != null) {
-            stmt.bindString(41, FStr4);
+            stmt.bindString(50, FStr4);
         }
  
         String FStr5 = entity.getFStr5();
         if (FStr5 != null) {
-            stmt.bindString(42, FStr5);
+            stmt.bindString(51, FStr5);
         }
     }
 
@@ -355,209 +418,254 @@ public class ProductDao extends AbstractDao<Product, Void> {
             stmt.bindString(1, FProduceUnitID);
         }
  
+        String FProduceUnitNumber = entity.getFProduceUnitNumber();
+        if (FProduceUnitNumber != null) {
+            stmt.bindString(2, FProduceUnitNumber);
+        }
+ 
         String FPurchaseUnitID = entity.getFPurchaseUnitID();
         if (FPurchaseUnitID != null) {
-            stmt.bindString(2, FPurchaseUnitID);
+            stmt.bindString(3, FPurchaseUnitID);
+        }
+ 
+        String FPurchaseUnitNumber = entity.getFPurchaseUnitNumber();
+        if (FPurchaseUnitNumber != null) {
+            stmt.bindString(4, FPurchaseUnitNumber);
         }
  
         String FPurchasePriceUnitID = entity.getFPurchasePriceUnitID();
         if (FPurchasePriceUnitID != null) {
-            stmt.bindString(3, FPurchasePriceUnitID);
+            stmt.bindString(5, FPurchasePriceUnitID);
+        }
+ 
+        String FPurchasePriceUnitNumber = entity.getFPurchasePriceUnitNumber();
+        if (FPurchasePriceUnitNumber != null) {
+            stmt.bindString(6, FPurchasePriceUnitNumber);
         }
  
         String FSaleUnitID = entity.getFSaleUnitID();
         if (FSaleUnitID != null) {
-            stmt.bindString(4, FSaleUnitID);
+            stmt.bindString(7, FSaleUnitID);
+        }
+ 
+        String FSaleUnitNumber = entity.getFSaleUnitNumber();
+        if (FSaleUnitNumber != null) {
+            stmt.bindString(8, FSaleUnitNumber);
         }
  
         String FSalePriceUnitID = entity.getFSalePriceUnitID();
         if (FSalePriceUnitID != null) {
-            stmt.bindString(5, FSalePriceUnitID);
+            stmt.bindString(9, FSalePriceUnitID);
+        }
+ 
+        String FSalePriceUnitNumber = entity.getFSalePriceUnitNumber();
+        if (FSalePriceUnitNumber != null) {
+            stmt.bindString(10, FSalePriceUnitNumber);
         }
  
         String FStoreUnitID = entity.getFStoreUnitID();
         if (FStoreUnitID != null) {
-            stmt.bindString(6, FStoreUnitID);
+            stmt.bindString(11, FStoreUnitID);
+        }
+ 
+        String FStoreUnitNumber = entity.getFStoreUnitNumber();
+        if (FStoreUnitNumber != null) {
+            stmt.bindString(12, FStoreUnitNumber);
         }
  
         String FAuxUnitID = entity.getFAuxUnitID();
         if (FAuxUnitID != null) {
-            stmt.bindString(7, FAuxUnitID);
+            stmt.bindString(13, FAuxUnitID);
         }
  
-        String FStockID = entity.getFStockID();
-        if (FStockID != null) {
-            stmt.bindString(8, FStockID);
-        }
- 
-        String FStockPlaceID = entity.getFStockPlaceID();
-        if (FStockPlaceID != null) {
-            stmt.bindString(9, FStockPlaceID);
-        }
- 
-        String FIsBatchManage = entity.getFIsBatchManage();
-        if (FIsBatchManage != null) {
-            stmt.bindString(10, FIsBatchManage);
-        }
- 
-        String FIsKFperiod = entity.getFIsKFperiod();
-        if (FIsKFperiod != null) {
-            stmt.bindString(11, FIsKFperiod);
-        }
- 
-        String FExpperiod = entity.getFExpperiod();
-        if (FExpperiod != null) {
-            stmt.bindString(12, FExpperiod);
-        }
- 
-        String FExpUnit = entity.getFExpUnit();
-        if (FExpUnit != null) {
-            stmt.bindString(13, FExpUnit);
-        }
- 
-        String FIsPurchase = entity.getFIsPurchase();
-        if (FIsPurchase != null) {
-            stmt.bindString(14, FIsPurchase);
-        }
- 
-        String FIsSale = entity.getFIsSale();
-        if (FIsSale != null) {
-            stmt.bindString(15, FIsSale);
-        }
- 
-        String FIsInventory = entity.getFIsInventory();
-        if (FIsInventory != null) {
-            stmt.bindString(16, FIsInventory);
-        }
- 
-        String FIsProduce = entity.getFIsProduce();
-        if (FIsProduce != null) {
-            stmt.bindString(17, FIsProduce);
-        }
- 
-        String FIsSubContract = entity.getFIsSubContract();
-        if (FIsSubContract != null) {
-            stmt.bindString(18, FIsSubContract);
-        }
- 
-        String FIsAsset = entity.getFIsAsset();
-        if (FIsAsset != null) {
-            stmt.bindString(19, FIsAsset);
+        String FAuxUnitNumber = entity.getFAuxUnitNumber();
+        if (FAuxUnitNumber != null) {
+            stmt.bindString(14, FAuxUnitNumber);
         }
  
         String FBaseUnitID = entity.getFBaseUnitID();
         if (FBaseUnitID != null) {
-            stmt.bindString(20, FBaseUnitID);
+            stmt.bindString(15, FBaseUnitID);
+        }
+ 
+        String FBaseUnitNumber = entity.getFBaseUnitNumber();
+        if (FBaseUnitNumber != null) {
+            stmt.bindString(16, FBaseUnitNumber);
+        }
+ 
+        String FUnitGroupID = entity.getFUnitGroupID();
+        if (FUnitGroupID != null) {
+            stmt.bindString(17, FUnitGroupID);
+        }
+ 
+        String FStockID = entity.getFStockID();
+        if (FStockID != null) {
+            stmt.bindString(18, FStockID);
+        }
+ 
+        String FStockPlaceID = entity.getFStockPlaceID();
+        if (FStockPlaceID != null) {
+            stmt.bindString(19, FStockPlaceID);
+        }
+ 
+        String FIsBatchManage = entity.getFIsBatchManage();
+        if (FIsBatchManage != null) {
+            stmt.bindString(20, FIsBatchManage);
+        }
+ 
+        String FIsKFperiod = entity.getFIsKFperiod();
+        if (FIsKFperiod != null) {
+            stmt.bindString(21, FIsKFperiod);
+        }
+ 
+        String FExpperiod = entity.getFExpperiod();
+        if (FExpperiod != null) {
+            stmt.bindString(22, FExpperiod);
+        }
+ 
+        String FExpUnit = entity.getFExpUnit();
+        if (FExpUnit != null) {
+            stmt.bindString(23, FExpUnit);
+        }
+ 
+        String FIsPurchase = entity.getFIsPurchase();
+        if (FIsPurchase != null) {
+            stmt.bindString(24, FIsPurchase);
+        }
+ 
+        String FIsSale = entity.getFIsSale();
+        if (FIsSale != null) {
+            stmt.bindString(25, FIsSale);
+        }
+ 
+        String FIsInventory = entity.getFIsInventory();
+        if (FIsInventory != null) {
+            stmt.bindString(26, FIsInventory);
+        }
+ 
+        String FIsProduce = entity.getFIsProduce();
+        if (FIsProduce != null) {
+            stmt.bindString(27, FIsProduce);
+        }
+ 
+        String FIsSubContract = entity.getFIsSubContract();
+        if (FIsSubContract != null) {
+            stmt.bindString(28, FIsSubContract);
+        }
+ 
+        String FIsAsset = entity.getFIsAsset();
+        if (FIsAsset != null) {
+            stmt.bindString(29, FIsAsset);
         }
  
         String FFWeightUnitID = entity.getFFWeightUnitID();
         if (FFWeightUnitID != null) {
-            stmt.bindString(21, FFWeightUnitID);
+            stmt.bindString(30, FFWeightUnitID);
         }
  
         String FVolumeUnitID = entity.getFVolumeUnitID();
         if (FVolumeUnitID != null) {
-            stmt.bindString(22, FVolumeUnitID);
+            stmt.bindString(31, FVolumeUnitID);
         }
  
         String FBarcode = entity.getFBarcode();
         if (FBarcode != null) {
-            stmt.bindString(23, FBarcode);
+            stmt.bindString(32, FBarcode);
         }
  
         String FGrossWeight = entity.getFGrossWeight();
         if (FGrossWeight != null) {
-            stmt.bindString(24, FGrossWeight);
+            stmt.bindString(33, FGrossWeight);
         }
  
         String FNetWeight = entity.getFNetWeight();
         if (FNetWeight != null) {
-            stmt.bindString(25, FNetWeight);
+            stmt.bindString(34, FNetWeight);
         }
  
         String FLenght = entity.getFLenght();
         if (FLenght != null) {
-            stmt.bindString(26, FLenght);
+            stmt.bindString(35, FLenght);
         }
  
         String FWidth = entity.getFWidth();
         if (FWidth != null) {
-            stmt.bindString(27, FWidth);
+            stmt.bindString(36, FWidth);
         }
  
         String FHeight = entity.getFHeight();
         if (FHeight != null) {
-            stmt.bindString(28, FHeight);
+            stmt.bindString(37, FHeight);
         }
  
         String FVolume = entity.getFVolume();
         if (FVolume != null) {
-            stmt.bindString(29, FVolume);
+            stmt.bindString(38, FVolume);
         }
  
         String FMaterialid = entity.getFMaterialid();
         if (FMaterialid != null) {
-            stmt.bindString(30, FMaterialid);
+            stmt.bindString(39, FMaterialid);
         }
  
         String FNumber = entity.getFNumber();
         if (FNumber != null) {
-            stmt.bindString(31, FNumber);
+            stmt.bindString(40, FNumber);
         }
  
         String FoldNumber = entity.getFoldNumber();
         if (FoldNumber != null) {
-            stmt.bindString(32, FoldNumber);
+            stmt.bindString(41, FoldNumber);
         }
  
         String FName = entity.getFName();
         if (FName != null) {
-            stmt.bindString(33, FName);
+            stmt.bindString(42, FName);
         }
  
         String FModel = entity.getFModel();
         if (FModel != null) {
-            stmt.bindString(34, FModel);
+            stmt.bindString(43, FModel);
         }
  
         String FMnemoniccode = entity.getFMnemoniccode();
         if (FMnemoniccode != null) {
-            stmt.bindString(35, FMnemoniccode);
+            stmt.bindString(44, FMnemoniccode);
         }
  
         String FOrg = entity.getFOrg();
         if (FOrg != null) {
-            stmt.bindString(36, FOrg);
+            stmt.bindString(45, FOrg);
         }
  
         String FMASTERID = entity.getFMASTERID();
         if (FMASTERID != null) {
-            stmt.bindString(37, FMASTERID);
+            stmt.bindString(46, FMASTERID);
         }
  
         String FStr1 = entity.getFStr1();
         if (FStr1 != null) {
-            stmt.bindString(38, FStr1);
+            stmt.bindString(47, FStr1);
         }
  
         String FStr2 = entity.getFStr2();
         if (FStr2 != null) {
-            stmt.bindString(39, FStr2);
+            stmt.bindString(48, FStr2);
         }
  
         String FStr3 = entity.getFStr3();
         if (FStr3 != null) {
-            stmt.bindString(40, FStr3);
+            stmt.bindString(49, FStr3);
         }
  
         String FStr4 = entity.getFStr4();
         if (FStr4 != null) {
-            stmt.bindString(41, FStr4);
+            stmt.bindString(50, FStr4);
         }
  
         String FStr5 = entity.getFStr5();
         if (FStr5 != null) {
-            stmt.bindString(42, FStr5);
+            stmt.bindString(51, FStr5);
         }
     }
 
@@ -570,47 +678,56 @@ public class ProductDao extends AbstractDao<Product, Void> {
     public Product readEntity(Cursor cursor, int offset) {
         Product entity = new Product( //
             cursor.isNull(offset + 0) ? null : cursor.getString(offset + 0), // FProduceUnitID
-            cursor.isNull(offset + 1) ? null : cursor.getString(offset + 1), // FPurchaseUnitID
-            cursor.isNull(offset + 2) ? null : cursor.getString(offset + 2), // FPurchasePriceUnitID
-            cursor.isNull(offset + 3) ? null : cursor.getString(offset + 3), // FSaleUnitID
-            cursor.isNull(offset + 4) ? null : cursor.getString(offset + 4), // FSalePriceUnitID
-            cursor.isNull(offset + 5) ? null : cursor.getString(offset + 5), // FStoreUnitID
-            cursor.isNull(offset + 6) ? null : cursor.getString(offset + 6), // FAuxUnitID
-            cursor.isNull(offset + 7) ? null : cursor.getString(offset + 7), // FStockID
-            cursor.isNull(offset + 8) ? null : cursor.getString(offset + 8), // FStockPlaceID
-            cursor.isNull(offset + 9) ? null : cursor.getString(offset + 9), // FIsBatchManage
-            cursor.isNull(offset + 10) ? null : cursor.getString(offset + 10), // FIsKFperiod
-            cursor.isNull(offset + 11) ? null : cursor.getString(offset + 11), // FExpperiod
-            cursor.isNull(offset + 12) ? null : cursor.getString(offset + 12), // FExpUnit
-            cursor.isNull(offset + 13) ? null : cursor.getString(offset + 13), // FIsPurchase
-            cursor.isNull(offset + 14) ? null : cursor.getString(offset + 14), // FIsSale
-            cursor.isNull(offset + 15) ? null : cursor.getString(offset + 15), // FIsInventory
-            cursor.isNull(offset + 16) ? null : cursor.getString(offset + 16), // FIsProduce
-            cursor.isNull(offset + 17) ? null : cursor.getString(offset + 17), // FIsSubContract
-            cursor.isNull(offset + 18) ? null : cursor.getString(offset + 18), // FIsAsset
-            cursor.isNull(offset + 19) ? null : cursor.getString(offset + 19), // FBaseUnitID
-            cursor.isNull(offset + 20) ? null : cursor.getString(offset + 20), // FFWeightUnitID
-            cursor.isNull(offset + 21) ? null : cursor.getString(offset + 21), // FVolumeUnitID
-            cursor.isNull(offset + 22) ? null : cursor.getString(offset + 22), // FBarcode
-            cursor.isNull(offset + 23) ? null : cursor.getString(offset + 23), // FGrossWeight
-            cursor.isNull(offset + 24) ? null : cursor.getString(offset + 24), // FNetWeight
-            cursor.isNull(offset + 25) ? null : cursor.getString(offset + 25), // FLenght
-            cursor.isNull(offset + 26) ? null : cursor.getString(offset + 26), // FWidth
-            cursor.isNull(offset + 27) ? null : cursor.getString(offset + 27), // FHeight
-            cursor.isNull(offset + 28) ? null : cursor.getString(offset + 28), // FVolume
-            cursor.isNull(offset + 29) ? null : cursor.getString(offset + 29), // FMaterialid
-            cursor.isNull(offset + 30) ? null : cursor.getString(offset + 30), // FNumber
-            cursor.isNull(offset + 31) ? null : cursor.getString(offset + 31), // FoldNumber
-            cursor.isNull(offset + 32) ? null : cursor.getString(offset + 32), // FName
-            cursor.isNull(offset + 33) ? null : cursor.getString(offset + 33), // FModel
-            cursor.isNull(offset + 34) ? null : cursor.getString(offset + 34), // FMnemoniccode
-            cursor.isNull(offset + 35) ? null : cursor.getString(offset + 35), // FOrg
-            cursor.isNull(offset + 36) ? null : cursor.getString(offset + 36), // FMASTERID
-            cursor.isNull(offset + 37) ? null : cursor.getString(offset + 37), // FStr1
-            cursor.isNull(offset + 38) ? null : cursor.getString(offset + 38), // FStr2
-            cursor.isNull(offset + 39) ? null : cursor.getString(offset + 39), // FStr3
-            cursor.isNull(offset + 40) ? null : cursor.getString(offset + 40), // FStr4
-            cursor.isNull(offset + 41) ? null : cursor.getString(offset + 41) // FStr5
+            cursor.isNull(offset + 1) ? null : cursor.getString(offset + 1), // FProduceUnitNumber
+            cursor.isNull(offset + 2) ? null : cursor.getString(offset + 2), // FPurchaseUnitID
+            cursor.isNull(offset + 3) ? null : cursor.getString(offset + 3), // FPurchaseUnitNumber
+            cursor.isNull(offset + 4) ? null : cursor.getString(offset + 4), // FPurchasePriceUnitID
+            cursor.isNull(offset + 5) ? null : cursor.getString(offset + 5), // FPurchasePriceUnitNumber
+            cursor.isNull(offset + 6) ? null : cursor.getString(offset + 6), // FSaleUnitID
+            cursor.isNull(offset + 7) ? null : cursor.getString(offset + 7), // FSaleUnitNumber
+            cursor.isNull(offset + 8) ? null : cursor.getString(offset + 8), // FSalePriceUnitID
+            cursor.isNull(offset + 9) ? null : cursor.getString(offset + 9), // FSalePriceUnitNumber
+            cursor.isNull(offset + 10) ? null : cursor.getString(offset + 10), // FStoreUnitID
+            cursor.isNull(offset + 11) ? null : cursor.getString(offset + 11), // FStoreUnitNumber
+            cursor.isNull(offset + 12) ? null : cursor.getString(offset + 12), // FAuxUnitID
+            cursor.isNull(offset + 13) ? null : cursor.getString(offset + 13), // FAuxUnitNumber
+            cursor.isNull(offset + 14) ? null : cursor.getString(offset + 14), // FBaseUnitID
+            cursor.isNull(offset + 15) ? null : cursor.getString(offset + 15), // FBaseUnitNumber
+            cursor.isNull(offset + 16) ? null : cursor.getString(offset + 16), // FUnitGroupID
+            cursor.isNull(offset + 17) ? null : cursor.getString(offset + 17), // FStockID
+            cursor.isNull(offset + 18) ? null : cursor.getString(offset + 18), // FStockPlaceID
+            cursor.isNull(offset + 19) ? null : cursor.getString(offset + 19), // FIsBatchManage
+            cursor.isNull(offset + 20) ? null : cursor.getString(offset + 20), // FIsKFperiod
+            cursor.isNull(offset + 21) ? null : cursor.getString(offset + 21), // FExpperiod
+            cursor.isNull(offset + 22) ? null : cursor.getString(offset + 22), // FExpUnit
+            cursor.isNull(offset + 23) ? null : cursor.getString(offset + 23), // FIsPurchase
+            cursor.isNull(offset + 24) ? null : cursor.getString(offset + 24), // FIsSale
+            cursor.isNull(offset + 25) ? null : cursor.getString(offset + 25), // FIsInventory
+            cursor.isNull(offset + 26) ? null : cursor.getString(offset + 26), // FIsProduce
+            cursor.isNull(offset + 27) ? null : cursor.getString(offset + 27), // FIsSubContract
+            cursor.isNull(offset + 28) ? null : cursor.getString(offset + 28), // FIsAsset
+            cursor.isNull(offset + 29) ? null : cursor.getString(offset + 29), // FFWeightUnitID
+            cursor.isNull(offset + 30) ? null : cursor.getString(offset + 30), // FVolumeUnitID
+            cursor.isNull(offset + 31) ? null : cursor.getString(offset + 31), // FBarcode
+            cursor.isNull(offset + 32) ? null : cursor.getString(offset + 32), // FGrossWeight
+            cursor.isNull(offset + 33) ? null : cursor.getString(offset + 33), // FNetWeight
+            cursor.isNull(offset + 34) ? null : cursor.getString(offset + 34), // FLenght
+            cursor.isNull(offset + 35) ? null : cursor.getString(offset + 35), // FWidth
+            cursor.isNull(offset + 36) ? null : cursor.getString(offset + 36), // FHeight
+            cursor.isNull(offset + 37) ? null : cursor.getString(offset + 37), // FVolume
+            cursor.isNull(offset + 38) ? null : cursor.getString(offset + 38), // FMaterialid
+            cursor.isNull(offset + 39) ? null : cursor.getString(offset + 39), // FNumber
+            cursor.isNull(offset + 40) ? null : cursor.getString(offset + 40), // FoldNumber
+            cursor.isNull(offset + 41) ? null : cursor.getString(offset + 41), // FName
+            cursor.isNull(offset + 42) ? null : cursor.getString(offset + 42), // FModel
+            cursor.isNull(offset + 43) ? null : cursor.getString(offset + 43), // FMnemoniccode
+            cursor.isNull(offset + 44) ? null : cursor.getString(offset + 44), // FOrg
+            cursor.isNull(offset + 45) ? null : cursor.getString(offset + 45), // FMASTERID
+            cursor.isNull(offset + 46) ? null : cursor.getString(offset + 46), // FStr1
+            cursor.isNull(offset + 47) ? null : cursor.getString(offset + 47), // FStr2
+            cursor.isNull(offset + 48) ? null : cursor.getString(offset + 48), // FStr3
+            cursor.isNull(offset + 49) ? null : cursor.getString(offset + 49), // FStr4
+            cursor.isNull(offset + 50) ? null : cursor.getString(offset + 50) // FStr5
         );
         return entity;
     }
@@ -618,47 +735,56 @@ public class ProductDao extends AbstractDao<Product, Void> {
     @Override
     public void readEntity(Cursor cursor, Product entity, int offset) {
         entity.setFProduceUnitID(cursor.isNull(offset + 0) ? null : cursor.getString(offset + 0));
-        entity.setFPurchaseUnitID(cursor.isNull(offset + 1) ? null : cursor.getString(offset + 1));
-        entity.setFPurchasePriceUnitID(cursor.isNull(offset + 2) ? null : cursor.getString(offset + 2));
-        entity.setFSaleUnitID(cursor.isNull(offset + 3) ? null : cursor.getString(offset + 3));
-        entity.setFSalePriceUnitID(cursor.isNull(offset + 4) ? null : cursor.getString(offset + 4));
-        entity.setFStoreUnitID(cursor.isNull(offset + 5) ? null : cursor.getString(offset + 5));
-        entity.setFAuxUnitID(cursor.isNull(offset + 6) ? null : cursor.getString(offset + 6));
-        entity.setFStockID(cursor.isNull(offset + 7) ? null : cursor.getString(offset + 7));
-        entity.setFStockPlaceID(cursor.isNull(offset + 8) ? null : cursor.getString(offset + 8));
-        entity.setFIsBatchManage(cursor.isNull(offset + 9) ? null : cursor.getString(offset + 9));
-        entity.setFIsKFperiod(cursor.isNull(offset + 10) ? null : cursor.getString(offset + 10));
-        entity.setFExpperiod(cursor.isNull(offset + 11) ? null : cursor.getString(offset + 11));
-        entity.setFExpUnit(cursor.isNull(offset + 12) ? null : cursor.getString(offset + 12));
-        entity.setFIsPurchase(cursor.isNull(offset + 13) ? null : cursor.getString(offset + 13));
-        entity.setFIsSale(cursor.isNull(offset + 14) ? null : cursor.getString(offset + 14));
-        entity.setFIsInventory(cursor.isNull(offset + 15) ? null : cursor.getString(offset + 15));
-        entity.setFIsProduce(cursor.isNull(offset + 16) ? null : cursor.getString(offset + 16));
-        entity.setFIsSubContract(cursor.isNull(offset + 17) ? null : cursor.getString(offset + 17));
-        entity.setFIsAsset(cursor.isNull(offset + 18) ? null : cursor.getString(offset + 18));
-        entity.setFBaseUnitID(cursor.isNull(offset + 19) ? null : cursor.getString(offset + 19));
-        entity.setFFWeightUnitID(cursor.isNull(offset + 20) ? null : cursor.getString(offset + 20));
-        entity.setFVolumeUnitID(cursor.isNull(offset + 21) ? null : cursor.getString(offset + 21));
-        entity.setFBarcode(cursor.isNull(offset + 22) ? null : cursor.getString(offset + 22));
-        entity.setFGrossWeight(cursor.isNull(offset + 23) ? null : cursor.getString(offset + 23));
-        entity.setFNetWeight(cursor.isNull(offset + 24) ? null : cursor.getString(offset + 24));
-        entity.setFLenght(cursor.isNull(offset + 25) ? null : cursor.getString(offset + 25));
-        entity.setFWidth(cursor.isNull(offset + 26) ? null : cursor.getString(offset + 26));
-        entity.setFHeight(cursor.isNull(offset + 27) ? null : cursor.getString(offset + 27));
-        entity.setFVolume(cursor.isNull(offset + 28) ? null : cursor.getString(offset + 28));
-        entity.setFMaterialid(cursor.isNull(offset + 29) ? null : cursor.getString(offset + 29));
-        entity.setFNumber(cursor.isNull(offset + 30) ? null : cursor.getString(offset + 30));
-        entity.setFoldNumber(cursor.isNull(offset + 31) ? null : cursor.getString(offset + 31));
-        entity.setFName(cursor.isNull(offset + 32) ? null : cursor.getString(offset + 32));
-        entity.setFModel(cursor.isNull(offset + 33) ? null : cursor.getString(offset + 33));
-        entity.setFMnemoniccode(cursor.isNull(offset + 34) ? null : cursor.getString(offset + 34));
-        entity.setFOrg(cursor.isNull(offset + 35) ? null : cursor.getString(offset + 35));
-        entity.setFMASTERID(cursor.isNull(offset + 36) ? null : cursor.getString(offset + 36));
-        entity.setFStr1(cursor.isNull(offset + 37) ? null : cursor.getString(offset + 37));
-        entity.setFStr2(cursor.isNull(offset + 38) ? null : cursor.getString(offset + 38));
-        entity.setFStr3(cursor.isNull(offset + 39) ? null : cursor.getString(offset + 39));
-        entity.setFStr4(cursor.isNull(offset + 40) ? null : cursor.getString(offset + 40));
-        entity.setFStr5(cursor.isNull(offset + 41) ? null : cursor.getString(offset + 41));
+        entity.setFProduceUnitNumber(cursor.isNull(offset + 1) ? null : cursor.getString(offset + 1));
+        entity.setFPurchaseUnitID(cursor.isNull(offset + 2) ? null : cursor.getString(offset + 2));
+        entity.setFPurchaseUnitNumber(cursor.isNull(offset + 3) ? null : cursor.getString(offset + 3));
+        entity.setFPurchasePriceUnitID(cursor.isNull(offset + 4) ? null : cursor.getString(offset + 4));
+        entity.setFPurchasePriceUnitNumber(cursor.isNull(offset + 5) ? null : cursor.getString(offset + 5));
+        entity.setFSaleUnitID(cursor.isNull(offset + 6) ? null : cursor.getString(offset + 6));
+        entity.setFSaleUnitNumber(cursor.isNull(offset + 7) ? null : cursor.getString(offset + 7));
+        entity.setFSalePriceUnitID(cursor.isNull(offset + 8) ? null : cursor.getString(offset + 8));
+        entity.setFSalePriceUnitNumber(cursor.isNull(offset + 9) ? null : cursor.getString(offset + 9));
+        entity.setFStoreUnitID(cursor.isNull(offset + 10) ? null : cursor.getString(offset + 10));
+        entity.setFStoreUnitNumber(cursor.isNull(offset + 11) ? null : cursor.getString(offset + 11));
+        entity.setFAuxUnitID(cursor.isNull(offset + 12) ? null : cursor.getString(offset + 12));
+        entity.setFAuxUnitNumber(cursor.isNull(offset + 13) ? null : cursor.getString(offset + 13));
+        entity.setFBaseUnitID(cursor.isNull(offset + 14) ? null : cursor.getString(offset + 14));
+        entity.setFBaseUnitNumber(cursor.isNull(offset + 15) ? null : cursor.getString(offset + 15));
+        entity.setFUnitGroupID(cursor.isNull(offset + 16) ? null : cursor.getString(offset + 16));
+        entity.setFStockID(cursor.isNull(offset + 17) ? null : cursor.getString(offset + 17));
+        entity.setFStockPlaceID(cursor.isNull(offset + 18) ? null : cursor.getString(offset + 18));
+        entity.setFIsBatchManage(cursor.isNull(offset + 19) ? null : cursor.getString(offset + 19));
+        entity.setFIsKFperiod(cursor.isNull(offset + 20) ? null : cursor.getString(offset + 20));
+        entity.setFExpperiod(cursor.isNull(offset + 21) ? null : cursor.getString(offset + 21));
+        entity.setFExpUnit(cursor.isNull(offset + 22) ? null : cursor.getString(offset + 22));
+        entity.setFIsPurchase(cursor.isNull(offset + 23) ? null : cursor.getString(offset + 23));
+        entity.setFIsSale(cursor.isNull(offset + 24) ? null : cursor.getString(offset + 24));
+        entity.setFIsInventory(cursor.isNull(offset + 25) ? null : cursor.getString(offset + 25));
+        entity.setFIsProduce(cursor.isNull(offset + 26) ? null : cursor.getString(offset + 26));
+        entity.setFIsSubContract(cursor.isNull(offset + 27) ? null : cursor.getString(offset + 27));
+        entity.setFIsAsset(cursor.isNull(offset + 28) ? null : cursor.getString(offset + 28));
+        entity.setFFWeightUnitID(cursor.isNull(offset + 29) ? null : cursor.getString(offset + 29));
+        entity.setFVolumeUnitID(cursor.isNull(offset + 30) ? null : cursor.getString(offset + 30));
+        entity.setFBarcode(cursor.isNull(offset + 31) ? null : cursor.getString(offset + 31));
+        entity.setFGrossWeight(cursor.isNull(offset + 32) ? null : cursor.getString(offset + 32));
+        entity.setFNetWeight(cursor.isNull(offset + 33) ? null : cursor.getString(offset + 33));
+        entity.setFLenght(cursor.isNull(offset + 34) ? null : cursor.getString(offset + 34));
+        entity.setFWidth(cursor.isNull(offset + 35) ? null : cursor.getString(offset + 35));
+        entity.setFHeight(cursor.isNull(offset + 36) ? null : cursor.getString(offset + 36));
+        entity.setFVolume(cursor.isNull(offset + 37) ? null : cursor.getString(offset + 37));
+        entity.setFMaterialid(cursor.isNull(offset + 38) ? null : cursor.getString(offset + 38));
+        entity.setFNumber(cursor.isNull(offset + 39) ? null : cursor.getString(offset + 39));
+        entity.setFoldNumber(cursor.isNull(offset + 40) ? null : cursor.getString(offset + 40));
+        entity.setFName(cursor.isNull(offset + 41) ? null : cursor.getString(offset + 41));
+        entity.setFModel(cursor.isNull(offset + 42) ? null : cursor.getString(offset + 42));
+        entity.setFMnemoniccode(cursor.isNull(offset + 43) ? null : cursor.getString(offset + 43));
+        entity.setFOrg(cursor.isNull(offset + 44) ? null : cursor.getString(offset + 44));
+        entity.setFMASTERID(cursor.isNull(offset + 45) ? null : cursor.getString(offset + 45));
+        entity.setFStr1(cursor.isNull(offset + 46) ? null : cursor.getString(offset + 46));
+        entity.setFStr2(cursor.isNull(offset + 47) ? null : cursor.getString(offset + 47));
+        entity.setFStr3(cursor.isNull(offset + 48) ? null : cursor.getString(offset + 48));
+        entity.setFStr4(cursor.isNull(offset + 49) ? null : cursor.getString(offset + 49));
+        entity.setFStr5(cursor.isNull(offset + 50) ? null : cursor.getString(offset + 50));
      }
     
     @Override

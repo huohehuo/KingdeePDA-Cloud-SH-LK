@@ -30,13 +30,14 @@ public class SuppliersDao extends AbstractDao<Suppliers, Void> {
         public final static Property FOrg = new Property(3, String.class, "FOrg", false, "FORG");
         public final static Property FNote = new Property(4, String.class, "FNote", false, "FNOTE");
         public final static Property FMASTERID = new Property(5, String.class, "FMASTERID", false, "FMASTERID");
-        public final static Property FItemClassID = new Property(6, String.class, "FItemClassID", false, "FITEM_CLASS_ID");
-        public final static Property FParentID = new Property(7, String.class, "FParentID", false, "FPARENT_ID");
-        public final static Property FLevel = new Property(8, String.class, "FLevel", false, "FLEVEL");
-        public final static Property FDetail = new Property(9, String.class, "FDetail", false, "FDETAIL");
-        public final static Property FAddress = new Property(10, String.class, "FAddress", false, "FADDRESS");
-        public final static Property FPhone = new Property(11, String.class, "FPhone", false, "FPHONE");
-        public final static Property FEmail = new Property(12, String.class, "FEmail", false, "FEMAIL");
+        public final static Property FSupplyClassIfy = new Property(6, String.class, "FSupplyClassIfy", false, "FSUPPLY_CLASS_IFY");
+        public final static Property FItemClassID = new Property(7, String.class, "FItemClassID", false, "FITEM_CLASS_ID");
+        public final static Property FParentID = new Property(8, String.class, "FParentID", false, "FPARENT_ID");
+        public final static Property FLevel = new Property(9, String.class, "FLevel", false, "FLEVEL");
+        public final static Property FDetail = new Property(10, String.class, "FDetail", false, "FDETAIL");
+        public final static Property FAddress = new Property(11, String.class, "FAddress", false, "FADDRESS");
+        public final static Property FPhone = new Property(12, String.class, "FPhone", false, "FPHONE");
+        public final static Property FEmail = new Property(13, String.class, "FEmail", false, "FEMAIL");
     }
 
 
@@ -58,13 +59,14 @@ public class SuppliersDao extends AbstractDao<Suppliers, Void> {
                 "\"FORG\" TEXT," + // 3: FOrg
                 "\"FNOTE\" TEXT," + // 4: FNote
                 "\"FMASTERID\" TEXT," + // 5: FMASTERID
-                "\"FITEM_CLASS_ID\" TEXT," + // 6: FItemClassID
-                "\"FPARENT_ID\" TEXT," + // 7: FParentID
-                "\"FLEVEL\" TEXT," + // 8: FLevel
-                "\"FDETAIL\" TEXT," + // 9: FDetail
-                "\"FADDRESS\" TEXT," + // 10: FAddress
-                "\"FPHONE\" TEXT," + // 11: FPhone
-                "\"FEMAIL\" TEXT);"); // 12: FEmail
+                "\"FSUPPLY_CLASS_IFY\" TEXT," + // 6: FSupplyClassIfy
+                "\"FITEM_CLASS_ID\" TEXT," + // 7: FItemClassID
+                "\"FPARENT_ID\" TEXT," + // 8: FParentID
+                "\"FLEVEL\" TEXT," + // 9: FLevel
+                "\"FDETAIL\" TEXT," + // 10: FDetail
+                "\"FADDRESS\" TEXT," + // 11: FAddress
+                "\"FPHONE\" TEXT," + // 12: FPhone
+                "\"FEMAIL\" TEXT);"); // 13: FEmail
     }
 
     /** Drops the underlying database table. */
@@ -107,39 +109,44 @@ public class SuppliersDao extends AbstractDao<Suppliers, Void> {
             stmt.bindString(6, FMASTERID);
         }
  
+        String FSupplyClassIfy = entity.getFSupplyClassIfy();
+        if (FSupplyClassIfy != null) {
+            stmt.bindString(7, FSupplyClassIfy);
+        }
+ 
         String FItemClassID = entity.getFItemClassID();
         if (FItemClassID != null) {
-            stmt.bindString(7, FItemClassID);
+            stmt.bindString(8, FItemClassID);
         }
  
         String FParentID = entity.getFParentID();
         if (FParentID != null) {
-            stmt.bindString(8, FParentID);
+            stmt.bindString(9, FParentID);
         }
  
         String FLevel = entity.getFLevel();
         if (FLevel != null) {
-            stmt.bindString(9, FLevel);
+            stmt.bindString(10, FLevel);
         }
  
         String FDetail = entity.getFDetail();
         if (FDetail != null) {
-            stmt.bindString(10, FDetail);
+            stmt.bindString(11, FDetail);
         }
  
         String FAddress = entity.getFAddress();
         if (FAddress != null) {
-            stmt.bindString(11, FAddress);
+            stmt.bindString(12, FAddress);
         }
  
         String FPhone = entity.getFPhone();
         if (FPhone != null) {
-            stmt.bindString(12, FPhone);
+            stmt.bindString(13, FPhone);
         }
  
         String FEmail = entity.getFEmail();
         if (FEmail != null) {
-            stmt.bindString(13, FEmail);
+            stmt.bindString(14, FEmail);
         }
     }
 
@@ -177,39 +184,44 @@ public class SuppliersDao extends AbstractDao<Suppliers, Void> {
             stmt.bindString(6, FMASTERID);
         }
  
+        String FSupplyClassIfy = entity.getFSupplyClassIfy();
+        if (FSupplyClassIfy != null) {
+            stmt.bindString(7, FSupplyClassIfy);
+        }
+ 
         String FItemClassID = entity.getFItemClassID();
         if (FItemClassID != null) {
-            stmt.bindString(7, FItemClassID);
+            stmt.bindString(8, FItemClassID);
         }
  
         String FParentID = entity.getFParentID();
         if (FParentID != null) {
-            stmt.bindString(8, FParentID);
+            stmt.bindString(9, FParentID);
         }
  
         String FLevel = entity.getFLevel();
         if (FLevel != null) {
-            stmt.bindString(9, FLevel);
+            stmt.bindString(10, FLevel);
         }
  
         String FDetail = entity.getFDetail();
         if (FDetail != null) {
-            stmt.bindString(10, FDetail);
+            stmt.bindString(11, FDetail);
         }
  
         String FAddress = entity.getFAddress();
         if (FAddress != null) {
-            stmt.bindString(11, FAddress);
+            stmt.bindString(12, FAddress);
         }
  
         String FPhone = entity.getFPhone();
         if (FPhone != null) {
-            stmt.bindString(12, FPhone);
+            stmt.bindString(13, FPhone);
         }
  
         String FEmail = entity.getFEmail();
         if (FEmail != null) {
-            stmt.bindString(13, FEmail);
+            stmt.bindString(14, FEmail);
         }
     }
 
@@ -227,13 +239,14 @@ public class SuppliersDao extends AbstractDao<Suppliers, Void> {
             cursor.isNull(offset + 3) ? null : cursor.getString(offset + 3), // FOrg
             cursor.isNull(offset + 4) ? null : cursor.getString(offset + 4), // FNote
             cursor.isNull(offset + 5) ? null : cursor.getString(offset + 5), // FMASTERID
-            cursor.isNull(offset + 6) ? null : cursor.getString(offset + 6), // FItemClassID
-            cursor.isNull(offset + 7) ? null : cursor.getString(offset + 7), // FParentID
-            cursor.isNull(offset + 8) ? null : cursor.getString(offset + 8), // FLevel
-            cursor.isNull(offset + 9) ? null : cursor.getString(offset + 9), // FDetail
-            cursor.isNull(offset + 10) ? null : cursor.getString(offset + 10), // FAddress
-            cursor.isNull(offset + 11) ? null : cursor.getString(offset + 11), // FPhone
-            cursor.isNull(offset + 12) ? null : cursor.getString(offset + 12) // FEmail
+            cursor.isNull(offset + 6) ? null : cursor.getString(offset + 6), // FSupplyClassIfy
+            cursor.isNull(offset + 7) ? null : cursor.getString(offset + 7), // FItemClassID
+            cursor.isNull(offset + 8) ? null : cursor.getString(offset + 8), // FParentID
+            cursor.isNull(offset + 9) ? null : cursor.getString(offset + 9), // FLevel
+            cursor.isNull(offset + 10) ? null : cursor.getString(offset + 10), // FDetail
+            cursor.isNull(offset + 11) ? null : cursor.getString(offset + 11), // FAddress
+            cursor.isNull(offset + 12) ? null : cursor.getString(offset + 12), // FPhone
+            cursor.isNull(offset + 13) ? null : cursor.getString(offset + 13) // FEmail
         );
         return entity;
     }
@@ -246,13 +259,14 @@ public class SuppliersDao extends AbstractDao<Suppliers, Void> {
         entity.setFOrg(cursor.isNull(offset + 3) ? null : cursor.getString(offset + 3));
         entity.setFNote(cursor.isNull(offset + 4) ? null : cursor.getString(offset + 4));
         entity.setFMASTERID(cursor.isNull(offset + 5) ? null : cursor.getString(offset + 5));
-        entity.setFItemClassID(cursor.isNull(offset + 6) ? null : cursor.getString(offset + 6));
-        entity.setFParentID(cursor.isNull(offset + 7) ? null : cursor.getString(offset + 7));
-        entity.setFLevel(cursor.isNull(offset + 8) ? null : cursor.getString(offset + 8));
-        entity.setFDetail(cursor.isNull(offset + 9) ? null : cursor.getString(offset + 9));
-        entity.setFAddress(cursor.isNull(offset + 10) ? null : cursor.getString(offset + 10));
-        entity.setFPhone(cursor.isNull(offset + 11) ? null : cursor.getString(offset + 11));
-        entity.setFEmail(cursor.isNull(offset + 12) ? null : cursor.getString(offset + 12));
+        entity.setFSupplyClassIfy(cursor.isNull(offset + 6) ? null : cursor.getString(offset + 6));
+        entity.setFItemClassID(cursor.isNull(offset + 7) ? null : cursor.getString(offset + 7));
+        entity.setFParentID(cursor.isNull(offset + 8) ? null : cursor.getString(offset + 8));
+        entity.setFLevel(cursor.isNull(offset + 9) ? null : cursor.getString(offset + 9));
+        entity.setFDetail(cursor.isNull(offset + 10) ? null : cursor.getString(offset + 10));
+        entity.setFAddress(cursor.isNull(offset + 11) ? null : cursor.getString(offset + 11));
+        entity.setFPhone(cursor.isNull(offset + 12) ? null : cursor.getString(offset + 12));
+        entity.setFEmail(cursor.isNull(offset + 13) ? null : cursor.getString(offset + 13));
      }
     
     @Override

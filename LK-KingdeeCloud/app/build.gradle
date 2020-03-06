@@ -8,7 +8,7 @@ android {
     aaptOptions.cruncherEnabled = false
     aaptOptions.useNewCruncher = false
     defaultConfig {
-        applicationId "com.fangzuo.assist.cloud"
+        applicationId "com.fangzuo.assist.cloud.lk"
         minSdkVersion 15
         targetSdkVersion 26
         versionCode 1
@@ -27,7 +27,7 @@ android {
     }
 }
 greendao {
-    schemaVersion 90
+    schemaVersion 11
     daoPackage 'com.fangzuo.greendao.gen'
     targetGenDir 'src/main/java'
 }
@@ -76,5 +76,5 @@ dependencies {
     implementation 'com.journeyapps:zxing-android-embedded:3.5.0'
     //    implementation project(':suspendbuttonlayout')
     implementation files('libs/zp_cpcl_new.jar')
-
+//    implementation files('libs/ScannerAPI.jar')
 }

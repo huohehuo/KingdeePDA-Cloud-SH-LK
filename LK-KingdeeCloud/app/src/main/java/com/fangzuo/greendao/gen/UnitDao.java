@@ -28,6 +28,7 @@ public class UnitDao extends AbstractDao<Unit, Void> {
         public final static Property FNumber = new Property(1, String.class, "FNumber", false, "FNUMBER");
         public final static Property FName = new Property(2, String.class, "FName", false, "FNAME");
         public final static Property FOrg = new Property(3, String.class, "FOrg", false, "FORG");
+        public final static Property FUnitGroupID = new Property(4, String.class, "FUnitGroupID", false, "FUNIT_GROUP_ID");
     }
 
 
@@ -46,7 +47,8 @@ public class UnitDao extends AbstractDao<Unit, Void> {
                 "\"FMEASURE_UNIT_ID\" TEXT," + // 0: FMeasureUnitID
                 "\"FNUMBER\" TEXT," + // 1: FNumber
                 "\"FNAME\" TEXT," + // 2: FName
-                "\"FORG\" TEXT);"); // 3: FOrg
+                "\"FORG\" TEXT," + // 3: FOrg
+                "\"FUNIT_GROUP_ID\" TEXT);"); // 4: FUnitGroupID
     }
 
     /** Drops the underlying database table. */
@@ -78,6 +80,11 @@ public class UnitDao extends AbstractDao<Unit, Void> {
         if (FOrg != null) {
             stmt.bindString(4, FOrg);
         }
+ 
+        String FUnitGroupID = entity.getFUnitGroupID();
+        if (FUnitGroupID != null) {
+            stmt.bindString(5, FUnitGroupID);
+        }
     }
 
     @Override
@@ -103,6 +110,11 @@ public class UnitDao extends AbstractDao<Unit, Void> {
         if (FOrg != null) {
             stmt.bindString(4, FOrg);
         }
+ 
+        String FUnitGroupID = entity.getFUnitGroupID();
+        if (FUnitGroupID != null) {
+            stmt.bindString(5, FUnitGroupID);
+        }
     }
 
     @Override
@@ -116,7 +128,8 @@ public class UnitDao extends AbstractDao<Unit, Void> {
             cursor.isNull(offset + 0) ? null : cursor.getString(offset + 0), // FMeasureUnitID
             cursor.isNull(offset + 1) ? null : cursor.getString(offset + 1), // FNumber
             cursor.isNull(offset + 2) ? null : cursor.getString(offset + 2), // FName
-            cursor.isNull(offset + 3) ? null : cursor.getString(offset + 3) // FOrg
+            cursor.isNull(offset + 3) ? null : cursor.getString(offset + 3), // FOrg
+            cursor.isNull(offset + 4) ? null : cursor.getString(offset + 4) // FUnitGroupID
         );
         return entity;
     }
@@ -127,6 +140,7 @@ public class UnitDao extends AbstractDao<Unit, Void> {
         entity.setFNumber(cursor.isNull(offset + 1) ? null : cursor.getString(offset + 1));
         entity.setFName(cursor.isNull(offset + 2) ? null : cursor.getString(offset + 2));
         entity.setFOrg(cursor.isNull(offset + 3) ? null : cursor.getString(offset + 3));
+        entity.setFUnitGroupID(cursor.isNull(offset + 4) ? null : cursor.getString(offset + 4));
      }
     
     @Override

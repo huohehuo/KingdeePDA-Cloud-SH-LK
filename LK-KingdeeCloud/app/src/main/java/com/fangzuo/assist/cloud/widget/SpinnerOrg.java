@@ -144,21 +144,6 @@ public class SpinnerOrg extends RelativeLayout {
         });
 
     }
-    //自动设置保存的值
-
-    public OrgSpAdapter getSpAdapter() {
-        if (adapter.getCount() < 0) {
-            Lg.e("adapter初始化失败，重新更新adapter");
-            OrgDao employeeDao = daoSession.getOrgDao();
-            List<Org> employees = employeeDao.loadAll();
-            container.addAll(employees);
-            adapter.notifyDataSetChanged();
-            return adapter;
-        } else {
-            return adapter;
-        }
-    }
-
     // 为左侧返回按钮添加自定义点击事件
     public void setOnItemSelectedListener(AdapterView.OnItemSelectedListener listener) {
         mSp.setOnItemSelectedListener(listener);

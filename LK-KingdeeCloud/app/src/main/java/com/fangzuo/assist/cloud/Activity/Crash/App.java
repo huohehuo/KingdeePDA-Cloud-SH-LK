@@ -73,6 +73,7 @@ public class App extends MultiDexApplication {
     private static Context mContext;
     private String mCurDev = "";
     private boolean isIsDebug =true;
+    private boolean hasRegister =false;
     static App instance = null;
 
     private static OkHttpClient           okHttpClient;
@@ -106,7 +107,7 @@ public class App extends MultiDexApplication {
         mContext = this;
         instance = this;
         Hawk.init(mContext).build();
-        DataBaseSetting = Hawk.get(Config.DataBase,"K3DBConfigerRY");
+        DataBaseSetting = Hawk.get(Config.DataBase,"K3DBConfiger201910115049165");
         PDA_Choose= Hawk.get(Config.PDA,1);
         NowUrl = BasicShareUtil.getInstance(mContext).getBaseURL();
         PDA_Time= CommonUtil.getTime2Fen();//用于重登录

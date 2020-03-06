@@ -42,37 +42,45 @@ public class PushDownList extends HttpServlet {
             if (pushDownListRequestBean.FWLUnitID != null && !pushDownListRequestBean.FWLUnitID.equals("")) {
                 switch (pushDownListRequestBean.id){
                     case 1:
-                        condition += "and  t0.FSUPPLIERID = " + pushDownListRequestBean.FWLUnitID;
+                    case 34:
+//                        condition += " and  t0.FSUPPLIERID = '" + pushDownListRequestBean.FWLUnitID+"'";
+                        condition += " and  st021.FNUMBER = '" + pushDownListRequestBean.FWLUnitID+"'";
                         break;
                     case 2:
-                        condition += "and  st021.FNUMBER ='" + pushDownListRequestBean.FWLUnitID+"'";
+                        condition += " and  st021.FNUMBER ='" + pushDownListRequestBean.FWLUnitID+"'";
                         break;
                     case 3:
-                        condition += "and  t0.FCUSTID = " + pushDownListRequestBean.FWLUnitID;
+                        condition += " and  t0.FCUSTID = '" + pushDownListRequestBean.FWLUnitID+"'";
                         break;
                     case 4:
                     case 5:
-                        condition += "and  t0.FCUSTOMERID = " + pushDownListRequestBean.FWLUnitID;
+                        condition += " and  t0.FCUSTOMERID = '" + pushDownListRequestBean.FWLUnitID+"'";
                         break;
                     case 6:
-                        condition += "and  t0.FRECEIVECUSID = " + pushDownListRequestBean.FWLUnitID;
+                        condition += " and  t0.FRECEIVECUSID = '" + pushDownListRequestBean.FWLUnitID+"'";
                         break;
                 }
             }
             if (pushDownListRequestBean.code != null && !pushDownListRequestBean.code.equals("")) {
-                condition += "and  t0.FBILLNO like \'%" + pushDownListRequestBean.code + "%\'";
+                condition += " and  t0.FBILLNO like \'%" + pushDownListRequestBean.code + "%\'";
             }
             if (pushDownListRequestBean.StartTime != null && !pushDownListRequestBean.StartTime.equals("") && pushDownListRequestBean.endTime != null && !pushDownListRequestBean.endTime.equals("")) {
-                condition += "and  t0.FDate between " + "\'" + pushDownListRequestBean.StartTime + "\'" + "and" + "\'" + pushDownListRequestBean.endTime + "\'";
+                condition += " and  t0.FDate between " + "\'" + pushDownListRequestBean.StartTime + "\'" + "and" + "\'" + pushDownListRequestBean.endTime + "\'";
             }
             System.out.println("查询条件:" + condition);
             switch (pushDownListRequestBean.id) {
                 case 1:
-                case 32:
                     //采购订单下推外购入库单
-                    SQL = "select distinct top 50 t0.FID,t_100.FName  as 采购订单单据类型,t3_In.FFOCUSSETTLEORGID as 结算组织ID,t0.F_FFF_REMARKS as FNOTE,t0.FBILLNO as 单据编号,convert(varchar(100),t0.FDate,23) as 日期,st02.FName as 往来单位,st021.FNUMBER as 往来单位ID,t0.FPURCHASEORGID as 采购组织ID,t0.FPURCHASEDEPTID as 采购部门ID,t0.FPURCHASERID as 采购员ID,t0.FPURCHASEORGID as 库存组织ID  from t_PUR_POOrder t0 LEFT OUTER JOIN t_BD_Supplier st021 ON t0.FSUPPLIERID = st021.FSupplierId LEFT OUTER JOIN t_BD_Supplier_L st02 ON t0.FSUPPLIERID = st02.FSupplierId  LEFT OUTER JOIN t_PUR_POOrderEntry t3 ON t0.FID = t3.FID  LEFT OUTER JOIN T_BD_MATERIAL st31 ON t3.FMATERIALID = st31.FMATERIALID LEFT OUTER JOIN t_PUR_POOrderEntry_D t3_D ON t3.FENTRYID = t3_D.FENTRYID LEFT OUTER JOIN t_PUR_POOrderEntry_R t3_R ON t3.FENTRYID = t3_R.FENTRYID left join T_PUR_POORDERFIN t3_In on t0.FID =t3_In.FID left join T_BAS_BILLTYPE_L t_100 on (t_100.FBILLTYPEID=t0.FBILLTYPEID and t_100.FLOCALEID=2052)   where t0.FOBJECTTYPEID = 'PUR_PurchaseOrder' and t0.FDOCUMENTSTATUS = 'C' AND t0.FCANCELSTATUS = 'A' AND t0.FCLOSESTATUS = 'A' AND t3.FMRPFREEZESTATUS = 'A' AND t3.FMRPTERMINATESTATUS = 'A' AND t3.FMRPCLOSESTATUS = 'A' AND t3.FCHANGEFLAG <> 'I'  AND (t3_D.FBASEDELIVERYMAXQTY > t3_R.FBASESTOCKINQTY) AND (t3_D.FBASEDELIVERYMAXQTY > t3_R.FBASEJOINQTY) " + condition + " order by t0.FID desc ";
+                    SQL = "select distinct top 50 t0.FID,t_100.FName  as 采购订单单据类型,t3_In.FFOCUSSETTLEORGID as 结算组织ID,'' as FNOTE,t0.FBILLNO as 单据编号,convert(varchar(100),t0.FDate,23) as 日期,st02.FName as 往来单位,st021.FNUMBER as 往来单位ID,t0.FPURCHASEORGID as 采购组织ID,t0.FPURCHASEDEPTID as 采购部门ID,t0.FPURCHASERID as 采购员ID,t0.FPURCHASEORGID as 库存组织ID  from t_PUR_POOrder t0 LEFT OUTER JOIN t_BD_Supplier st021 ON t0.FSUPPLIERID = st021.FSupplierId LEFT OUTER JOIN t_BD_Supplier_L st02 ON t0.FSUPPLIERID = st02.FSupplierId  and st02.FLOCALEID = 2052  LEFT OUTER JOIN t_PUR_POOrderEntry t3 ON t0.FID = t3.FID  LEFT OUTER JOIN T_BD_MATERIAL st31 ON t3.FMATERIALID = st31.FMATERIALID LEFT OUTER JOIN t_PUR_POOrderEntry_D t3_D ON t3.FENTRYID = t3_D.FENTRYID LEFT OUTER JOIN t_PUR_POOrderEntry_R t3_R ON t3.FENTRYID = t3_R.FENTRYID left join T_PUR_POORDERFIN t3_In on t0.FID =t3_In.FID left join T_BAS_BILLTYPE_L t_100 on (t_100.FBILLTYPEID=t0.FBILLTYPEID and t_100.FLOCALEID=2052)   where t0.FOBJECTTYPEID = 'PUR_PurchaseOrder' and t0.FDOCUMENTSTATUS = 'C' AND t0.FCANCELSTATUS = 'A' AND t0.FCLOSESTATUS = 'A' AND t3.FMRPFREEZESTATUS = 'A' AND t3.FMRPTERMINATESTATUS = 'A' AND t3.FMRPCLOSESTATUS = 'A' AND t3.FCHANGEFLAG <> 'I'  AND (t3_D.FBASEDELIVERYMAXQTY > t3_R.FBASESTOCKINQTY) AND (t3_D.FBASEDELIVERYMAXQTY > t3_R.FBASEJOINQTY) AND t_100.FName = '标准采购订单' " + condition + " order by t0.FID desc ";
+                    break;
+                case 34:
+                    //采购订单下推委外入库单
+                    SQL = "select distinct top 50 t0.FID,t_100.FName  as 采购订单单据类型,t3_In.FFOCUSSETTLEORGID as 结算组织ID,'' as FNOTE,t0.FBILLNO as 单据编号,convert(varchar(100),t0.FDate,23) as 日期,st02.FName as 往来单位,st021.FNUMBER as 往来单位ID,t0.FPURCHASEORGID as 采购组织ID,t0.FPURCHASEDEPTID as 采购部门ID,t0.FPURCHASERID as 采购员ID,t0.FPURCHASEORGID as 库存组织ID  from t_PUR_POOrder t0 LEFT OUTER JOIN t_BD_Supplier st021 ON t0.FSUPPLIERID = st021.FSupplierId LEFT OUTER JOIN t_BD_Supplier_L st02 ON t0.FSUPPLIERID = st02.FSupplierId  and st02.FLOCALEID = 2052  LEFT OUTER JOIN t_PUR_POOrderEntry t3 ON t0.FID = t3.FID  LEFT OUTER JOIN T_BD_MATERIAL st31 ON t3.FMATERIALID = st31.FMATERIALID LEFT OUTER JOIN t_PUR_POOrderEntry_D t3_D ON t3.FENTRYID = t3_D.FENTRYID LEFT OUTER JOIN t_PUR_POOrderEntry_R t3_R ON t3.FENTRYID = t3_R.FENTRYID left join T_PUR_POORDERFIN t3_In on t0.FID =t3_In.FID left join T_BAS_BILLTYPE_L t_100 on (t_100.FBILLTYPEID=t0.FBILLTYPEID and t_100.FLOCALEID=2052)   where t0.FOBJECTTYPEID = 'PUR_PurchaseOrder' and t0.FDOCUMENTSTATUS = 'C' AND t0.FCANCELSTATUS = 'A' AND t0.FCLOSESTATUS = 'A' AND t3.FMRPFREEZESTATUS = 'A' AND t3.FMRPTERMINATESTATUS = 'A' AND t3.FMRPCLOSESTATUS = 'A' AND t3.FCHANGEFLAG <> 'I'  AND (t3_D.FBASEDELIVERYMAXQTY > t3_R.FBASESTOCKINQTY) AND (t3_D.FBASEDELIVERYMAXQTY > t3_R.FBASEJOINQTY) AND t_100.FName = '标准委外订单' " + condition + " order by t0.FID desc ";
                     break;
                 case 2:
+                    //销售订单下推销售出库单
+                    SQL = "select  distinct top 50 t0.FID,t_100.FName as 销售订单单据类型,t0.FNOTE,t0.FBILLNO as 单据编号,convert(varchar(100),t0.FDate,23) as 日期,st02.FName as 往来单位,st021.FNUMBER as 往来单位ID,t0.FSALEORGID as 销售组织ID,t0.FSALEDEPTID as 销售部门ID,t0.FSALERID as 销售员ID from T_SAL_ORDER t0  LEFT OUTER JOIN t_BD_Customer st021 ON t0.FCUSTID  = st021.FCUSTID  LEFT OUTER JOIN t_BD_Customer_L st02 ON t0.FCUSTID  = st02.FCUSTID and st02.FLOCALEID = 2052 LEFT OUTER JOIN T_SAL_ORDEREntry t3 ON t0.FID = t3.FID  LEFT OUTER JOIN T_BD_MATERIAL st31 ON t3.FMATERIALID = st31.FMATERIALID LEFT OUTER JOIN T_SAL_ORDEREntry_D t3_D ON t3.FENTRYID = t3_D.FENTRYID LEFT OUTER JOIN T_SAL_ORDEREntry_R t3_R ON t3.FENTRYID = t3_R.FENTRYID left join T_BAS_BILLTYPE_L t_100 on (t_100.FBILLTYPEID=t0.FBILLTYPEID and t_100.FLOCALEID=2052)  where t_100.FName<>'VMI销售订单' and t0.FOBJECTTYPEID = 'SAL_SaleOrder' and t0.FDOCUMENTSTATUS = 'C' AND t0.FCANCELSTATUS = 'A' AND t0.FCLOSESTATUS = 'A' AND t3.FMRPFREEZESTATUS = 'A' AND t3.FMRPTERMINATESTATUS = 'A' AND t3.FMRPCLOSESTATUS = 'A' AND t3.FCHANGEFLAG <> 'I'   AND ((t3_R.FBASECANOUTQTY + (t3_D.FBASEDELIVERYMAXQTY - t3.FBASEUNITQTY)) > 0 OR (t3_R.FBASECANOUTQTY < 0))  " + condition + " order by t0.FID desc";
+                    break;
                 case 31:
                     //销售订单下推销售出库单
                     SQL = "select  distinct top 50 t0.F_FFF_COMBO as 外勤助理,t0.FID,t_100.FName as 销售订单单据类型,t0.FNOTE,t0.FBILLNO as 单据编号,convert(varchar(100),t0.FDate,23) as 日期,st02.FName as 往来单位,st021.FNUMBER as 往来单位ID,t0.FSALEORGID as 销售组织ID,t0.FSALEDEPTID as 销售部门ID,t0.FSALERID as 销售员ID from T_SAL_ORDER t0  LEFT OUTER JOIN t_BD_Customer st021 ON t0.FCUSTID  = st021.FCUSTID  LEFT OUTER JOIN t_BD_Customer_L st02 ON t0.FCUSTID  = st02.FCUSTID LEFT OUTER JOIN T_SAL_ORDEREntry t3 ON t0.FID = t3.FID  LEFT OUTER JOIN T_BD_MATERIAL st31 ON t3.FMATERIALID = st31.FMATERIALID LEFT OUTER JOIN T_SAL_ORDEREntry_D t3_D ON t3.FENTRYID = t3_D.FENTRYID LEFT OUTER JOIN T_SAL_ORDEREntry_R t3_R ON t3.FENTRYID = t3_R.FENTRYID left join T_BAS_BILLTYPE_L t_100 on (t_100.FBILLTYPEID=t0.FBILLTYPEID and t_100.FLOCALEID=2052)  where t_100.FName<>'VMI销售订单' and t0.FOBJECTTYPEID = 'SAL_SaleOrder' and t0.FDOCUMENTSTATUS = 'C' AND t0.FCANCELSTATUS = 'A' AND t0.FCLOSESTATUS = 'A' AND t3.FMRPFREEZESTATUS = 'A' AND t3.FMRPTERMINATESTATUS = 'A' AND t3.FMRPCLOSESTATUS = 'A' AND t3.FCHANGEFLAG <> 'I'   AND ((t3_R.FBASECANOUTQTY + (t3_D.FBASEDELIVERYMAXQTY - t3.FBASEUNITQTY)) > 0 OR (t3_R.FBASECANOUTQTY < 0))  " + condition + " order by t0.FID desc";
@@ -80,6 +88,10 @@ public class PushDownList extends HttpServlet {
                 case 21:
                     //VMI销售订单下推销售出库单
                     SQL = "select  distinct top 50 t0.F_FFF_COMBO as 外勤助理,t0.FID,t_100.FName as 销售订单单据类型,t0.FNOTE,t0.FBILLNO as 单据编号,convert(varchar(100),t0.FDate,23) as 日期,st02.FName as 往来单位,st021.FNUMBER as 往来单位ID,t0.FSALEORGID as 销售组织ID,t0.FSALEDEPTID as 销售部门ID,t0.FSALERID as 销售员ID from T_SAL_ORDER t0  LEFT OUTER JOIN t_BD_Customer st021 ON t0.FCUSTID  = st021.FCUSTID  LEFT OUTER JOIN t_BD_Customer_L st02 ON t0.FCUSTID  = st02.FCUSTID LEFT OUTER JOIN T_SAL_ORDEREntry t3 ON t0.FID = t3.FID  LEFT OUTER JOIN T_BD_MATERIAL st31 ON t3.FMATERIALID = st31.FMATERIALID LEFT OUTER JOIN T_SAL_ORDEREntry_D t3_D ON t3.FENTRYID = t3_D.FENTRYID LEFT OUTER JOIN T_SAL_ORDEREntry_R t3_R ON t3.FENTRYID = t3_R.FENTRYID left join T_BAS_BILLTYPE_L t_100 on (t_100.FBILLTYPEID=t0.FBILLTYPEID and t_100.FLOCALEID=2052)  where t_100.FName='VMI销售订单' and t0.FOBJECTTYPEID = 'SAL_SaleOrder' and t0.FDOCUMENTSTATUS = 'C' AND t0.FCANCELSTATUS = 'A' AND t0.FCLOSESTATUS = 'A' AND t3.FMRPFREEZESTATUS = 'A' AND t3.FMRPTERMINATESTATUS = 'A' AND t3.FMRPCLOSESTATUS = 'A' AND t3.FCHANGEFLAG <> 'I'   AND ((t3_R.FBASECANOUTQTY + (t3_D.FBASEDELIVERYMAXQTY - t3.FBASEUNITQTY)) > 0 OR (t3_R.FBASECANOUTQTY < 0))  " + condition + " order by t0.FID desc";
+                    break;
+                case 32:
+                    //方料入库
+                    SQL = "select distinct top 50 t0.FID,t_100.FName  as 采购订单单据类型,t3_In.FFOCUSSETTLEORGID as 结算组织ID,t0.F_FFF_REMARKS as FNOTE,t0.FBILLNO as 单据编号,convert(varchar(100),t0.FDate,23) as 日期,st02.FName as 往来单位,st021.FNUMBER as 往来单位ID,t0.FPURCHASEORGID as 采购组织ID,t0.FPURCHASEDEPTID as 采购部门ID,t0.FPURCHASERID as 采购员ID,t0.FPURCHASEORGID as 库存组织ID  from t_PUR_POOrder t0 LEFT OUTER JOIN t_BD_Supplier st021 ON t0.FSUPPLIERID = st021.FSupplierId LEFT OUTER JOIN t_BD_Supplier_L st02 ON t0.FSUPPLIERID = st02.FSupplierId  and st02.FLOCALEID = 2052  LEFT OUTER JOIN t_PUR_POOrderEntry t3 ON t0.FID = t3.FID  LEFT OUTER JOIN T_BD_MATERIAL st31 ON t3.FMATERIALID = st31.FMATERIALID LEFT OUTER JOIN t_PUR_POOrderEntry_D t3_D ON t3.FENTRYID = t3_D.FENTRYID LEFT OUTER JOIN t_PUR_POOrderEntry_R t3_R ON t3.FENTRYID = t3_R.FENTRYID left join T_PUR_POORDERFIN t3_In on t0.FID =t3_In.FID left join T_BAS_BILLTYPE_L t_100 on (t_100.FBILLTYPEID=t0.FBILLTYPEID and t_100.FLOCALEID=2052)   where t0.FOBJECTTYPEID = 'PUR_PurchaseOrder' and t0.FDOCUMENTSTATUS = 'C' AND t0.FCANCELSTATUS = 'A' AND t0.FCLOSESTATUS = 'A' AND t3.FMRPFREEZESTATUS = 'A' AND t3.FMRPTERMINATESTATUS = 'A' AND t3.FMRPCLOSESTATUS = 'A' AND t3.FCHANGEFLAG <> 'I'  AND (t3_D.FBASEDELIVERYMAXQTY > t3_R.FBASESTOCKINQTY) AND (t3_D.FBASEDELIVERYMAXQTY > t3_R.FBASEJOINQTY) " + condition + " order by t0.FID desc ";
                     break;
                 case 3:
                     //销售订单下推销售退货单
@@ -252,7 +264,7 @@ public class PushDownList extends HttpServlet {
 //                pushDownListBean.FSaleOrgID = rs.getString("销售组织ID");
                 pushDownListBean.FNot = rs.getString("FNOTE");
                 pushDownListBean.FID = rs.getString("FID");
-                if (pushDownListRequestBean.id==1 || pushDownListRequestBean.id==32 ){
+                if (pushDownListRequestBean.id==1 || pushDownListRequestBean.id==32  || pushDownListRequestBean.id==34 ){
                     pushDownListBean.FBillTypeName = rs.getString("采购订单单据类型");
                     pushDownListBean.FSaleDeptID = rs.getString("采购部门ID");
                     pushDownListBean.FSaleManID = rs.getString("采购员ID");
@@ -323,7 +335,7 @@ public class PushDownList extends HttpServlet {
                 }
                 if (pushDownListRequestBean.id==2||pushDownListRequestBean.id==31 ||pushDownListRequestBean.id==21){
                     pushDownListBean.FBillTypeName = rs.getString("销售订单单据类型");
-                    pushDownListBean.FFieldMan = rs.getString("外勤助理");
+//                    pushDownListBean.FFieldMan = rs.getString("外勤助理");
                 }
                 if (pushDownListRequestBean.id==6){
                     pushDownListBean.FStoreOrgID = rs.getString("库存组织ID");

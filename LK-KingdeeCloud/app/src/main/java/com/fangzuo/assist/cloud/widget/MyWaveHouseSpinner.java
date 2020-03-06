@@ -182,7 +182,7 @@ public class MyWaveHouseSpinner extends RelativeLayout {
         return waveHouseNumber;
     }
     public WaveHouse getwaveHouseObject(){
-        return waveHouseObject==null?new WaveHouse("","","",""):waveHouseObject;
+        return waveHouseObject==null?new WaveHouse("","","","","",""):waveHouseObject;
     }
 
     //自动设置保存的值

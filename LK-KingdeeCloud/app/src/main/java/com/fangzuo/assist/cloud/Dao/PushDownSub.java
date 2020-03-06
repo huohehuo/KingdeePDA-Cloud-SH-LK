@@ -63,8 +63,11 @@ public class PushDownSub {
     public String FStr3;
     public String FStr4;
     public String FStr5;
+    public String FAuxQty;
+    public String FAuxQtying;
+    public String FCreateDate;
 
-    @Generated(hash = 259545152)
+    @Generated(hash = 2097102013)
     public PushDownSub(Long id, String FSEQ, String FID, String FMaterialID,
             String FAccountID, String FEntryID, String FUnitID, String FNumber,
             String FName, String FModel, String FBillNo, String FQty,
@@ -76,7 +79,8 @@ public class PushDownSub {
             String FHuozhuInID, String FNeedOrgID, String FLevel, String FYmLenght,
             String FYmDiameter, String FBLenght, String FBWide, String FBThick,
             String FIsPrint, String FWide, String FM3, String FPCS, String FStr1,
-            String FStr2, String FStr3, String FStr4, String FStr5) {
+            String FStr2, String FStr3, String FStr4, String FStr5, String FAuxQty,
+            String FAuxQtying, String FCreateDate) {
         this.id = id;
         this.FSEQ = FSEQ;
         this.FID = FID;
@@ -122,6 +126,9 @@ public class PushDownSub {
         this.FStr3 = FStr3;
         this.FStr4 = FStr4;
         this.FStr5 = FStr5;
+        this.FAuxQty = FAuxQty;
+        this.FAuxQtying = FAuxQtying;
+        this.FCreateDate = FCreateDate;
     }
     @Generated(hash = 2008125598)
     public PushDownSub() {
@@ -395,6 +402,24 @@ public class PushDownSub {
     }
     public void setFPCS(String FPCS) {
         this.FPCS = FPCS;
+    }
+    public String getFAuxQty() {
+        return this.FAuxQty;
+    }
+    public void setFAuxQty(String FAuxQty) {
+        this.FAuxQty = FAuxQty;
+    }
+    public String getFCreateDate() {
+        return this.FCreateDate;
+    }
+    public void setFCreateDate(String FCreateDate) {
+        this.FCreateDate = FCreateDate;
+    }
+    public String getFAuxQtying() {
+        return this.FAuxQtying;
+    }
+    public void setFAuxQtying(String FAuxQtying) {
+        this.FAuxQtying = FAuxQtying;
     }
 
 }

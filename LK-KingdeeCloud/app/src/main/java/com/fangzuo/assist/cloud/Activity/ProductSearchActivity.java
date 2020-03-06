@@ -1,6 +1,8 @@
 package com.fangzuo.assist.cloud.Activity;
 
+import android.content.Context;
 import android.content.Intent;
+import android.database.Cursor;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -32,10 +34,14 @@ import com.fangzuo.assist.cloud.Utils.BasicShareUtil;
 import com.fangzuo.assist.cloud.Utils.Config;
 import com.fangzuo.assist.cloud.Utils.EventBusInfoCode;
 import com.fangzuo.assist.cloud.Utils.EventBusUtil;
+import com.fangzuo.assist.cloud.Utils.GreedDaoUtil.GreenDaoManager;
 import com.fangzuo.assist.cloud.Utils.Info;
+import com.fangzuo.assist.cloud.Utils.Lg;
 import com.fangzuo.assist.cloud.Utils.Toast;
 import com.fangzuo.assist.cloud.Utils.WebApi;
 import com.fangzuo.greendao.gen.ClientDao;
+import com.fangzuo.greendao.gen.ProductDao;
+import com.fangzuo.greendao.gen.SuppliersDao;
 import com.google.gson.Gson;
 import com.loopj.android.http.AsyncHttpClient;
 
@@ -113,6 +119,15 @@ public class ProductSearchActivity extends BaseActivity {
         if (where == Info.Search_Pihao) title.setText("查询结果(批号)");
 
     }
+    public static void start(Context context, String search, String org, int where, int activity) {
+        Intent starter = new Intent(context, ProductSearchActivity.class);
+        starter.putExtra("search", search);
+        starter.putExtra("org", org);
+        starter.putExtra("where", where);
+        starter.putExtra("activity", activity);
+//        starter.putStringArrayListExtra("fid", fid);
+        context.startActivity(starter);
+    }
 
     @Override
     protected boolean isRegisterEventBus() {
@@ -128,8 +143,8 @@ public class ProductSearchActivity extends BaseActivity {
     public void initData() {
         //物料
         if (where == Info.SEARCHPRODUCT) {
-            model.setText("名称");
-            name.setText("型号");
+            model.setText("编码");
+            name.setText("名称");
             if (BasicShareUtil.getInstance(mContext).getIsOL()) {
                 Asynchttp.post(mContext, getBaseUrl() + WebApi.S2Product, gson.toJson(new SearchBean(SearchBean.product_for_like,gson.toJson(s2Product))), new Asynchttp.Response() {
                     @Override
@@ -157,63 +172,77 @@ public class ProductSearchActivity extends BaseActivity {
                     }
                 });
             }
-//            else {
-//                model.setText("名称");
-//                name.setText("型号");
-//                itemAll = new ArrayList<>();
-//                if (!"".equals(FIsPurchase))con+=con+" and FIS_PURCHASE="+FIsPurchase;
-//                if (!"".equals(FIsSale))con+=con+" and FIS_SALE="+FIsSale;
-//                if (!"".equals(FIsInventory))con+=con+" and FIS_INVENTORY="+FIsInventory;
-//                if (!"".equals(FIsProduce))con+=con+" and FIS_PRODUCE="+FIsProduce;
-//                if (!"".equals(searchString)){
-//                    con+=con+" and (FNAME like '%"+searchString+"%' or FNumber like '%"+searchString+"%')";
-//                }
-//                String SQL = "SELECT * FROM PRODUCT WHERE 1=1 "+con;
-//                Lg.e("SQL:"+SQL);
-//                Cursor cursor = GreenDaoManager.getmInstance(mContext).getDaoSession().getDatabase().rawQuery(SQL, null);
-//                while (cursor.moveToNext()) {
-//                    Product f = new Product();
-//                    f.FName = cursor.getString(cursor.getColumnIndex("FNAME"));
-//                    f.FModel = cursor.getString(cursor.getColumnIndex("FMODEL"));
-//                    f.FNumber = cursor.getString(cursor.getColumnIndex("FNUMBER"));
-//                    f.FMaterialid = cursor.getString(cursor.getColumnIndex("FMATERIALID"));
-//                    f.FBarcode = cursor.getString(cursor.getColumnIndex("FBARCODE"));
-//                    f.FIsBatchManage = cursor.getString(cursor.getColumnIndex("FIS_BATCH_MANAGE"));
-//                    f.FStockPlaceID = cursor.getString(cursor.getColumnIndex("FSTOCK_PLACE_ID"));
-//                    f.FStockID = cursor.getString(cursor.getColumnIndex("FSTOCK_ID"));
-//                    f.FProduceUnitID = cursor.getString(cursor.getColumnIndex("FPRODUCE_UNIT_ID"));
-//                    f.FPurchaseUnitID = cursor.getString(cursor.getColumnIndex("FPURCHASE_UNIT_ID"));
-//                    f.FPurchasePriceUnitID = cursor.getString(cursor.getColumnIndex("FPURCHASE_PRICE_UNIT_ID"));
-//                    f.FSaleUnitID = cursor.getString(cursor.getColumnIndex("FSALE_UNIT_ID"));
-//                    f.FSalePriceUnitID = cursor.getString(cursor.getColumnIndex("FSALE_PRICE_UNIT_ID"));
-//                    f.FStoreUnitID = cursor.getString(cursor.getColumnIndex("FSTORE_UNIT_ID"));
-//                    f.FAuxUnitID = cursor.getString(cursor.getColumnIndex("FAUX_UNIT_ID"));
-//                    f.FIsPurchase = cursor.getString(cursor.getColumnIndex("FIS_PURCHASE"));
-//                    f.FIsSale = cursor.getString(cursor.getColumnIndex("FIS_SALE"));
-//                    f.FIsInventory = cursor.getString(cursor.getColumnIndex("FIS_INVENTORY"));
-//                    f.FIsProduce = cursor.getString(cursor.getColumnIndex("FIS_PRODUCE"));
-//                    f.FIsSubContract = cursor.getString(cursor.getColumnIndex("FIS_SUB_CONTRACT"));
-//                    f.FIsAsset = cursor.getString(cursor.getColumnIndex("FIS_ASSET"));
-//                    itemAll.add(f);
-//                }
-////                ProductDao productDao = GreenDaoManager.getmInstance(mContext).getDaoSession().getProductDao();
-////                items = productDao.queryBuilder().whereOr(
-////                        ProductDao.Properties.FNumber.like("%" + searchString + "%"),
-////                        ProductDao.Properties.FBarcode.like("%" + searchString + "%"),
-////                        ProductDao.Properties.FName.like("%" + searchString + "%")).
-////                        orderAsc(ProductDao.Properties.FNumber).limit(50).orderAsc(ProductDao.Properties.FNumber).build().list();
-////                itemAll.addAll(items);
-//                if (itemAll.size() > 0) {
-//                    Lg.e("物料size:"+itemAll.size());
-//                    ada = new SearchAdapter(mContext, itemAll);
-//                    lvResult.setAdapter(ada);
-//                    ada.notifyDataSetChanged();
-//                } else {
-//                    Toast.showText(mContext, "无数据");
-//                    setResult(-9998, null);
-//                    onBackPressed();
-//                }
-//            }
+            else {
+                model.setText("名称");
+                name.setText("型号");
+                itemAll = new ArrayList<>();
+                if (!"".equals(FIsPurchase))con=con+" and FIS_PURCHASE="+FIsPurchase;
+                if (!"".equals(FIsProduce))con=con+" and FIS_PRODUCE="+FIsProduce;
+                if (!"".equals(FIsSale))con=con+" and FIS_SALE="+FIsSale;
+                if (!"".equals(FIsInventory))con=con+" and FIS_INVENTORY="+FIsInventory;
+                if (!"".equals(searchString)){
+                    con=con+" and (FNAME like '%"+searchString+"%' or FNumber like '%"+searchString+"%')";
+                }
+                String SQL = "SELECT * FROM PRODUCT WHERE 1=1 "+con;
+                Lg.e("SQL:"+SQL);
+                Cursor cursor = GreenDaoManager.getmInstance(mContext).getDaoSession().getDatabase().rawQuery(SQL, null);
+                while (cursor.moveToNext()) {
+                    Product f = new Product();
+                    f.FName = cursor.getString(cursor.getColumnIndex("FNAME"));
+                    f.FModel = cursor.getString(cursor.getColumnIndex("FMODEL"));
+                    f.FNumber = cursor.getString(cursor.getColumnIndex("FNUMBER"));
+                    f.FMaterialid = cursor.getString(cursor.getColumnIndex("FMATERIALID"));
+                    f.FBarcode = cursor.getString(cursor.getColumnIndex("FBARCODE"));
+                    f.FIsBatchManage = cursor.getString(cursor.getColumnIndex("FIS_BATCH_MANAGE"));
+                    f.FStockPlaceID = cursor.getString(cursor.getColumnIndex("FSTOCK_PLACE_ID"));
+                    f.FStockID = cursor.getString(cursor.getColumnIndex("FSTOCK_ID"));
+
+                    f.FProduceUnitID = cursor.getString(cursor.getColumnIndex("FPRODUCE_UNIT_ID"));
+                    f.FPurchaseUnitID = cursor.getString(cursor.getColumnIndex("FPURCHASE_UNIT_ID"));
+                    f.FPurchasePriceUnitID = cursor.getString(cursor.getColumnIndex("FPURCHASE_PRICE_UNIT_ID"));
+                    f.FSaleUnitID = cursor.getString(cursor.getColumnIndex("FSALE_UNIT_ID"));
+                    f.FSalePriceUnitID = cursor.getString(cursor.getColumnIndex("FSALE_PRICE_UNIT_ID"));
+                    f.FStoreUnitID = cursor.getString(cursor.getColumnIndex("FSTORE_UNIT_ID"));
+                    f.FAuxUnitID = cursor.getString(cursor.getColumnIndex("FAUX_UNIT_ID"));
+                    f.FProduceUnitNumber = cursor.getString(cursor.getColumnIndex("FPRODUCE_UNIT_NUMBER"));
+                    f.FPurchaseUnitNumber = cursor.getString(cursor.getColumnIndex("FPURCHASE_UNIT_NUMBER"));
+                    f.FPurchasePriceUnitNumber = cursor.getString(cursor.getColumnIndex("FPURCHASE_PRICE_UNIT_NUMBER"));
+                    f.FSaleUnitNumber = cursor.getString(cursor.getColumnIndex("FSALE_UNIT_NUMBER"));
+                    f.FSalePriceUnitNumber = cursor.getString(cursor.getColumnIndex("FSALE_PRICE_UNIT_NUMBER"));
+                    f.FStoreUnitNumber = cursor.getString(cursor.getColumnIndex("FSTORE_UNIT_NUMBER"));
+                    f.FAuxUnitNumber = cursor.getString(cursor.getColumnIndex("FAUX_UNIT_NUMBER"));
+                    f.FUnitGroupID   = cursor.getString(cursor.getColumnIndex("FUNIT_GROUP_ID"));
+
+                    f.FIsPurchase = cursor.getString(cursor.getColumnIndex("FIS_PURCHASE"));
+                    f.FIsSale = cursor.getString(cursor.getColumnIndex("FIS_SALE"));
+                    f.FIsInventory = cursor.getString(cursor.getColumnIndex("FIS_INVENTORY"));
+                    f.FIsProduce = cursor.getString(cursor.getColumnIndex("FIS_PRODUCE"));
+                    f.FIsSubContract = cursor.getString(cursor.getColumnIndex("FIS_SUB_CONTRACT"));
+                    f.FIsAsset = cursor.getString(cursor.getColumnIndex("FIS_ASSET"));
+                    f.FIsKFperiod  = cursor.getString(cursor.getColumnIndex("FIS_KFPERIOD"));
+                    f.FExpperiod   = cursor.getString(cursor.getColumnIndex("FEXPPERIOD"));
+                    itemAll.add(f);
+                }
+//                ProductDao productDao = GreenDaoManager.getmInstance(mContext).getDaoSession().getProductDao();
+//                items = productDao.queryBuilder().whereOr(
+//                        ProductDao.Properties.FNumber.like("%" + searchString + "%"),
+//                        ProductDao.Properties.FBarcode.like("%" + searchString + "%"),
+//                        ProductDao.Properties.FName.like("%" + searchString + "%")).
+//                        orderAsc(ProductDao.Properties.FNumber).limit(50).orderAsc(ProductDao.Properties.FNumber).build().list();
+//                itemAll.addAll(items);
+                pg.setVisibility(View.GONE);
+                if (itemAll.size() > 0) {
+                    Lg.e("物料size:"+itemAll.size());
+                    ada = new SearchAdapter(mContext, itemAll);
+                    lvResult.setAdapter(ada);
+                    ada.notifyDataSetChanged();
+                } else {
+                    Toast.showText(mContext, "无数据");
+                    setResult(-9998, null);
+                    onBackPressed();
+                }
+                pg.setVisibility(View.GONE);
+            }
 
             //供应商
         } else if (where == Info.SEARCHSUPPLIER || where == Info.SearchSupplier || where == Info.SearchSupplierDetail) {
@@ -244,26 +273,29 @@ public class ProductSearchActivity extends BaseActivity {
                         Toast.showText(mContext, Msg);
                     }
                 });
+            } else{
+                SuppliersDao suppliersDao = GreenDaoManager.getmInstance(mContext).getDaoSession().getSuppliersDao();
+                List<Suppliers> list = suppliersDao.queryBuilder().
+                        where(SuppliersDao.Properties.FOrg.eq(searchOrg)).
+                        where(SuppliersDao.Properties.FSupplyClassIfy.notEq("WW")).
+                        whereOr(
+                            SuppliersDao.Properties.FName.like("%" + searchString + "%"),
+                            SuppliersDao.Properties.FNumber.like("%" + searchString + "%")
+                ).orderAsc(SuppliersDao.Properties.FItemID).limit(50).build().list();
+                itemAllSupplier = new ArrayList<>();
+                itemAllSupplier.addAll(list);
+                pg.setVisibility(View.GONE);
+                if (itemAllSupplier.size() > 0) {
+                    SearchSupplierAdapter ada1 = new SearchSupplierAdapter(mContext, itemAllSupplier);
+                    lvResult.setAdapter(ada1);
+                    ada1.notifyDataSetChanged();
+                } else {
+                    Toast.showText(mContext, "未查询到数据");
+                    setResult(-9998, null);
+                    onBackPressed();
+                }
+
             }
-//            else{
-//                SuppliersDao suppliersDao = GreenDaoManager.getmInstance(mContext).getDaoSession().getSuppliersDao();
-//                List<Suppliers> list = suppliersDao.queryBuilder().whereOr(
-//                        SuppliersDao.Properties.FName.like("%" + searchString + "%"),
-//                        SuppliersDao.Properties.FNumber.like("%" + searchString + "%")
-//                ).orderAsc(SuppliersDao.Properties.FItemID).limit(50).build().list();
-//                itemAllSupplier = new ArrayList<>();
-//                itemAllSupplier.addAll(list);
-//                if (itemAllSupplier.size() > 0) {
-//                    SearchSupplierAdapter ada1 = new SearchSupplierAdapter(mContext, itemAllSupplier);
-//                    lvResult.setAdapter(ada1);
-//                    ada1.notifyDataSetChanged();
-//                } else {
-//                    Toast.showText(mContext, "未查询到数据");
-//                    setResult(-9998, null);
-//                    onBackPressed();
-//                }
-//
-//            }
                 //客户
         } else if (where == Info.SEARCHCLIENT || where == Info.SearchClientDetail) {
             model.setText("编号");
@@ -450,9 +482,11 @@ public class ProductSearchActivity extends BaseActivity {
     //根据activity过滤是否物料（是否允许生产，是否允许采购等)
     private void toFilter(int activity){
         switch (activity){
+            case Config.OutsourcingInActivity://采购订单下推外购入库单
             case Config.PdCgOrder2WgrkActivity://采购订单下推外购入库单
             case Config.PurchaseInStoreActivity://采购入库
                 s2Product.FIsPurchase="1";
+                s2Product.FVal1="<>'WW'";
                 FIsPurchase="1";
                 break;
             case Config.WorkOrgIn4P2Activity://产品入库

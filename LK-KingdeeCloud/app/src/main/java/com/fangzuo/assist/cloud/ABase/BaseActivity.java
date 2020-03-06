@@ -4,9 +4,11 @@ import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.ActivityManager;
 import android.app.DatePickerDialog;
+import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.graphics.Color;
 import android.graphics.PixelFormat;
 import android.graphics.Point;
@@ -40,6 +42,7 @@ import com.fangzuo.assist.cloud.Utils.BasicShareUtil;
 import com.fangzuo.assist.cloud.Utils.Config;
 import com.fangzuo.assist.cloud.Utils.EventBusUtil;
 import com.fangzuo.assist.cloud.Utils.GreedDaoUtil.GreenDaoManager;
+import com.fangzuo.assist.cloud.Utils.Info;
 import com.fangzuo.assist.cloud.Utils.Lg;
 import com.fangzuo.assist.cloud.Utils.MathUtil;
 import com.fangzuo.assist.cloud.Utils.MediaPlayer;
@@ -195,10 +198,12 @@ public abstract class BaseActivity extends FragmentActivity {
 
 
 
+
         initView();
         initData();
         initListener();
     }
+
 //    public BroadcastReceiver getBroadcastReceiver(){
 //        return mScanDataReceiver;
 //    }
@@ -343,16 +348,35 @@ public abstract class BaseActivity extends FragmentActivity {
 
     @Override
     protected void onResume() {
+//        //初始化扫码枪的设置
+//        // 发送广播到扫描工具内的应用设置项
+//        Intent intent = new Intent("com.android.scanner.service_settings");
+//        // 修改扫描工具内应用设置中的开发者项下的广播名称
+//        intent.putExtra("action_barcode_broadcast", Info.SCANACTION);
+//        // 修改扫描工具内应用设置下的条码发送方式为 "广播"
+//        intent.putExtra("barcode_send_mode", "BROADCAST");
+//        // 修改扫描工具内应用设置下的结束符为 "NONE"
+//        intent.putExtra("endchar", "NONE");
+//        sendBroadcast(intent);
+//
+//        IntentFilter filter = new IntentFilter();
+//        filter.addAction(Info.SCANACTION);
+//        filter.setPriority(Integer.MAX_VALUE);
+//        registerReceiver(receiverDJ, filter);
+//        Lg.e("进入onResume");
+
         // TODO Auto-generated method stub
         super.onResume();
         if (isScan()){
             if (null!=mCaptureManager)mCaptureManager.onResume();
         }
-        //超过10分钟后，自动重新登陆
-        if (MathUtil.MoreTime(8)){
-            BaseUtilService.reLogin(mContext);
-        }
-
+//        //超过10分钟后，自动重新登陆
+//        if (MathUtil.MoreTime(8)){
+//            BaseUtilService.reLogin(mContext);
+//        }
+//        IntentFilter filter = new IntentFilter(CUSTOM_NAME);
+//        filter.addAction("com.android.scanner.service_settings");
+//        registerReceiver(receiverDJ, filter);
     }
 
     @Override
@@ -361,6 +385,13 @@ public abstract class BaseActivity extends FragmentActivity {
         if (isScan()){
             if (null!=mCaptureManager)mCaptureManager.onPause();
         }
+
+//        try {
+//            unregisterReceiver(receiverDJ);
+////            mContext.unregisterReceiver(mScanDataReceiverForG02A);
+//
+//        }catch (Exception e){}
+
 //        unregisterReceiver(mScanDataReceiver);
     }
 

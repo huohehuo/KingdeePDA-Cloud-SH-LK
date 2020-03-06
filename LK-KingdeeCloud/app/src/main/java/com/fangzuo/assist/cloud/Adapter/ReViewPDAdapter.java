@@ -86,7 +86,8 @@ public class ReViewPDAdapter extends BaseAdapter implements View.OnClickListener
         viewHolder.num.setText("采购数量:" + detail.get(i).FRealQty + detail.get(i).FUnit);
         viewHolder.unit.setText("单位:" + detail.get(i).FUnit);
         viewHolder.storage.setText("仓库:" + detail.get(i).FStorage);
-        viewHolder.wavehouse.setText("仓位:" + detail.get(i).FWaveHouse == null ? "" : detail.get(i).FWaveHouse);
+        viewHolder.tvAuxNum.setText("辅助数量:" + detail.get(i).FAuxQty);
+        viewHolder.wavehouse.setText("仓位:" + (detail.get(i).FWaveHouse == null ? "" : detail.get(i).FWaveHouse));
         if (mains.size()>0){
             viewHolder.date.setText("入库日期:" + mains.get(0).FDate);
         }
@@ -132,6 +133,8 @@ public class ReViewPDAdapter extends BaseAdapter implements View.OnClickListener
         TextView unit;
         @BindView(R.id.num)
         TextView num;
+        @BindView(R.id.tv_aux_num)
+        TextView tvAuxNum;
         @BindView(R.id.date)
         TextView date;
         @BindView(R.id.delete)

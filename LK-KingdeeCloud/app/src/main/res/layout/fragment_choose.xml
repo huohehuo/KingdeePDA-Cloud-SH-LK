@@ -15,15 +15,16 @@
         <com.fangzuo.assist.cloud.widget.SpinnerClientDlg
             android:id="@+id/sp_client"
             android:layout_width="match_parent"
-            app:clientspinner_name="往来单位:"
+            app:clientspinner_name="客户:"
             app:clientspinner_hint="请输入客户过滤条件:"
             app:clientspinner_size="8sp"
             android:layout_height="wrap_content"/>
-        <com.fangzuo.assist.cloud.widget.SpinnerSupplier
+        <com.fangzuo.assist.cloud.widget.SpinnerSupplierDlg
             android:id="@+id/sp_supplier"
             android:visibility="gone"
             android:layout_width="match_parent"
-            app:clientspinner_name="往来单位:"
+            app:clientspinner_name="供应商:"
+            app:clientspinner_hint="请输入供应商过滤条件:"
             app:clientspinner_size="8sp"
             android:layout_height="wrap_content"/>
         <LinearLayout

@@ -182,7 +182,7 @@ public class FragmentSaleOut4PDMain extends BaseFragment {
 //        spDepartmentSale.setAuto(getString(R.string.spDepartmentSale_so), "", activityPager.getOrgOut(), activityPager.getActivity());
         spStoreman.setAuto(getString(R.string.spStoreman_so)+activityPager.getActivityMain(), Hawk.get(getString(R.string.spStoreman_so)+activityPager.getActivityMain(), ""), activityPager.getOrgOut());
 //        spSaleman.setAuto(getString(R.string.spSaleman_so)+activityPager.getActivityMain(), "", activityPager.getOrgOut());
-        cbIsStorage.setChecked(Hawk.get(Info.Storage + activityPager.getActivityMain(), false));
+//        cbIsStorage.setChecked(Hawk.get(Info.Storage + activityPager.getActivityMain(), false));
         //判断是否有保存的业务单号，不存在的话，解锁表头
         if (!LocDataUtil.hasTDetail(activityPager.getActivity())) {
             EventBusUtil.sendEvent(new ClassEvent(EventBusInfoCode.Lock_Main, Config.Lock + "NO"));
@@ -272,12 +272,12 @@ public class FragmentSaleOut4PDMain extends BaseFragment {
                 Hawk.put(Info.HuoZhu+activityPager.getActivityMain(), activityPager.getHuozhuOut().FName);
             }
         });
-        cbIsStorage.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
-                activityPager.setStorage(b);
-            }
-        });
+//        cbIsStorage.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+//            @Override
+//            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+//                activityPager.setStorage(b);
+//            }
+//        });
 
     }
 
@@ -310,7 +310,7 @@ public class FragmentSaleOut4PDMain extends BaseFragment {
     @Override
     public void onDestroyView() {
         super.onDestroyView();
-        Hawk.put(Info.Storage + activityPager, cbIsStorage.isChecked());
+//        Hawk.put(Info.Storage + activityPager, cbIsStorage.isChecked());
         unbinder.unbind();
     }
 

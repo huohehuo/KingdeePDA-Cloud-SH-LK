@@ -15,6 +15,7 @@ public class Suppliers {
     public String FOrg;
     public String FNote;
     public String FMASTERID;
+    public String FSupplyClassIfy;
 
     public String FItemClassID;
     public String FParentID;
@@ -26,17 +27,18 @@ public class Suppliers {
     public Suppliers(String id){
         this.FItemID=id;
     }
-    @Generated(hash = 171832798)
+    @Generated(hash = 1538077258)
     public Suppliers(String FItemID, String FName, String FNumber, String FOrg,
-            String FNote, String FMASTERID, String FItemClassID, String FParentID,
-            String FLevel, String FDetail, String FAddress, String FPhone,
-            String FEmail) {
+            String FNote, String FMASTERID, String FSupplyClassIfy,
+            String FItemClassID, String FParentID, String FLevel, String FDetail,
+            String FAddress, String FPhone, String FEmail) {
         this.FItemID = FItemID;
         this.FName = FName;
         this.FNumber = FNumber;
         this.FOrg = FOrg;
         this.FNote = FNote;
         this.FMASTERID = FMASTERID;
+        this.FSupplyClassIfy = FSupplyClassIfy;
         this.FItemClassID = FItemClassID;
         this.FParentID = FParentID;
         this.FLevel = FLevel;
@@ -125,6 +127,12 @@ public class Suppliers {
     }
     public void setFEmail(String FEmail) {
         this.FEmail = FEmail;
+    }
+    public String getFSupplyClassIfy() {
+        return this.FSupplyClassIfy;
+    }
+    public void setFSupplyClassIfy(String FSupplyClassIfy) {
+        this.FSupplyClassIfy = FSupplyClassIfy;
     }
 
 }

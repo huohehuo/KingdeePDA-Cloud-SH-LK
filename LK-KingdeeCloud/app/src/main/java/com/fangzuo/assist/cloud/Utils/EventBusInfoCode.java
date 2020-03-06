@@ -19,6 +19,14 @@ public class EventBusInfoCode {
 
     public static final String DownData_OK = "99988";
     public static final String DownData_ERROR = "99987";
+    public static final String Storage = "Storage";
+    public static final String Storage2 = "Storage2";
+    public static final String WaveHouse2 = "WaveHouse2";
+    public static final String WaveHouse = "WaveHouse";
+    public static final String Man = "Man";
+    public static final String Man2 = "Man2";
+    public static final String Man3 = "Man3";
+    public static final String Man4 = "Man4";
 
     public static final String Upload_OK = "Upload_OK";
     public static final String Upload_Error = "Upload_Error";
@@ -38,6 +46,7 @@ public class EventBusInfoCode {
     public static final String Code_Only_Insert_Box = "Code_Only_Insert_Box";
 
     public static final String UpdataView = "UpdataView";
+    public static final String UpdataDate = "UpdataDate";
     public static final String UpdataStorage = "UpdataStorage";
     public static final String UpdataWaveHouse = "UpdataWaveHouse";
     public static final String UpdataViewForDBInStorage = "UpdataViewForDBInStorage";
@@ -56,6 +65,7 @@ public class EventBusInfoCode {
     public static final String Register_Result = "Register_Result";
     public static final String Main_Note = "Main_Note";
     public static final String Updata_Account = "Updata_Account";//用于切换账套后，更新数据中心的显示
+    public static final String Login_User = "Login_User";//是否登录成功
 
 
 

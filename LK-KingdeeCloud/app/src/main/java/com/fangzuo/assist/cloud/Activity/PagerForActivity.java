@@ -1,6 +1,8 @@
 package com.fangzuo.assist.cloud.Activity;
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.databinding.DataBindingUtil;
 import android.graphics.Color;
@@ -8,7 +10,9 @@ import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.widget.CheckBox;
+import android.widget.CompoundButton;
 
 import com.fangzuo.assist.cloud.ABase.BaseActivity;
 import com.fangzuo.assist.cloud.Activity.Crash.App;
@@ -29,6 +33,8 @@ import com.fangzuo.assist.cloud.Fragment.TabForActivity.FragmentBoxReBoxDetail;
 import com.fangzuo.assist.cloud.Fragment.TabForActivity.FragmentBoxReBoxMain;
 import com.fangzuo.assist.cloud.Fragment.TabForActivity.FragmentDB4P1BoxDetail;
 import com.fangzuo.assist.cloud.Fragment.TabForActivity.FragmentDB4P1BoxMain;
+import com.fangzuo.assist.cloud.Fragment.TabForActivity.FragmentOsInDetail;
+import com.fangzuo.assist.cloud.Fragment.TabForActivity.FragmentOsInMain;
 import com.fangzuo.assist.cloud.Fragment.TabForActivity.FragmentP1PdCgrk2ProductionGetDetail;
 import com.fangzuo.assist.cloud.Fragment.TabForActivity.FragmentP1PdCgrk2ProductionGetMain;
 import com.fangzuo.assist.cloud.Fragment.TabForActivity.FragmentPG2Cprk2Detail;
@@ -78,6 +84,7 @@ import com.fangzuo.assist.cloud.Fragment.TabForActivity.FragmentSaleOutMain;
 import com.fangzuo.assist.cloud.Fragment.TabForActivity.PushDownFragment.FragmentCgOrder2WgrkBoxDetail;
 import com.fangzuo.assist.cloud.Fragment.TabForActivity.PushDownFragment.FragmentCgOrder2WgrkDetail;
 import com.fangzuo.assist.cloud.Fragment.TabForActivity.PushDownFragment.FragmentCgOrder2WgrkMain;
+import com.fangzuo.assist.cloud.Fragment.TabForActivity.PushDownFragment.FragmentCgOrder2WwrkDetail;
 import com.fangzuo.assist.cloud.Fragment.TabForActivity.PushDownFragment.FragmentDbApply2DBDetail;
 import com.fangzuo.assist.cloud.Fragment.TabForActivity.PushDownFragment.FragmentDbApply2DBMain;
 import com.fangzuo.assist.cloud.Fragment.TabForActivity.P2.PushDownFragment.FragmentP2PdCgrk2ProductionGetDetail;
@@ -100,14 +107,17 @@ import com.fangzuo.assist.cloud.Fragment.TabForActivity.PushDownFragment.Fragmen
 import com.fangzuo.assist.cloud.R;
 import com.fangzuo.assist.cloud.Utils.CommonUtil;
 import com.fangzuo.assist.cloud.Utils.Config;
+import com.fangzuo.assist.cloud.Utils.Info;
 import com.fangzuo.assist.cloud.Utils.Lg;
 import com.fangzuo.assist.cloud.Utils.ShareUtil;
+import com.fangzuo.assist.cloud.Utils.Toast;
 import com.fangzuo.assist.cloud.databinding.ActivityPagerForBinding;
 import com.fangzuo.assist.cloud.zxing.ScanManager;
 import com.fangzuo.greendao.gen.DaoSession;
 import com.fangzuo.greendao.gen.T_DetailDao;
 import com.fangzuo.greendao.gen.T_mainDao;
 import com.google.gson.Gson;
+import com.orhanobut.hawk.Hawk;
 
 import java.util.ArrayList;
 
@@ -147,6 +157,9 @@ public class PagerForActivity extends BaseActivity {
     private String printNum;//日期
     private String wlCompany;//日期
     private String carboxNo;//日期
+    private boolean isHebing;//日期
+    private boolean isAutoAdd=true;//日期
+    private long ordercode;
 
     public String getBatchRemark() {
         return batchRemark==null?"":batchRemark;
@@ -181,20 +194,68 @@ public class PagerForActivity extends BaseActivity {
 //        String searchString = b.getString("search", "");
         activity = b.getInt("activity");
         Lg.e("获得数据：",""+activity);
+        binding.topActivity.ishebing.setChecked(isHebing);
+        binding.topActivity.isAutoAdd.setChecked(isAutoAdd);
+
+        ordercode = CommonUtil.createOrderCode(activity);//单据编号
     }
 
     @Override
     protected void initData() {
         fragments = new ArrayList<>();
         titles = new ArrayList<>();
-        titles.add(getString(R.string.basic_information));
-        titles.add(getString(R.string.detail_information));
+        titles.add("明细信息");
+        titles.add("表头信息");
         setFragment(activity);
 
     }
 
     private void setFragment(int activity){
         switch (activity){
+            case Config.OutsourcingInActivity:
+                binding.topActivity.tvTitle.setText("外购入库单");
+                fragments.add(new FragmentOsInDetail());
+                fragments.add(new FragmentOsInMain());
+                break;
+            case Config.PdSaleOrder2SaleOutActivity:
+                binding.topActivity.tvTitle.setText("销售订单下推销售出库");
+                fragments.add(new FragmentSaleOutDetailForPD());
+                fragments.add(new FragmentSaleOut4PDMain());
+                break;
+            case Config.PdCgOrder2WgrkActivity://PDA显示的是采购入库
+                binding.topActivity.tvTitle.setText("采购订单下推外购入库");
+                fragments.add(new FragmentCgOrder2WgrkDetail());
+                fragments.add(new FragmentCgOrder2WgrkMain());
+                break;
+            case Config.PdCgOrder2WwrkActivity://PDA显示的是采购入库
+                binding.topActivity.tvTitle.setText("采购订单下推委外入库");
+                fragments.add(new FragmentCgOrder2WgrkDetail());
+                fragments.add(new FragmentCgOrder2WgrkMain());
+                break;
+
+            case Config.OtherInStoreActivity:
+                binding.topActivity.tvTitle.setText("其他入库");
+                fragments.add(new FragmentOInDetail());
+                fragments.add(new FragmentOInMain());
+                break;
+            case Config.OtherOutStoreActivity:
+                binding.topActivity.tvTitle.setText("其他出库");
+                fragments.add(new FragmentOOutMain());
+                fragments.add(new FragmentOOutDetail());
+                break;
+
+
+            case Config.PYingActivity:
+                binding.topActivity.tvTitle.setText("盘盈入库");
+                fragments.add(new FragmentPYingMain());
+                fragments.add(new FragmentPYingDetail());
+                break;
+            case Config.PkuiActivity:
+                binding.topActivity.tvTitle.setText("盘亏入库");
+                fragments.add(new FragmentPYingMain());
+                fragments.add(new FragmentPKDetail());
+                break;
+
             /*-----------------------------------------------------------二期单据----------------------------------------------*/
             case Config.P2ProductionInStoreActivity://简单成产入库--弃用
                 binding.topActivity.tvTitle.setText(getString(R.string.p2_production_instore));
@@ -495,11 +556,6 @@ public class PagerForActivity extends BaseActivity {
                 fragments.add(new FragmentPISMain());
                 fragments.add(new FragmentPISDetail());
                 break;
-            case Config.PdSaleOrder2SaleOutActivity:
-                binding.topActivity.tvTitle.setText("销售订单下推销售出库");
-                fragments.add(new FragmentSaleOut4PDMain());
-                fragments.add(new FragmentSaleOutDetailForPD());
-                break;
             case Config.PdSaleOrder2SaleOut4BoxActivity:
                 binding.topActivity.tvTitle.setText("销售订单下推销售出库(箱码)");
                 fragments.add(new FragmentSaleOut4PDBoxMain());
@@ -700,26 +756,13 @@ public class PagerForActivity extends BaseActivity {
                 fragments.add(new Fragment3HwInMain());
                 fragments.add(new Fragment3HwInDetail());
                 break;
-            case Config.PdCgOrder2WgrkActivity://PDA显示的是采购入库
-                binding.topActivity.tvTitle.setText("采购订单下推外购入库");
-                fragments.add(new FragmentCgOrder2WgrkMain());
-                fragments.add(new FragmentCgOrder2WgrkDetail());
-                break;
+
             case Config.FLInStoreP1Activity://方料入库
                 binding.topActivity.tvTitle.setText("方料入库");
                 fragments.add(new FragmentCgOrder2WgrkMain());
                 fragments.add(new FragmentCgOrder2WgrkBoxDetail());
                 break;
-            case Config.PYingActivity:
-                binding.topActivity.tvTitle.setText("盘盈入库");
-                fragments.add(new FragmentPYingMain());
-                fragments.add(new FragmentPYingDetail());
-                break;
-            case Config.PkuiActivity:
-                binding.topActivity.tvTitle.setText("盘亏入库");
-                fragments.add(new FragmentPYingMain());
-                fragments.add(new FragmentPKDetail());
-                break;
+
             case Config.PkuiVMIActivity:
                 binding.topActivity.tvTitle.setText("VMI盘亏入库");
                 fragments.add(new FragmentPYingMain());
@@ -751,16 +794,7 @@ public class PagerForActivity extends BaseActivity {
 //                fragments.add(new FragmentGbInMain());
 //                fragments.add(new FragmentPrisDetail());
 //                break;
-            case Config.OtherInStoreActivity:
-                binding.topActivity.tvTitle.setText("其他入库");
-                fragments.add(new FragmentOInMain());
-                fragments.add(new FragmentOInDetail());
-                break;
-            case Config.OtherOutStoreActivity:
-                binding.topActivity.tvTitle.setText("其他出库");
-                fragments.add(new FragmentOOutMain());
-                fragments.add(new FragmentOOutDetail());
-                break;
+
         }
         //设置pager
         if (null==stripAdapter){
@@ -775,22 +809,47 @@ public class PagerForActivity extends BaseActivity {
                 binding.tabstrip.setDividerColor(Color.BLUE);
                 binding.tabstrip.setIndicatorColor(Color.BLUE);
             }
-            binding.tabstrip.setUnderlineHeight(3);
-            binding.tabstrip.setTextSize(45);
-            binding.tabstrip.setIndicatorHeight(6);
+            binding.tabstrip.setUnderlineHeight(2);
+            binding.tabstrip.setTextSize(24);
+            binding.tabstrip.setIndicatorHeight(4);
         }
     }
 
     @Override
     protected void initListener() {
-
+        binding.topActivity.ishebing.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+                isHebing =b;
+            }
+        });
+        binding.topActivity.isAutoAdd.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+                isAutoAdd = b;
+            }
+        });
     }
 
     @Override
     protected void OnReceive(String code) {
-
+        Toast.showText(mContext,"本Activity获得条码"+code);
     }
 
+    public long getOrdercode() {
+        return ordercode;
+    }
+
+    public void setOrdercode(long ordercode) {
+        this.ordercode = ordercode;
+    }
+    public boolean isHebing() {
+        return isHebing;
+    }
+
+    public boolean isAutoAdd() {
+        return isAutoAdd;
+    }
 
     public boolean isHasLock() {
         return hasLock;
@@ -889,7 +948,7 @@ public class PagerForActivity extends BaseActivity {
         return client!=null?client:new Client("","","","","");
     }
     public Suppliers getSuppliers() {
-        return suppliers!=null?suppliers:new Suppliers("","","","","","","","","","","","","");
+        return suppliers!=null?suppliers:new Suppliers("","","","","","","","","","","","","","");
     }
 
     public void setDBType(String DBType) {
@@ -1126,5 +1185,28 @@ public class PagerForActivity extends BaseActivity {
     protected void onDestroy() {
         App.getInstance().disPrint();
         super.onDestroy();
+    }
+
+    @Override
+    public void onBackPressed() {
+        AlertDialog.Builder ab = new AlertDialog.Builder(mContext);
+        ab.setTitle("确认退出");
+        if (activity == Config.OutsourcingInActivity){
+            ab.setMessage("退出会自动执行完单,是否退出?");
+        }else{
+            ab.setMessage("是否退出?");
+        }
+        ab.setPositiveButton("确定", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                ordercode++;
+                Log.e("ordercode", ordercode + "");
+                share.setOrderCode(activity, ordercode);
+                finish();
+            }
+        });
+        ab.setNegativeButton("取消", null);
+        ab.create().show();
+//        super.onBackPressed();
     }
 }

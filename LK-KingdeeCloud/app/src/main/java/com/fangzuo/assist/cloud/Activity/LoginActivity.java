@@ -4,9 +4,11 @@ import android.Manifest;
 import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
+import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
@@ -35,6 +37,7 @@ import com.fangzuo.assist.cloud.RxSerivce.RService;
 import com.fangzuo.assist.cloud.RxSerivce.ToSubscribe;
 import com.fangzuo.assist.cloud.Service.BaseUtilService;
 import com.fangzuo.assist.cloud.Service.DataService;
+import com.fangzuo.assist.cloud.Service.ScannerService;
 import com.fangzuo.assist.cloud.Utils.BasicShareUtil;
 import com.fangzuo.assist.cloud.Utils.CommonUtil;
 import com.fangzuo.assist.cloud.Utils.Config;
@@ -55,6 +58,8 @@ import com.lidroid.xutils.HttpUtils;
 import com.lidroid.xutils.http.ResponseInfo;
 import com.lidroid.xutils.http.callback.RequestCallBack;
 import com.orhanobut.hawk.Hawk;
+import com.seuic.scanner.Scanner;
+import com.seuic.scanner.ScannerFactory;
 
 import org.json.JSONArray;
 
@@ -78,8 +83,8 @@ public class LoginActivity extends BaseActivity implements EasyPermissions.Permi
     TextView mTvVersion;
     @BindView(R.id.ed_pass)
     EditText mEtPassword;
-    //    @BindView(R.id.isOL)
-//    CheckBox mCbisOL;
+        @BindView(R.id.isOL)
+    CheckBox mCbisOL;
     @BindView(R.id.btn_login)
     Button btnLogin;
     @BindView(R.id.btn_setting)
@@ -99,7 +104,21 @@ public class LoginActivity extends BaseActivity implements EasyPermissions.Permi
     private boolean isOL;
 //    private String userPass;
     private UserDao userDao;
+    Scanner scanner;
+    ScanReceiver receiver;
+    IntentFilter filter;
+    public class ScanReceiver extends BroadcastReceiver {
 
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            Bundle bundle = intent.getExtras();
+            Toast.showText(mContext,"得到条码"+bundle.getString(ScannerService.BAR_CODE));
+//            mEditText.append(getString(R.string.barcode)
+//                    + bundle.getString(ScannerService.BAR_CODE) + getString(R.string.type)
+//                    + bundle.getString(ScannerService.CODE_TYPE) + getString(R.string.length)
+//                    + bundle.getInt(ScannerService.LENGTH) + "\n");
+        }
+    }
     @Override
     protected boolean isRegisterEventBus() {
         return true;
@@ -159,13 +178,13 @@ public class LoginActivity extends BaseActivity implements EasyPermissions.Permi
         Hawk.put(Config.PDA_Project_Type, "1");//确定一期/二期项目;确定之后，将决定apk和版本号的下载地址，版本号
         getPermisssion();
 //        mTvVersion.setText("Cloud Ver:" + CommonUtil.getVersionName());
-        mTvVersion.setText("Cloud Ver:" + Info.getAppNo());
+        mTvVersion.setText("Cloud_LK Ver:" + Info.getAppNo());
         Lg.e("PDA：" + App.PDA_Choose);
         isRemPass.setChecked(Hawk.get(Info.IsRemanber, false));
         rService = App.getRService();
         TelephonyManager tm = (TelephonyManager) this.getSystemService(Context.TELEPHONY_SERVICE);
         @SuppressLint({"HardwareIds", "MissingPermission"}) String deviceId = tm.getDeviceId();
-        BasicShareUtil.getInstance(mContext).setIsOL(true);
+        mCbisOL.setChecked(Hawk.get(Info.IsOnLine,false));
         share.setIMIE(deviceId);
         Hawk.put(Config.PDA_MsgAndIMIE,deviceId);
 //        Resources res = mContext.getResources();
@@ -187,6 +206,32 @@ public class LoginActivity extends BaseActivity implements EasyPermissions.Permi
 //            }
 //        });
 
+//        Intent intent = new Intent(this, ScannerService.class);
+//        startService(intent);
+
+//        receiver = new ScanReceiver();
+//        filter = new IntentFilter(ScannerService.ACTION);
+
+
+//        ScannerService.MyService(this);
+
+
+//        registerReceiver(receiver, filter);
+
+
+//        scanner = ScannerFactory.getScanner(this);
+
+        //初始化扫码枪的设置
+        // 发送广播到扫描工具内的应用设置项
+        Intent intent = new Intent("com.android.scanner.service_settings");
+        // 修改扫描工具内应用设置中的开发者项下的广播名称
+        intent.putExtra("action_barcode_broadcast", "com.android.server.scannerservice.broadcast");
+        // 修改扫描工具内应用设置下的条码发送方式为 "广播"
+        intent.putExtra("barcode_send_mode", "BROADCAST");
+        // 修改扫描工具内应用设置下的结束符为 "NONE"
+        intent.putExtra("endchar", "NONE");
+        sendBroadcast(intent);
+
         AppStatisticalUtil.upDataStatis(mContext,"LoginActivity");
 
 //
@@ -198,21 +243,37 @@ public class LoginActivity extends BaseActivity implements EasyPermissions.Permi
 //        Lg.e("42372.8813559322*0.00236计算4",MathUtil.D2save5_33("42372.88136"));
 //        Lg.e("42372.8813559322*0.00236计算",MathUtil.D2save5(MathUtil.mul(beans.get(j).FRealQty,"0.00236")));
 
+
+
+
+
     }
 
     @Override
     protected void onResume() {
         super.onResume();
+
+//
+//
+//        IntentFilter filter = new IntentFilter();
+//        filter.addAction(Info.SCANACTION);
+//        filter.setPriority(Integer.MAX_VALUE);
+//        registerReceiver(receiverDJ, filter);
+
+
+
+        AppVersionUtil.CheckVersion(mContext);//检测版本更新
         Lg.e("Login___onResume");
         //获取用户数据，并且设置默认值
         spinner.setAutoSelection(Info.AutoLogin, Hawk.get(Info.AutoLogin, ""));
-        mTvVersion.setText("Cloud Ver:" + Info.getAppNo());
-        DataService.updateTime(mContext);
-        DataService.updateRegisterMaxNum(mContext);
-        DownLoadUseTime();
-        AppVersionUtil.CheckVersion(mContext);
-        //检查是否存在注册码
-        RegisterUtil.checkHasRegister();
+        mTvVersion.setText("LK Ver:" + Info.getAppNo());
+        if (mCbisOL.isChecked()){
+            DataService.updateTime(mContext);
+            DataService.updateRegisterMaxNum(mContext);//检测用户数上限
+            DownLoadUseTime();//更新时间控制
+            //检查是否存在注册码
+            RegisterUtil.checkHasRegister();
+        }
         //下载app版本号
 //        RegisterUtil.downLoadVersion();
 //        RegisterUtil.downLoadVersionExplain();
@@ -266,8 +327,22 @@ public class LoginActivity extends BaseActivity implements EasyPermissions.Permi
 
     }
 
+    @Override
+    protected void onPause() {
+        super.onPause();
+//        try {
+//            unregisterReceiver(receiverDJ);
+////            mContext.unregisterReceiver(mScanDataReceiverForG02A);
+//
+//        }catch (Exception e){}
+//        scanner.stopVideo();
+//        scanner.stopScan();
+//        unregisterReceiver(receiver);
+    }
+
     //获取配置文件中的时间数据
     private void DownLoadUseTime() {
+        if (!mCbisOL.isChecked())return;
         App.getRService().doIOAction(WebApi.GetUseTime, "获取时间", new MySubscribe<CommonResponse>() {
             @Override
             public void onNext(CommonResponse commonResponse) {
@@ -328,6 +403,7 @@ public class LoginActivity extends BaseActivity implements EasyPermissions.Permi
     }
 
     //检测是否符合时间要求
+    // 当检测本地存在时间控制信息，检测判断，通过后不用进行网络请求
     private boolean checkTime() {
         if (null == Hawk.get(Config.SaveTime, null)) {
             LoadingUtil.showDialog(mContext, getString(R.string.loading_getseting));
@@ -377,17 +453,13 @@ public class LoginActivity extends BaseActivity implements EasyPermissions.Permi
                 Hawk.put(Info.IsRemanber, b);
             }
         });
-//        mCbisOL.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-//            @Override
-//            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
-//                isOL = b;
-//                BasicShareUtil.getInstance(mContext).setIsOL(b);
-//                users = userDao.loadAll();
-//                LoginSpAdapter ada = new LoginSpAdapter(mContext, users);
-//                spinner.setAdapter(ada);
-//                ada.notifyDataSetChanged();
-//            }
-//        });
+        mCbisOL.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+                Hawk.put(Info.IsOnLine, b);
+                BasicShareUtil.getInstance(mContext).setIsOL(b);
+            }
+        });
 
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -417,7 +489,7 @@ public class LoginActivity extends BaseActivity implements EasyPermissions.Permi
 
     @Override
     protected void OnReceive(String code) {
-        Toast.showText(mContext, "扫码:" + code);
+        Toast.showText(mContext, "扫码2:" + code);
         Log.e("CODE", code + ":获得的code");
     }
 
@@ -439,8 +511,8 @@ public class LoginActivity extends BaseActivity implements EasyPermissions.Permi
     //    String JsonStr="{"acctID":"5beb8db650b4cf","username":"Administrator","lcid":"888888"}";
     private void Login() {
         if (!checkTime()) {
+            Toast.showText(mContext, "有效期验证信息失败");
             DownLoadUseTime();
-            Toast.showText(mContext, getString(R.string.error_check_fail));
             return;
         }
         if (null==user){
@@ -449,73 +521,99 @@ public class LoginActivity extends BaseActivity implements EasyPermissions.Permi
         }
 
         if (Hawk.get(Config.Cloud_ID, "").equals("")) {
-            Toast.showText(mContext, getString(R.string.error_check_accout));
+            Toast.showText(mContext, "未确定账套，请于下载配置里面选择账套");
             return;
         }
         if ("".equals(user.FName)) {
-            Toast.showText(mContext, getString(R.string.error_choose_user));
+            Toast.showText(mContext,"请选择用户");
             return;
         }
-        if ("".equals(user.FNameERP)) {
-            Toast.showText(mContext, "当前用户对应的ERP登陆数据有误");
-            return;
-        }
+//        if ("".equals(user.FNameERP)) {
+//            Toast.showText(mContext, "当前用户对应的ERP登陆数据有误");
+//            return;
+//        }
 
-        if (!mEtPassword.getText().toString().equals(user.FPassWord)) {
-            Toast.showText(mContext, "登陆密码错误，请重试");
-            return;
-        }
+//        if (!mEtPassword.getText().toString().equals(user.FPassWord)) {
+//            Toast.showText(mContext, "登陆密码错误，请重试");
+//            return;
+//        }
+
         LoadingUtil.showDialog(mContext, getString(R.string.loading_checking));
-        //组装登录数据
-        JSONArray jParas = new JSONArray();
-        jParas.put(Hawk.get(Config.Cloud_ID, ""));// 帐套Id
-        jParas.put(user.FNameERP);// 用户名
-        jParas.put(user.FPassWordERP);// 密码
-        jParas.put(2052);// 语言T
-        App.CloudService().doIOActionLogin(Config.C_Login, jParas.toString(), new ToSubscribe<BackDataLogin>() {
-            @Override
-            public void onNext(BackDataLogin bean) {
-                try {
+        if (mCbisOL.isChecked()){
+            //组装登录数据
+            JSONArray jParas = new JSONArray();
+            jParas.put(Hawk.get(Config.Cloud_ID, ""));// 帐套Id
+            jParas.put(user.FName);// 用户名
+            jParas.put(mEtPassword.getText().toString());// 密码
+            jParas.put(2052);// 语言T
+            Lg.e("登录数据",user);
+            Lg.e("登录数据",jParas);
+            App.CloudService().doIOActionLogin(Config.C_Login, jParas.toString(), new ToSubscribe<BackDataLogin>() {
+                @Override
+                public void onNext(BackDataLogin bean) {
+                    try {
 //                    BackDataLogin bean = JsonCreater.gson.fromJson(string, BackDataLogin.class);
-                    if (bean.getLoginResultType() == 1 || bean.getLoginResultType() == -5) {
-                        ShareUtil.getInstance(mContext).setUserName(user.FNameERP);
-                        Hawk.put(Info.user_name, user.FNameERP);
-                        Hawk.put(Info.user_pwd, user.FPassWordERP);
-                        Hawk.put(Info.user_org, bean.getContext().getCurrentOrganizationInfo().getName());
-                        Hawk.put(Info.user_id, bean.getContext().getUserId() + "");
-                        Hawk.put(Info.user_data, bean.getContext().getDataCenterName() + "");
+                        if (bean.getLoginResultType() == 1 || bean.getLoginResultType() == -5) {
+                            ShareUtil.getInstance(mContext).setUserName(user.FName);
+                            Hawk.put(Info.user_name, user.FName);
+                            Hawk.put(Info.user_pwd, mEtPassword.getText().toString());
+                            Hawk.put(Info.user_org, bean.getContext().getCurrentOrganizationInfo().getName());
+                            Hawk.put(Info.user_id, bean.getContext().getUserId() + "");
+                            Hawk.put(Info.user_data, bean.getContext().getDataCenterName() + "");
 //                    ShareUtil.getInstance(mContext).setUserID(userID);
-                        if (isRemPass.isChecked()) {
+                            if (isRemPass.isChecked()) {
 //                        保存该用户的密码
-                            Hawk.put(user.FName, mEtPassword.getText().toString());
+                                Hawk.put(user.FName, mEtPassword.getText().toString());
+                            } else {
+                                Hawk.put(user.FName, "");
+                            }
+                            if (Hawk.get(Config.PDA_Project_Type, "2").equals("1")){
+                                startNewActivity(HomeActivity.class, R.anim.activity_slide_left_in, R.anim.activity_slide_left_out, false, null);
+                            }else{
+                                startNewActivity(HomeP2Activity.class, R.anim.activity_slide_left_in, R.anim.activity_slide_left_out, false, null);
+                            }
+                            LoadingUtil.dismiss();
                         } else {
-                            Hawk.put(user.FName, "");
-                        }
-                        if (Hawk.get(Config.PDA_Project_Type, "2").equals("1")){
-                            startNewActivity(HomeActivity.class, R.anim.activity_slide_left_in, R.anim.activity_slide_left_out, false, null);
-                        }else{
-                            startNewActivity(HomeP2Activity.class, R.anim.activity_slide_left_in, R.anim.activity_slide_left_out, false, null);
-                        }
-                        LoadingUtil.dismiss();
-                    } else {
-                        LoadingUtil.dismiss();
-                        LoadingUtil.showAlter(mContext, getString(R.string.error_login_fail), bean.getMessage(), false);
+                            LoadingUtil.dismiss();
+                            LoadingUtil.showAlter(mContext,"登录失败", bean.getMessage(), false);
 //                        Toast.showText(App.getContext(), bean.getMessage());
-                        Lg.e("登录错误2：" + bean.toString());
+                            Lg.e("登录错误2：" + bean.toString());
+                        }
+                    } catch (Exception e) {
+                        LoadingUtil.dismiss();
+                        Lg.e("json转换错误：" + e.toString());
                     }
-                } catch (Exception e) {
-                    LoadingUtil.dismiss();
-                    Lg.e("json转换错误：" + e.toString());
                 }
-            }
 
-            @Override
-            public void onError(Throwable e) {
-                LoadingUtil.dismiss();
-                Lg.e("登录错误：" + e.toString());
-                super.onError(e);
+                @Override
+                public void onError(Throwable e) {
+                    LoadingUtil.dismiss();
+                    Lg.e("登录错误：" + e.toString());
+                    super.onError(e);
+                }
+            });
+        }else{
+            ShareUtil.getInstance(mContext).setUserName(user.FName);
+            Hawk.put(Info.user_name, user.FName);
+            Hawk.put(Info.user_pwd, mEtPassword.getText().toString());
+//            Hawk.put(Info.user_org, bean.getContext().getCurrentOrganizationInfo().getName());
+//            Hawk.put(Info.user_id, bean.getContext().getUserId() + "");
+//            Hawk.put(Info.user_data, bean.getContext().getDataCenterName() + "");
+//                    ShareUtil.getInstance(mContext).setUserID(userID);
+            if (isRemPass.isChecked()) {
+//                        保存该用户的密码
+                Hawk.put(user.FName, mEtPassword.getText().toString());
+            } else {
+                Hawk.put(user.FName, "");
             }
-        });
+            if (Hawk.get(Config.PDA_Project_Type, "2").equals("1")){
+                startNewActivity(HomeActivity.class, R.anim.activity_slide_left_in, R.anim.activity_slide_left_out, false, null);
+            }else{
+                startNewActivity(HomeP2Activity.class, R.anim.activity_slide_left_in, R.anim.activity_slide_left_out, false, null);
+            }
+            LoadingUtil.dismiss();
+        }
+
     }
 
     private ProgressDialog pDialog;

@@ -14,12 +14,24 @@ import org.greenrobot.greendao.annotation.Generated;
 @Entity
 public class Product{
     public String FProduceUnitID;
+    public String FProduceUnitNumber;
     public String FPurchaseUnitID;
+    public String FPurchaseUnitNumber;
     public String FPurchasePriceUnitID;
+    public String FPurchasePriceUnitNumber;
     public String FSaleUnitID;
+    public String FSaleUnitNumber;
     public String FSalePriceUnitID;
+    public String FSalePriceUnitNumber;
     public String FStoreUnitID;
+    public String FStoreUnitNumber;
     public String FAuxUnitID;
+    public String FAuxUnitNumber;
+    public String FBaseUnitID;
+    public String FBaseUnitNumber;
+    public String FUnitGroupID;
+
+
     public String FStockID;
     public String FStockPlaceID;
     public String FIsBatchManage;
@@ -32,7 +44,6 @@ public class Product{
     public String FIsProduce;
     public String FIsSubContract;
     public String FIsAsset;
-    public String FBaseUnitID;
     public String FFWeightUnitID;
     public String FVolumeUnitID;
     public String FBarcode;
@@ -57,21 +68,33 @@ public class Product{
     public String FStr4;
     public String FStr5;
 
-    @Generated(hash = 906953856)
-    public Product(String FProduceUnitID, String FPurchaseUnitID, String FPurchasePriceUnitID, String FSaleUnitID, String FSalePriceUnitID,
-            String FStoreUnitID, String FAuxUnitID, String FStockID, String FStockPlaceID, String FIsBatchManage, String FIsKFperiod,
-            String FExpperiod, String FExpUnit, String FIsPurchase, String FIsSale, String FIsInventory, String FIsProduce,
-            String FIsSubContract, String FIsAsset, String FBaseUnitID, String FFWeightUnitID, String FVolumeUnitID, String FBarcode,
-            String FGrossWeight, String FNetWeight, String FLenght, String FWidth, String FHeight, String FVolume, String FMaterialid,
-            String FNumber, String FoldNumber, String FName, String FModel, String FMnemoniccode, String FOrg, String FMASTERID, String FStr1,
-            String FStr2, String FStr3, String FStr4, String FStr5) {
+    @Generated(hash = 1469533076)
+    public Product(String FProduceUnitID, String FProduceUnitNumber, String FPurchaseUnitID, String FPurchaseUnitNumber,
+            String FPurchasePriceUnitID, String FPurchasePriceUnitNumber, String FSaleUnitID, String FSaleUnitNumber, String FSalePriceUnitID,
+            String FSalePriceUnitNumber, String FStoreUnitID, String FStoreUnitNumber, String FAuxUnitID, String FAuxUnitNumber,
+            String FBaseUnitID, String FBaseUnitNumber, String FUnitGroupID, String FStockID, String FStockPlaceID, String FIsBatchManage,
+            String FIsKFperiod, String FExpperiod, String FExpUnit, String FIsPurchase, String FIsSale, String FIsInventory, String FIsProduce,
+            String FIsSubContract, String FIsAsset, String FFWeightUnitID, String FVolumeUnitID, String FBarcode, String FGrossWeight,
+            String FNetWeight, String FLenght, String FWidth, String FHeight, String FVolume, String FMaterialid, String FNumber,
+            String FoldNumber, String FName, String FModel, String FMnemoniccode, String FOrg, String FMASTERID, String FStr1, String FStr2,
+            String FStr3, String FStr4, String FStr5) {
         this.FProduceUnitID = FProduceUnitID;
+        this.FProduceUnitNumber = FProduceUnitNumber;
         this.FPurchaseUnitID = FPurchaseUnitID;
+        this.FPurchaseUnitNumber = FPurchaseUnitNumber;
         this.FPurchasePriceUnitID = FPurchasePriceUnitID;
+        this.FPurchasePriceUnitNumber = FPurchasePriceUnitNumber;
         this.FSaleUnitID = FSaleUnitID;
+        this.FSaleUnitNumber = FSaleUnitNumber;
         this.FSalePriceUnitID = FSalePriceUnitID;
+        this.FSalePriceUnitNumber = FSalePriceUnitNumber;
         this.FStoreUnitID = FStoreUnitID;
+        this.FStoreUnitNumber = FStoreUnitNumber;
         this.FAuxUnitID = FAuxUnitID;
+        this.FAuxUnitNumber = FAuxUnitNumber;
+        this.FBaseUnitID = FBaseUnitID;
+        this.FBaseUnitNumber = FBaseUnitNumber;
+        this.FUnitGroupID = FUnitGroupID;
         this.FStockID = FStockID;
         this.FStockPlaceID = FStockPlaceID;
         this.FIsBatchManage = FIsBatchManage;
@@ -84,7 +107,6 @@ public class Product{
         this.FIsProduce = FIsProduce;
         this.FIsSubContract = FIsSubContract;
         this.FIsAsset = FIsAsset;
-        this.FBaseUnitID = FBaseUnitID;
         this.FFWeightUnitID = FFWeightUnitID;
         this.FVolumeUnitID = FVolumeUnitID;
         this.FBarcode = FBarcode;
@@ -447,5 +469,77 @@ public class Product{
 
     public void setFStr5(String FStr5) {
         this.FStr5 = FStr5;
+    }
+
+    public String getFProduceUnitNumber() {
+        return this.FProduceUnitNumber;
+    }
+
+    public void setFProduceUnitNumber(String FProduceUnitNumber) {
+        this.FProduceUnitNumber = FProduceUnitNumber;
+    }
+
+    public String getFPurchaseUnitNumber() {
+        return this.FPurchaseUnitNumber;
+    }
+
+    public void setFPurchaseUnitNumber(String FPurchaseUnitNumber) {
+        this.FPurchaseUnitNumber = FPurchaseUnitNumber;
+    }
+
+    public String getFPurchasePriceUnitNumber() {
+        return this.FPurchasePriceUnitNumber;
+    }
+
+    public void setFPurchasePriceUnitNumber(String FPurchasePriceUnitNumber) {
+        this.FPurchasePriceUnitNumber = FPurchasePriceUnitNumber;
+    }
+
+    public String getFSaleUnitNumber() {
+        return this.FSaleUnitNumber;
+    }
+
+    public void setFSaleUnitNumber(String FSaleUnitNumber) {
+        this.FSaleUnitNumber = FSaleUnitNumber;
+    }
+
+    public String getFSalePriceUnitNumber() {
+        return this.FSalePriceUnitNumber;
+    }
+
+    public void setFSalePriceUnitNumber(String FSalePriceUnitNumber) {
+        this.FSalePriceUnitNumber = FSalePriceUnitNumber;
+    }
+
+    public String getFStoreUnitNumber() {
+        return this.FStoreUnitNumber;
+    }
+
+    public void setFStoreUnitNumber(String FStoreUnitNumber) {
+        this.FStoreUnitNumber = FStoreUnitNumber;
+    }
+
+    public String getFAuxUnitNumber() {
+        return this.FAuxUnitNumber;
+    }
+
+    public void setFAuxUnitNumber(String FAuxUnitNumber) {
+        this.FAuxUnitNumber = FAuxUnitNumber;
+    }
+
+    public String getFBaseUnitNumber() {
+        return this.FBaseUnitNumber;
+    }
+
+    public void setFBaseUnitNumber(String FBaseUnitNumber) {
+        this.FBaseUnitNumber = FBaseUnitNumber;
+    }
+
+    public String getFUnitGroupID() {
+        return this.FUnitGroupID;
+    }
+
+    public void setFUnitGroupID(String FUnitGroupID) {
+        this.FUnitGroupID = FUnitGroupID;
     }
 }

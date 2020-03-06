@@ -461,7 +461,7 @@
     <dimen name="sp_size">18dp</dimen>
     <dimen name="sp_title_size">12dp</dimen><!--spnner的标题大小-->
     <dimen name="sp_people_title_size">10dp</dimen><!--spnner的标题大小-->
-    <dimen name="sp_in_size">22dp</dimen><!--spinner的选项text大小-->
+    <dimen name="sp_in_size">20dp</dimen><!--spinner的选项text大小-->
     <dimen name="size_detail">12dp</dimen>
     <dimen name="size_product">20dp</dimen>
 

@@ -143,10 +143,10 @@ public class SettingFragment extends BaseFragment {
                     case 4:
                         startActivity(new Intent(mContext, IpPortActivity.class));
                         break;
+//                    case 5:
+//                        startActivity(new Intent(mContext, PrintOutTestActivity.class));
+//                        break;
                     case 5:
-                        startActivity(new Intent(mContext, PrintOutTestActivity.class));
-                        break;
-                    case 6:
                         startActivity(new Intent(mContext, TestingActivity.class));
                         break;
                 }

@@ -22,7 +22,7 @@ public class GetSettingList {
         items.add(new SettingList(App.getContext().getResources().getString(R.string.voice_set),R.mipmap.sound));
         items.add(new SettingList(App.getContext().getResources().getString(R.string.updata_app),R.mipmap.update));
         items.add(new SettingList(App.getContext().getResources().getString(R.string.server_set),R.mipmap.tomcat));
-        items.add(new SettingList(App.getContext().getResources().getString(R.string.print_set),R.mipmap.test));
+//        items.add(new SettingList(App.getContext().getResources().getString(R.string.print_set),R.mipmap.test));
         items.add(new SettingList(App.getContext().getResources().getString(R.string.net_set),R.mipmap.test));
         return items;
     }
@@ -70,20 +70,26 @@ public class GetSettingList {
             items.add(new SettingList("211","刨光二车间",Config.Bg2ChejianLv1,R.mipmap.sellinout));
             items.add(new SettingList("210","刨光一车间",Config.Bg1ChejianLv1,R.mipmap.sellinout));
             items.add(new SettingList("209","成品外购入库",Config.CpWgInLv1,R.mipmap.sellinout));
-        for (int i=0; i<items.size();i++){
-//            Log.e("test","定位ary:"+ary[i]);
-//            Log.e("test","定位items:"+items.get(i).tag);
-            //根据ary的值，遍历list符合的item并添加
-            for (int j=0;j<ary.length;j++){
-                if (TextUtils.equals(items.get(i).tag,ary[j])){
-                    Lg.e("加入单据",items.get(i));
-                    backItems.add(items.get(i));
-                }
-            }
-        }
+//        for (int i=0; i<items.size();i++){
+////            Log.e("test","定位ary:"+ary[i]);
+////            Log.e("test","定位items:"+items.get(i).tag);
+//            //根据ary的值，遍历list符合的item并添加
+//            for (int j=0;j<ary.length;j++){
+//                if (TextUtils.equals(items.get(i).tag,ary[j])){
+//                    Lg.e("加入单据",items.get(i));
+//                    backItems.add(items.get(i));
+//                }
+//            }
+//        }
 
-        backItems.add(new SettingList("217","整包领料(通用)",Config.ZbGetActivity,R.mipmap.sellinout));
-        backItems.add(new SettingList("218","整包入库(通用)",Config.ZbInActivity,R.mipmap.sellinout));
+//        backItems.add(new SettingList("217","整包领料(通用)",Config.ZbGetActivity,R.mipmap.sellinout));
+//        backItems.add(new SettingList("218","整包入库(通用)",Config.ZbInActivity,R.mipmap.sellinout));
+        backItems.add(new SettingList("218","外购入库单",Config.OutsourcingInActivity,R.mipmap.sellinout));
+        backItems.add(new SettingList("219","销售订单下推销售出库",Config.PdSaleOrder2SaleOutActivity,R.mipmap.sellinout));
+        backItems.add(new SettingList("220","采购订单下推采购入库",Config.PdCgOrder2WgrkActivity,R.mipmap.sellinout));
+        backItems.add(new SettingList("220","采购订单下推委外入库",Config.PdCgOrder2WwrkActivity,R.mipmap.sellinout));
+//        backItems.add(new SettingList("220","其他入库",Config.OtherInStoreActivity,R.mipmap.sellinout));
+//        backItems.add(new SettingList("220","其他出库",Config.OtherOutStoreActivity,R.mipmap.sellinout));
 
         return backItems;
 

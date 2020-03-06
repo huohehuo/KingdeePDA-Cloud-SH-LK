@@ -43,7 +43,7 @@ public class LocDataUtil {
         Lg.e("获取单位位置：",unitid);
 //        Lg.e("获取单位位置org：",org);
         if (null==unitid){
-            return new Unit("","","","");
+            return new Unit("","","","","");
         }
 //        if (null==org){
 //            return new Unit("","","","");
@@ -56,7 +56,7 @@ public class LocDataUtil {
         if (units.size()>0){
             return units.get(0);
         }else{
-            return new Unit("","","","");
+            return new Unit("","","","","");
         }
 
     }
@@ -64,7 +64,7 @@ public class LocDataUtil {
         Lg.e("获取单位位置：",unitid);
 //        Lg.e("获取单位位置org：",org);
         if (null==unitid){
-            return new Unit("","","","");
+            return new Unit("","","","","");
         }
 //        if (null==org){
 //            return new Unit("","","","");
@@ -77,7 +77,7 @@ public class LocDataUtil {
         if (units.size()>0){
             return units.get(0);
         }else{
-            return new Unit("","","","");
+            return new Unit("","","","","");
         }
 
     }

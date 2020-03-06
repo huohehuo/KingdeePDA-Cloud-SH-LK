@@ -565,5 +565,6 @@
     <string name="wort_instore">刨光干板入库</string>
     <string name="boxcode_print">箱码补打</string>
     <string name="product_get_p2">原木领料</string>
+    <string name="description">img</string>
 
 </resources>

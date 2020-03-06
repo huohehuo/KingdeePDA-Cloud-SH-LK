@@ -144,6 +144,36 @@ public class P1OneFragment extends BaseFragment {
                 Log.e("listitem", tv.tv);
                 switch (tv.activity) {
                     /*-------------一期单据----------------------------------------------*/
+                    case Config.OutsourcingInActivity://外购入库单
+                        PagerForActivity.start(mContext, Config.OutsourcingInActivity);
+                        break;
+                    case Config.PdSaleOrder2SaleOutActivity://销售订单下推销售出库
+                        PushDownPagerActivity.start(mContext, 2);
+                        break;
+                    case Config.PdCgOrder2WgrkActivity://实际是采购订单下推外购入库
+                        PushDownPagerActivity.start(getActivity(),1);
+                        break;
+                    case Config.PdCgOrder2WwrkActivity://实际是采购订单下推外购入库
+                        PushDownPagerActivity.start(getActivity(),34);
+                        break;
+                    case Config.OtherInStoreActivity://其他入库
+                        PagerForActivity.start(mContext, Config.OtherInStoreActivity);
+                        break;
+                    case Config.OtherOutStoreActivity://其他出库
+                        PagerForActivity.start(mContext, Config.OtherOutStoreActivity);
+                        break;
+
+
+                    case Config.PYingActivity://盘盈入库
+                        PagerForActivity.start(mContext, Config.PYingActivity);
+                        break;
+                    case Config.PkuiActivity://盘亏入库
+                        PagerForActivity.start(mContext, Config.PkuiActivity);
+                    break;
+
+
+
+
                     case Config.BoxReAddP1Activity://混包新增
                         PagerForActivity.start(mContext, Config.BoxReAddP1Activity);
                         break;
@@ -171,9 +201,7 @@ public class P1OneFragment extends BaseFragment {
                     case Config.P1PdProductGet2Cprk2Activity://生产领料单下推产品入库单
                         PushDownPagerActivity.start(getActivity(),30);
                         break;
-                    case Config.PdCgOrder2WgrkActivity://实际是采购订单下推外购入库
-                        PushDownPagerActivity.start(getActivity(),1);
-                        break;
+
                     case Config.FLInStoreP1Activity://方料入库
                         PushDownPagerActivity.start(getActivity(),32);
                         break;
@@ -414,31 +442,29 @@ public class P1OneFragment extends BaseFragment {
                     case Config.ProductInStoreActivity://产品入库
                         PagerForActivity.start(mContext, Config.ProductInStoreActivity);
                         break;
-                    case Config.PYingActivity://盘盈入库
-                        PagerForActivity.start(mContext, Config.PYingActivity);
-                        break;
-                    case Config.PkuiActivity://盘亏入库
-                        builder = new AlertDialog.Builder(getActivity());
-                        // 设置参数
-                        builder.setAdapter(
-                                new ArrayAdapter<String>(getActivity(),
-                                        R.layout.item_choose, R.id.textView, items_pk),
-                                new DialogInterface.OnClickListener() {
-                                    @Override
-                                    public void onClick(DialogInterface dialog,
-                                                        int which) {
-                                        switch (items_pk.get(which)) {//"盘亏入库", "VMI盘亏入库"
-                                            case "盘亏入库":
-                                                PagerForActivity.start(mContext, Config.PkuiActivity);
-                                                break;
-                                            case "VMI盘亏入库":
-                                                PagerForActivity.start(mContext, Config.PkuiVMIActivity);
-                                                break;
-                                        }
-                                    }
-                                });
-                        builder.create().show();
-                        break;
+
+//                    case Config.PkuiActivity://盘亏入库
+//                        builder = new AlertDialog.Builder(getActivity());
+//                        // 设置参数
+//                        builder.setAdapter(
+//                                new ArrayAdapter<String>(getActivity(),
+//                                        R.layout.item_choose, R.id.textView, items_pk),
+//                                new DialogInterface.OnClickListener() {
+//                                    @Override
+//                                    public void onClick(DialogInterface dialog,
+//                                                        int which) {
+//                                        switch (items_pk.get(which)) {//"盘亏入库", "VMI盘亏入库"
+//                                            case "盘亏入库":
+//                                                PagerForActivity.start(mContext, Config.PkuiActivity);
+//                                                break;
+//                                            case "VMI盘亏入库":
+//                                                PagerForActivity.start(mContext, Config.PkuiVMIActivity);
+//                                                break;
+//                                        }
+//                                    }
+//                                });
+//                        builder.create().show();
+//                        break;
                     case Config.ScanProductActivity://扫一扫
                         ScanProductActivity.start(mContext);
                         break;

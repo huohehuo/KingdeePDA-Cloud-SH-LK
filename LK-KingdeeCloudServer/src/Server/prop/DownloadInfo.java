@@ -212,7 +212,7 @@ public class DownloadInfo extends HttpServlet {
                     }
                 }
                 dBean.size = size;
-                System.out.println("下载的数据："+CommonJson.getCommonJson(true, gson.toJson(dBean)));
+                Lg.e("下载数据"+dBean.size,dBean);
                 response.getWriter().write(CommonJson.getCommonJson(true, gson.toJson(dBean)));
 
 
@@ -274,19 +274,31 @@ public class DownloadInfo extends HttpServlet {
 //        } else if (version.equals("800103")  || version.equals("800102") || version.contains("5001")) {
 //            sql = "select FIsSnManage,FItemID,FISKFPeriod,convert(INT,FKFPeriod) as FKFPeriod ,FNumber,FModel,FName,FFullName,FUnitID,FUnitGroupID,FDefaultLoc,isnull(FProfitRate,0) as FProfitRate,isnull(FTaxRate,1) as FTaxRate,isnull(FOrderPrice,0) as FOrderPrice,isnull(FSalePrice,0) as FSalePrice,isnull(FPlanPrice,0) as FPlanPrice,FBarcode,FSPID,FBatchManager from t_ICItem where FErpClsID not in (6,8) and FDeleted = 0 order by FName collate Chinese_PRC_CI_AS";//�콢���k3
 //        } else {
-            sql = "select  t0.FMASTERID,t0.FUSEORGID,t6.FPRODUCEUNITID as 生产单位ID,t5.FPURCHASEUNITID as  采购单位ID,t5.FPURCHASEPRICEUNITID as 采购计价单位ID,t4.FSALEUNITID as 销售单位ID,t4.FSALEPRICEUNITID as 销售计价单位ID,FSTOREUNITID as 库存单位ID,FAUXUNITID as 辅助单位ID,FSTOCKID as 默认仓库ID,FSTOCKPLACEID as 默认仓位ID,FISBATCHMANAGE as 是否启用批号管理,FISKFPERIOD as 是否开启保质期管理,FEXPPERIOD as 保质期,FEXPUNIT as 保质期单位,t2.FISPURCHASE as 允许采购,t2.FISSALE as 允许销售,t2.FISINVENTORY as 允许库存,t2.FISPRODUCE as 允许生产,t2.FISSUBCONTRACT as 允许委外,t2.FISASSET as 允许资产,t2.FBASEUNITID as 基本单位ID,t2.FWEIGHTUNITID as 重量单位ID,t2.FVOLUMEUNITID as 尺寸单位ID,t2.FBARCODE as 条码,t2.FGROSSWEIGHT as 毛重,t2.FNETWEIGHT as 净重,t2.FLENGTH as 长,t2.FWIDTH as 宽,t2.FHEIGHT as 高,t2.FVOLUME as 体积,t1.FMaterialid as 物料内码,t0.FNumber as 编码,t0.FOLDNUMBER as 旧物料编码,t1.FName as 商品名称,t1.FSPECIFICATION as 规格型号,t0.FMNEMONICCODE as 助记码 from T_BD_MATERIAL t0 left join t_bd_material_l t1 on (t0.fmaterialid=t1.fmaterialid AND t1.FLocaleId = 2052) left join t_BD_MaterialBase t2 on t2.fmaterialid=t0.fmaterialid  left join T_BD_MATERIALSTOCK t3 on t3.fmaterialid=t0.fmaterialid left join T_BD_MATERIALSALE t4 on t4.fmaterialid=t0.fmaterialid left join T_BD_MATERIALPURCHASE t5 on t5.fmaterialid=t0.fmaterialid left join T_BD_MATERIALPRODUCE t6 on t6.fmaterialid=t0.fmaterialid  where   (t0.FDOCUMENTSTATUS = 'C' AND t0.FFORBIDSTATUS = 'A') AND t0.FFORBIDSTATUS = 'A'";
+//            sql = "select  t0.FMASTERID,t0.FUSEORGID,t6.FPRODUCEUNITID as 生产单位ID,t5.FPURCHASEUNITID as  采购单位ID,t5.FPURCHASEPRICEUNITID as 采购计价单位ID,t4.FSALEUNITID as 销售单位ID,t4.FSALEPRICEUNITID as 销售计价单位ID,FSTOREUNITID as 库存单位ID,FAUXUNITID as 辅助单位ID,FSTOCKID as 默认仓库ID,FSTOCKPLACEID as 默认仓位ID,FISBATCHMANAGE as 是否启用批号管理,FISKFPERIOD as 是否开启保质期管理,FEXPPERIOD as 保质期,FEXPUNIT as 保质期单位,t2.FISPURCHASE as 允许采购,t2.FISSALE as 允许销售,t2.FISINVENTORY as 允许库存,t2.FISPRODUCE as 允许生产,t2.FISSUBCONTRACT as 允许委外,t2.FISASSET as 允许资产,t2.FBASEUNITID as 基本单位ID,t2.FWEIGHTUNITID as 重量单位ID,t2.FVOLUMEUNITID as 尺寸单位ID,t2.FBARCODE as 条码,t2.FGROSSWEIGHT as 毛重,t2.FNETWEIGHT as 净重,t2.FLENGTH as 长,t2.FWIDTH as 宽,t2.FHEIGHT as 高,t2.FVOLUME as 体积,t1.FMaterialid as 物料内码,t0.FNumber as 编码,t0.FOLDNUMBER as 旧物料编码,t1.FName as 商品名称,t1.FSPECIFICATION as 规格型号,t0.FMNEMONICCODE as 助记码 from T_BD_MATERIAL t0 left join t_bd_material_l t1 on (t0.fmaterialid=t1.fmaterialid AND t1.FLocaleId = 2052) left join t_BD_MaterialBase t2 on t2.fmaterialid=t0.fmaterialid  left join T_BD_MATERIALSTOCK t3 on t3.fmaterialid=t0.fmaterialid left join T_BD_MATERIALSALE t4 on t4.fmaterialid=t0.fmaterialid left join T_BD_MATERIALPURCHASE t5 on t5.fmaterialid=t0.fmaterialid left join T_BD_MATERIALPRODUCE t6 on t6.fmaterialid=t0.fmaterialid  where   (t0.FDOCUMENTSTATUS = 'C' AND t0.FFORBIDSTATUS = 'A') AND t0.FFORBIDSTATUS = 'A'";
+            sql = "select  t12.FUNITGROUPID,t7.FNumber as 生产单位编码,t8.FNumber as 采购单位编码,t9.FNumber as 采购计价单位编码,t10.FNumber as 销售单位编码,t11.FNumber as 销售计价单位编码,t12.FNumber as 库存单位编码,t13.FNumber as 辅助单位编码,t14.FNumber as 基本单位编码,t0.FMASTERID,t0.FUSEORGID,t6.FPRODUCEUNITID as 生产单位ID,t5.FPURCHASEUNITID as  采购单位ID,t5.FPURCHASEPRICEUNITID as 采购计价单位ID,t4.FSALEUNITID as 销售单位ID,t4.FSALEPRICEUNITID as 销售计价单位ID,t3.FSTOREUNITID as 库存单位ID,t3.FAUXUNITID as 辅助单位ID,FSTOCKID as 默认仓库ID,FSTOCKPLACEID as 默认仓位ID,FISBATCHMANAGE as 是否启用批号管理,FISKFPERIOD as 是否开启保质期管理,FEXPPERIOD as 保质期,FEXPUNIT as 保质期单位,t2.FISPURCHASE as 允许采购,t2.FISSALE as 允许销售,t2.FISINVENTORY as 允许库存,t2.FISPRODUCE as 允许生产,t2.FISSUBCONTRACT as 允许委外,t2.FISASSET as 允许资产,t2.FBASEUNITID as 基本单位ID,t2.FWEIGHTUNITID as 重量单位ID,t2.FVOLUMEUNITID as 尺寸单位ID,t0.F_ORA_TEXT as 条码,t2.FGROSSWEIGHT as 毛重,t2.FNETWEIGHT as 净重,t2.FLENGTH as 长,t2.FWIDTH as 宽,t2.FHEIGHT as 高,t2.FVOLUME as 体积,t1.FMaterialid as 物料内码,t0.FNumber as 编码,t0.FOLDNUMBER as 旧物料编码,t1.FName as 商品名称,t1.FSPECIFICATION as 规格型号,t0.FMNEMONICCODE as 助记码 from T_BD_MATERIAL t0 left join t_bd_material_l t1 on (t0.fmaterialid=t1.fmaterialid AND t1.FLocaleId = 2052) left join t_BD_MaterialBase t2 on t2.fmaterialid=t0.fmaterialid  left join T_BD_MATERIALSTOCK t3 on t3.fmaterialid=t0.fmaterialid left join T_BD_MATERIALSALE t4 on t4.fmaterialid=t0.fmaterialid left join T_BD_MATERIALPURCHASE t5 on t5.fmaterialid=t0.fmaterialid left join T_BD_MATERIALPRODUCE t6 on t6.fmaterialid=t0.fmaterialid left join T_BD_UNIT t7 on t6.FPRODUCEUNITID = t7.FUNITID left join T_BD_UNIT t8 on t5.FPURCHASEUNITID = t8.FUNITID left join T_BD_UNIT t9 on t5.FPURCHASEPRICEUNITID = t9.FUNITID left join T_BD_UNIT t10 on t4.FSALEUNITID = t10.FUNITID left join T_BD_UNIT t11 on t4.FSALEPRICEUNITID = t11.FUNITID left join T_BD_UNIT t12 on t3.FSTOREUNITID = t12.FUNITID left join T_BD_UNIT t13 on t3.FAUXUNITID = t13.FUNITID  left join T_BD_UNIT t14 on t3.FAUXUNITID = t14.FUNITID   where   (t0.FDOCUMENTSTATUS = 'C' AND t0.FFORBIDSTATUS = 'A') AND t0.FFORBIDSTATUS = 'A'";
         //        }
         try {
             rSet = statement.executeQuery(sql);
             while (rSet.next()) {
                 DownloadReturnBean.product bean = dBean.new product();
                 bean.FProduceUnitID                = rSet.getString("生产单位ID");
+                bean.FProduceUnitNumber                = rSet.getString("生产单位编码");
                 bean.FPurchaseUnitID               = rSet.getString("采购单位ID");
+                bean.FPurchaseUnitNumber               = rSet.getString("采购单位编码");
                 bean.FPurchasePriceUnitID          = rSet.getString("采购计价单位ID");
+                bean.FPurchasePriceUnitNumber          = rSet.getString("采购计价单位编码");
                 bean.FSaleUnitID                   = rSet.getString("销售单位ID");
+                bean.FSaleUnitNumber                   = rSet.getString("销售单位编码");
                 bean.FSalePriceUnitID              = rSet.getString("销售计价单位ID");
+                bean.FSalePriceUnitNumber              = rSet.getString("销售计价单位编码");
                 bean.FStoreUnitID                  = rSet.getString("库存单位ID");
+                bean.FStoreUnitNumber                  = rSet.getString("库存单位编码");
                 bean.FAuxUnitID                    = rSet.getString("辅助单位ID");
+                bean.FAuxUnitNumber                    = rSet.getString("辅助单位编码");
+                bean.FBaseUnitID                   = rSet.getString("基本单位ID");
+                bean.FBaseUnitNumber                   = rSet.getString("基本单位编码");
+                bean.FUnitGroupID                   = rSet.getString("FUnitGroupID");
+
                 bean.FStockID                      = rSet.getString("默认仓库ID");
                 bean.FStockPlaceID                 = rSet.getString("默认仓位ID");
                 bean.FIsBatchManage                = rSet.getString("是否启用批号管理");
@@ -299,7 +311,6 @@ public class DownloadInfo extends HttpServlet {
                 bean.FIsProduce                    = rSet.getString("允许生产");
                 bean.FIsSubContract                = rSet.getString("允许委外");
                 bean.FIsAsset                      = rSet.getString("允许资产");
-                bean.FBaseUnitID                   = rSet.getString("基本单位ID");
                 bean.FFWeightUnitID                = rSet.getString("重量单位ID");
                 bean.FVolumeUnitID                 = rSet.getString("尺寸单位ID");
                 bean.FBarcode                      = rSet.getString("条码");
@@ -330,7 +341,7 @@ public class DownloadInfo extends HttpServlet {
 
     private ArrayList<suppliers> getSuppliers(Statement statement, ResultSet rSet, String version, DownloadReturnBean dBean) {
         ArrayList<suppliers> container = new ArrayList<DownloadReturnBean.suppliers>();
-        String sql = "SELECT t1.FSHORTNAME as 简称,t0.FUSEORGID,t0.FSUPPLIERID as 供应商ID,t0.FNUMBER as 供应商编码,t1.FNAME as 供应商名称 FROM t_BD_Supplier t0 LEFT OUTER JOIN t_BD_Supplier_L t1 ON (t0.FSUPPLIERID = t1.FSUPPLIERID AND t1.FLocaleId = 2052) WHERE (t0.FFORBIDSTATUS = 'A')";
+        String sql = "SELECT t2.FSUPPLYCLASSIFY,t1.FSHORTNAME as 简称,t0.FUSEORGID,t0.FSUPPLIERID as 供应商ID,t0.FNUMBER as 供应商编码,t1.FNAME as 供应商名称 FROM t_BD_Supplier t0 LEFT OUTER JOIN t_BD_Supplier_L t1 ON (t0.FSUPPLIERID = t1.FSUPPLIERID AND t1.FLocaleId = 2052) LEFT OUTER JOIN t_BD_SupplierBase t2 ON t0.FSUPPLIERID = t2.FSUPPLIERID WHERE (t0.FFORBIDSTATUS = 'A')";
         try {
             rSet = statement.executeQuery(sql);
             while (rSet.next()) {
@@ -340,6 +351,7 @@ public class DownloadInfo extends HttpServlet {
                 bean.FName = rSet.getString("供应商名称");
                 bean.FOrg = rSet.getString("FUSEORGID");
                 bean.FNote = rSet.getString("简称");
+                bean.FSupplyClassIfy = rSet.getString("FSUPPLYCLASSIFY");
 //                bean.FItemClassID = rSet.getString("FItemClassID");
 //                bean.FParentID = rSet.getString("FParentID");
 //                bean.FLevel = rSet.getString("FLevel");
@@ -359,7 +371,7 @@ public class DownloadInfo extends HttpServlet {
     //获取单位
     private ArrayList<Unit> getUnit(Statement statement, ResultSet rSet, String version, DownloadReturnBean dBean) {
         ArrayList<Unit> container = new ArrayList<DownloadReturnBean.Unit>();
-        String sql = "SELECT t0.FUSEORGID,t0.FUNITID as 单位ID,t0.FNUMBER as 单位编码,t1.FNAME as 单位名称 FROM T_BD_UNIT t0 LEFT OUTER JOIN T_BD_UNIT_L t1 ON (t0.FUNITID = t1.FUNITID AND t1.FLocaleId = 2052) WHERE ((t0.FFORBIDSTATUS='A'))";
+        String sql = "SELECT t0.FUNITGROUPID,t0.FUSEORGID,t0.FUNITID as 单位ID,t0.FNUMBER as 单位编码,t1.FNAME as 单位名称 FROM T_BD_UNIT t0 LEFT OUTER JOIN T_BD_UNIT_L t1 ON (t0.FUNITID = t1.FUNITID AND t1.FLocaleId = 2052) WHERE ((t0.FFORBIDSTATUS='A'))";
         try {
             rSet = statement.executeQuery(sql);
             while (rSet.next()) {
@@ -368,7 +380,7 @@ public class DownloadInfo extends HttpServlet {
                 bean.FNumber = rSet.getString("单位编码");
                 bean.FName = rSet.getString("单位名称");
                 bean.FOrg = rSet.getString("FUSEORGID");
-//                bean.FUnitGroupID = rSet.getString("FUnitGroupID");
+                bean.FUnitGroupID = rSet.getString("FUNITGROUPID");
 //                bean.FCoefficient = rSet.getString("FCoefficient");
                 container.add(bean);
             }
@@ -422,7 +434,9 @@ public class DownloadInfo extends HttpServlet {
 
     private ArrayList<wavehouse> getWaveHouse(Statement statement, ResultSet rSet, String version, DownloadReturnBean dBean) {
         ArrayList<wavehouse> container = new ArrayList<>();
-        String sql = "SELECT t0.FUSEORGID,t0.FID as 仓位ID,t0.FNUMBER as 仓位编码,t1.FNAME as 仓位名称 FROM T_BAS_FLEXVALUES t0 LEFT OUTER JOIN T_BAS_FLEXVALUES_L t1 ON (t0.FID = t1.FID AND t1.FLocaleId = 2052) WHERE ((t0.FFORBIDSTATUS='A'))";
+//        String sql = "SELECT t0.FUSEORGID,t0.FID as 仓位ID,t0.FNUMBER as 仓位编码,t1.FNAME as 仓位名称 FROM T_BAS_FLEXVALUES t0 LEFT OUTER JOIN T_BAS_FLEXVALUES_L t1 ON (t0.FID = t1.FID AND t1.FLocaleId = 2052) WHERE ((t0.FFORBIDSTATUS='A'))";
+        String sql = "SELECT t0.FUSEORGID,t2.FENTRYID as 仓位ID,t4.FSEQ,t2.FNUMBER as 仓位编码,t2_L.FNAME as 仓位名称,t4.FStockID as 仓库ID FROM T_BAS_FLEXVALUES t0 LEFT OUTER JOIN T_BAS_FLEXVALUES_L t1 ON (t0.FID = t1.FID AND t1.FLocaleId = 2052) left join T_BAS_FLEXVALUESENTRY t2 on t1.FID = t2.FID left join T_BAS_FLEXVALUESENTRY_L t2_L on t2_L.FENTRYID = t2.FENTRYID  and t2_L.FLocaleId = 2052  left join T_BAS_FLEXVALUES  t3 on t1.FID = t3.FID left join T_BD_STOCKFLEXITEM t4 on  t4.FFlexId = t3.FId WHERE ((t0.FFORBIDSTATUS='A'))";
+
         try {
             rSet = statement.executeQuery(sql);
             while (rSet.next()) {
@@ -431,6 +445,9 @@ public class DownloadInfo extends HttpServlet {
                 bean.FNumber = rSet.getString("仓位编码");
                 bean.FName = rSet.getString("仓位名称");
                 bean.FOrg = rSet.getString("FUSEORGID");
+                bean.FStorageID = rSet.getString("仓库ID");
+                bean.FSEQ = rSet.getString("FSEQ");
+
 //                bean.FSPGroupID = rSet.getString("FSPGroupID");
 //                bean.FFullName = rSet.getString("FFullName");
 //                bean.FLevel = rSet.getString("FLevel");
@@ -494,9 +511,9 @@ public class DownloadInfo extends HttpServlet {
     private ArrayList<User> getUser(Statement statement, ResultSet rSet, String version, DownloadReturnBean dBean) {
         ArrayList<User> container = new ArrayList<DownloadReturnBean.User>();
 
-//        String sql = "SELECT t0.FUSERID,t0.FNAME as 用户名,t0.FPASSWORD as 密码 FROM T_SEC_user t0 LEFT OUTER JOIN T_SEC_user_L t1 ON (t0.FUSERID = t1.FUSERID AND t1.FLocaleId = 2052) LEFT OUTER JOIN T_SEC_USERGROUP_L st01_L ON (t0.FPRIMARYGROUP = st01_L.FID AND st01_L.FLocaleId = 2052) WHERE (((t0.FCREATEORG IN (1) OR t0.FUSERID IN (SELECT DISTINCT fuserid FROM t_sec_userorg WHERE forgid IN (1))) AND (t0.FFORBIDSTATUS = 'A' AND t0.FUSERTYPE = '1')) ) OPTION ( MAXDOP 0)";
+        String sql = "SELECT t0.FUSERID,t0.FNAME as 用户名,t0.FPASSWORD as 密码 FROM T_SEC_user t0 LEFT OUTER JOIN T_SEC_user_L t1 ON (t0.FUSERID = t1.FUSERID AND t1.FLocaleId = 2052) LEFT OUTER JOIN T_SEC_USERGROUP_L st01_L ON (t0.FPRIMARYGROUP = st01_L.FID AND st01_L.FLocaleId = 2052) WHERE (((t0.FUSERID IN (SELECT DISTINCT fuserid FROM t_sec_userorg )) AND (t0.FFORBIDSTATUS = 'A' AND t0.FUSERTYPE = '1')) ) OPTION ( MAXDOP 0)";
 //        String sql = "SELECT t0.FUSERID,t0.FNAME as 用户名,t0.FPASSWORD as 密码,isnull(t2.FCondition,'') as FPermit from  T_SEC_user t0 LEFT OUTER JOIN T_SEC_user_L t1 ON (t0.FUSERID = t1.FUSERID AND t1.FLocaleId = 2052) LEFT OUTER JOIN T_SEC_USERGROUP_L st01_L ON (t0.FPRIMARYGROUP = st01_L.FID AND st01_L.FLocaleId = 2052)  left join t_UserPermitPC t2 on t0.FUserID=t2.FUserID  WHERE t2.FRemark in('一般权限','管理员权限','保管员权限') or t0.FName in('Administrator')  and  (((t0.FCREATEORG IN (1) OR t0.FUSERID IN (SELECT DISTINCT fuserid FROM t_sec_userorg WHERE forgid IN (1))) AND (t0.FFORBIDSTATUS = 'A' AND t0.FUSERTYPE = '1')) ) OPTION ( MAXDOP 0)";
-        String sql = "select FUserIDERP as FUSERID,FUserName as 用户名,ISNull(FPASSWORD,'') as 密码,isnull(FCondition,'') as FPermit,FUserNameERP as ERP用户名,FPassWordERP as ERP用户密码 from t_UserPermitPC  where FTypeID=1  and FRemark in('一般权限','管理员权限','保管员权限')";
+//        String sql = "select FUserIDERP as FUSERID,FUserName as 用户名,ISNull(FPASSWORD,'') as 密码,isnull(FCondition,'') as FPermit,FUserNameERP as ERP用户名,FPassWordERP as ERP用户密码 from t_UserPermitPC  where FTypeID=1  and FRemark in('一般权限','管理员权限','保管员权限')";
 
         try {
             rSet = statement.executeQuery(sql);
@@ -505,9 +522,9 @@ public class DownloadInfo extends HttpServlet {
                 bean.FUserID = rSet.getString("FUSERID");
                 bean.FName = rSet.getString("用户名");
                 bean.FPassWord = rSet.getString("密码");
-                bean.FPermit = rSet.getString("FPermit");
-                bean.FNameERP = rSet.getString("ERP用户名");
-                bean.FPassWordERP = rSet.getString("ERP用户密码");
+//                bean.FPermit = rSet.getString("FPermit");
+//                bean.FNameERP = rSet.getString("ERP用户名");
+//                bean.FPassWordERP = rSet.getString("ERP用户密码");
                 container.add(bean);
             }
         } catch (SQLException e) {
@@ -520,24 +537,26 @@ public class DownloadInfo extends HttpServlet {
 
     private ArrayList<InstorageNum> getInstorageNums(Statement statement, ResultSet rSet, String version, DownloadReturnBean dBean) {
         ArrayList<InstorageNum> container = new ArrayList<>();
-        String sql = "select t0.FMATERIALID as 商品ID,t0.FSTOCKID as 仓库ID,st035.FNUMBER as 批号,t0.FSTOCKUNITID as 库存单位ID,t0.FBASEQTY as 库存,t0.FSTOCKSTATUSID as 库存状态,t0.FSTOCKORGID as 库存组织ID  from T_STK_INVENTORY t0 LEFT OUTER JOIN T_BD_LOTMASTER st035 ON t0.FLOT = st035.FLOTID  where (((((t0.FSTOCKORGID IN (1) AND t0.FSTOCKORGID = 1) AND FISEFFECTIVED = '1') AND ((t0.FBASEQTY <> 0) OR (t0.FSECQTY <> 0))) AND t0.FSTOCKORGID = 1) AND (t0.FSTOCKORGID IN (1, 0) AND t0.FOBJECTTYPEID = 'STK_Inventory'))";
-        try {
-            rSet = statement.executeQuery(sql);
-            while (rSet.next()) {
-                DownloadReturnBean.InstorageNum bean = dBean.new InstorageNum();
-                bean.FItemID = rSet.getString("商品ID");
-                bean.FStockID = rSet.getString("仓库ID");
-                bean.FStoreState = rSet.getString("库存状态");
-                bean.FStoreOrgID = rSet.getString("库存组织ID");
-                bean.FQty = rSet.getString("库存");
-                bean.FUnitID = rSet.getString("库存单位ID");
-                bean.FBatchNo = rSet.getString("批号");
-                container.add(bean);
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-            return null;
-        }
+//        String sql = "select t0.FMATERIALID as 商品ID,t0.FSTOCKLOCID as 仓位ID,t0.FPRODUCEDATE as 生产日期,t0.FSTOCKID as 仓库ID,st035.FNUMBER as 批号,t0.FSTOCKUNITID as 库存单位ID,t0.FBASEQTY as 库存,t0.FSTOCKSTATUSID as 库存状态,t0.FSTOCKORGID as 库存组织ID  from T_STK_INVENTORY t0 LEFT OUTER JOIN T_BD_LOTMASTER st035 ON t0.FLOT = st035.FLOTID  where (((((t0.FSTOCKORGID IN (1) AND t0.FSTOCKORGID = 1) AND FISEFFECTIVED = '1') AND ((t0.FBASEQTY <> 0) OR (t0.FSECQTY <> 0))) AND t0.FSTOCKORGID = 1) AND (t0.FSTOCKORGID IN (1, 0) AND t0.FOBJECTTYPEID = 'STK_Inventory'))";
+//        try {
+//            rSet = statement.executeQuery(sql);
+//            while (rSet.next()) {
+//                DownloadReturnBean.InstorageNum bean = dBean.new InstorageNum();
+//                bean.FItemID = rSet.getString("商品ID");
+//                bean.FStockID = rSet.getString("仓库ID");
+//                bean.FStoreState = rSet.getString("库存状态");
+//                bean.FStoreOrgID = rSet.getString("库存组织ID");
+//                bean.FQty = rSet.getString("库存");
+//                bean.FUnitID = rSet.getString("库存单位ID");
+//                bean.FBatchNo = rSet.getString("批号");
+//                bean.FStockPlaceID = rSet.getString("仓位ID");
+//                bean.FKFDate = rSet.getString("生产日期");
+//                container.add(bean);
+//            }
+//        } catch (SQLException e) {
+//            e.printStackTrace();
+//            return null;
+//        }
         return container;
     }
 

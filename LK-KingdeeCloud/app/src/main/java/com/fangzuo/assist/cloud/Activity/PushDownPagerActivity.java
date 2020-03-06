@@ -98,7 +98,10 @@ public class PushDownPagerActivity extends BaseActivity {
         String string = "";
         switch (tag) {
             case 1:
-                string = "采购订单下推外购入库单";
+                string = "采购订单下推采购入库";
+                break;
+            case 34:
+                string = "采购订单下推委外入库";
                 break;
             case 2:
                 string = "销售订单下推销售出库单";

@@ -69,6 +69,9 @@ public class PushDownSubDao extends AbstractDao<PushDownSub, Long> {
         public final static Property FStr3 = new Property(42, String.class, "FStr3", false, "FSTR3");
         public final static Property FStr4 = new Property(43, String.class, "FStr4", false, "FSTR4");
         public final static Property FStr5 = new Property(44, String.class, "FStr5", false, "FSTR5");
+        public final static Property FAuxQty = new Property(45, String.class, "FAuxQty", false, "FAUX_QTY");
+        public final static Property FAuxQtying = new Property(46, String.class, "FAuxQtying", false, "FAUX_QTYING");
+        public final static Property FCreateDate = new Property(47, String.class, "FCreateDate", false, "FCREATE_DATE");
     }
 
 
@@ -128,7 +131,10 @@ public class PushDownSubDao extends AbstractDao<PushDownSub, Long> {
                 "\"FSTR2\" TEXT," + // 41: FStr2
                 "\"FSTR3\" TEXT," + // 42: FStr3
                 "\"FSTR4\" TEXT," + // 43: FStr4
-                "\"FSTR5\" TEXT);"); // 44: FStr5
+                "\"FSTR5\" TEXT," + // 44: FStr5
+                "\"FAUX_QTY\" TEXT," + // 45: FAuxQty
+                "\"FAUX_QTYING\" TEXT," + // 46: FAuxQtying
+                "\"FCREATE_DATE\" TEXT);"); // 47: FCreateDate
     }
 
     /** Drops the underlying database table. */
@@ -365,6 +371,21 @@ public class PushDownSubDao extends AbstractDao<PushDownSub, Long> {
         if (FStr5 != null) {
             stmt.bindString(45, FStr5);
         }
+ 
+        String FAuxQty = entity.getFAuxQty();
+        if (FAuxQty != null) {
+            stmt.bindString(46, FAuxQty);
+        }
+ 
+        String FAuxQtying = entity.getFAuxQtying();
+        if (FAuxQtying != null) {
+            stmt.bindString(47, FAuxQtying);
+        }
+ 
+        String FCreateDate = entity.getFCreateDate();
+        if (FCreateDate != null) {
+            stmt.bindString(48, FCreateDate);
+        }
     }
 
     @Override
@@ -595,6 +616,21 @@ public class PushDownSubDao extends AbstractDao<PushDownSub, Long> {
         if (FStr5 != null) {
             stmt.bindString(45, FStr5);
         }
+ 
+        String FAuxQty = entity.getFAuxQty();
+        if (FAuxQty != null) {
+            stmt.bindString(46, FAuxQty);
+        }
+ 
+        String FAuxQtying = entity.getFAuxQtying();
+        if (FAuxQtying != null) {
+            stmt.bindString(47, FAuxQtying);
+        }
+ 
+        String FCreateDate = entity.getFCreateDate();
+        if (FCreateDate != null) {
+            stmt.bindString(48, FCreateDate);
+        }
     }
 
     @Override
@@ -649,7 +685,10 @@ public class PushDownSubDao extends AbstractDao<PushDownSub, Long> {
             cursor.isNull(offset + 41) ? null : cursor.getString(offset + 41), // FStr2
             cursor.isNull(offset + 42) ? null : cursor.getString(offset + 42), // FStr3
             cursor.isNull(offset + 43) ? null : cursor.getString(offset + 43), // FStr4
-            cursor.isNull(offset + 44) ? null : cursor.getString(offset + 44) // FStr5
+            cursor.isNull(offset + 44) ? null : cursor.getString(offset + 44), // FStr5
+            cursor.isNull(offset + 45) ? null : cursor.getString(offset + 45), // FAuxQty
+            cursor.isNull(offset + 46) ? null : cursor.getString(offset + 46), // FAuxQtying
+            cursor.isNull(offset + 47) ? null : cursor.getString(offset + 47) // FCreateDate
         );
         return entity;
     }
@@ -701,6 +740,9 @@ public class PushDownSubDao extends AbstractDao<PushDownSub, Long> {
         entity.setFStr3(cursor.isNull(offset + 42) ? null : cursor.getString(offset + 42));
         entity.setFStr4(cursor.isNull(offset + 43) ? null : cursor.getString(offset + 43));
         entity.setFStr5(cursor.isNull(offset + 44) ? null : cursor.getString(offset + 44));
+        entity.setFAuxQty(cursor.isNull(offset + 45) ? null : cursor.getString(offset + 45));
+        entity.setFAuxQtying(cursor.isNull(offset + 46) ? null : cursor.getString(offset + 46));
+        entity.setFCreateDate(cursor.isNull(offset + 47) ? null : cursor.getString(offset + 47));
      }
     
     @Override

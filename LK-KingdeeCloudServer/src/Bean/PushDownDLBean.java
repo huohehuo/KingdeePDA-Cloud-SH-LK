@@ -22,6 +22,9 @@ public class PushDownDLBean {
         public String FModel;
         public String FBillNo;
         public String FQty;
+        public String FAuxQty;
+        public String FAuxQtying;
+        public String FCreateDate;
         public String FQtying;
         public String FTaxPrice;
         public String FStockID;

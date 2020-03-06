@@ -385,9 +385,9 @@ public class SpinnerDepartMent extends RelativeLayout {
         container.clear();
     }
 //     设置标题的方法
-//    public void setTitleText(String title) {
-//        mTitleTv.setText(title);
-//    }
+    public void setTitleText(String title) {
+        mTitleTv.setText(title);
+    }
 
     @Nullable
     public static Activity findActivity(Context context) {

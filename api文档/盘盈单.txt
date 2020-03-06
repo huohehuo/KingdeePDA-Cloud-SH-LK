@@ -1,0 +1,247 @@
+一、请求参数说明：
+1.formid：业务对象表单Id，字符串类型（必录）
+2.data：JSON格式数据（详情参考JSON格式数据）（必录）
+     2.1.Creator：创建者内码（非必录）
+     2.2.NeedUpDateFields：需要更新的字段，数组类型，格式：[key1,key2,...] （非必录）注（更新单据体字段得加上单据体key）
+     2.3.NeedReturnFields：需返回结果的字段集合，数组类型，格式：[key,entitykey.key,...]（非必录） 注（返回单据体字段格式：entitykey.key）
+     2.4.IsDeleteEntry：是否删除已存在的分录，布尔类型，默认true（非必录）
+     2.5.SubSystemId：表单所在的子系统内码，字符串类型（非必录）
+     2.6.IsVerifyBaseDataField：是否验证所有的基础资料有效性，布尔类，默认false（非必录）
+     2.7.IsEntryBatchFill：是否批量填充分录，默认true（非必录）
+     2.8.ValidateFlag：是否验证标志，布尔类型，默认true（非必录）
+     2.9.NumberSearch：是否用编码搜索基础资料，布尔类型，默认true（非必录）
+     2.10.InterationFlags：交互标志集合，字符串类型，分号分隔，格式："flag1;flag2;..."（非必录） 例如（允许负库存标识：STK_InvCheckResult）
+     2.11.Model：表单数据包，JSON类型（必录）
+备注:
+1.示例Model数据包中字段顺序不建议改变，否则可能会有相互影响，如果出现字段值被覆盖或丢失，则可以尝试把字段顺序向后调整一下。
+2.示例Model数据包默认包含允许引入的字段，实际按需构建既可。
+3.如需创建关联关系，可参考http://club.kingdee.com/forum.php?mod=viewthread&tid=1394265 。
+
+二、返回结果：
+{"Result":{"ResponseStatus":{"ErrorCode":"","IsSuccess":"false","Errors":[{"FieldName":"","Message":"","DIndex":0}],"SuccessEntitys":[{"Id":"","Number":"","DIndex":0}],"SuccessMessages":[{"FieldName":"","Message":"","DIndex":0}],"MsgCode":""},"Id":"","Number":"","NeedReturnData":[{}]}}
+
+三、代码示例：
+// 使用webapi引用组件Kingdee.BOS.WebApi.Client.dll
+K3CloudApiClient client = new K3CloudApiClient("http://sanger.gnway.cc:8090/k3cloud/"); 
+var loginResult = client.ValidateLogin("5df094869da35e","Administrator","888888",2052);
+var resultType = JObject.Parse(loginResult)["LoginResultType"].Value<int>();
+//登录结果类型等于1，代表登录成功
+if (resultType == 1)
+{
+	 client.Draft("STK_StockCountGain","{"Creator":"","NeedUpDateFields":[],"NeedReturnFields":[],"IsDeleteEntry":"true","SubSystemId":"","IsVerifyBaseDataField":"false","IsEntryBatchFill":"true","ValidateFlag":"true","NumberSearch":"true","InterationFlags":"","Model":{"FID":0,"FStockCountInputNo":"","FBillNo":"","FBillTypeID":{"FNUMBER":""},"FStockOrgId":{"FNumber":""},"FOwnerTypeIdHead":"","FOwnerIdHead":{"FNumber":""},"FDate":"1900-01-01","FDeptId":{"FNumber":""},"FStockerGroupId":{"FNumber":""},"FStockerId":{"FNumber":""},"FNoteHead":"","FScanBox":"","FThirdSystem":"","FThirdSrcId":"","FThirdSrcBillNo":"","FCANCELLERID":{"FUserID":""},"FCANCELDATE":"1900-01-01","FBillEntry":[{"FEntryID":0,"FMaterialId":{"FNumber":""},"FAuxPropId":{},"FUnitID":{"FNumber":""},"FCountQty":0,"FStockId":{"FNumber":""},"FStockLocId":{"FSTOCKLOCID__FF100001":{"FNumber":""},"FSTOCKLOCID__FF100003":{"FNumber":""},"FSTOCKLOCID__FF100004":{"FNumber":""}},"FLOT":{"FNumber":""},"FBusinessDate":"1900-01-01","FOwnerTypeId":"","FOwnerid":{"FNumber":""},"Fnote":"","FStockStatusId":{"FNumber":""},"FBomId":{"FNumber":""},"FKeeperTypeId":"","FKeeperId":{"FNumber":""},"FProduceDate":"1900-01-01","FExpiryDate":"1900-01-01","FExtAuxUnitId":{"FNumber":""},"FMtoNo":"","FExtAuxUnitQty":0,"FExtSecAcctQty":0,"FExtSecGAINQty":0,"FProjectNo":"","FServiceContext":"","FThirdSrcEntryId":"","FSerialSubEntity":[{"FDetailID":0,"FSerialNo":"","FSerialNote":""}]}]}}");
+ }
+
+四、JSON格式数据：
+{
+    "Creator": "",
+    "NeedUpDateFields": [],
+    "NeedReturnFields": [],
+    "IsDeleteEntry": "true",
+    "SubSystemId": "",
+    "IsVerifyBaseDataField": "false",
+    "IsEntryBatchFill": "true",
+    "ValidateFlag": "true",
+    "NumberSearch": "true",
+    "InterationFlags": "",
+    "Model": {
+        "FID": 0,
+        "FStockCountInputNo": "",
+        "FBillNo": "",
+        "FBillTypeID": {
+            "FNUMBER": ""
+        },
+        "FStockOrgId": {
+            "FNumber": ""
+        },
+        "FOwnerTypeIdHead": "",
+        "FOwnerIdHead": {
+            "FNumber": ""
+        },
+        "FDate": "1900-01-01",
+        "FDeptId": {
+            "FNumber": ""
+        },
+        "FStockerGroupId": {
+            "FNumber": ""
+        },
+        "FStockerId": {
+            "FNumber": ""
+        },
+        "FNoteHead": "",
+        "FScanBox": "",
+        "FThirdSystem": "",
+        "FThirdSrcId": "",
+        "FThirdSrcBillNo": "",
+        "FCANCELLERID": {
+            "FUserID": ""
+        },
+        "FCANCELDATE": "1900-01-01",
+        "FBillEntry": [
+            {
+                "FEntryID": 0,
+                "FMaterialId": {
+                    "FNumber": ""
+                },
+                "FAuxPropId": {},
+                "FUnitID": {
+                    "FNumber": ""
+                },
+                "FCountQty": 0,
+                "FStockId": {
+                    "FNumber": ""
+                },
+                "FStockLocId": {
+                    "FSTOCKLOCID__FF100001": {
+                        "FNumber": ""
+                    },
+                    "FSTOCKLOCID__FF100003": {
+                        "FNumber": ""
+                    },
+                    "FSTOCKLOCID__FF100004": {
+                        "FNumber": ""
+                    }
+                },
+                "FLOT": {
+                    "FNumber": ""
+                },
+                "FBusinessDate": "1900-01-01",
+                "FOwnerTypeId": "",
+                "FOwnerid": {
+                    "FNumber": ""
+                },
+                "Fnote": "",
+                "FStockStatusId": {
+                    "FNumber": ""
+                },
+                "FBomId": {
+                    "FNumber": ""
+                },
+                "FKeeperTypeId": "",
+                "FKeeperId": {
+                    "FNumber": ""
+                },
+                "FProduceDate": "1900-01-01",
+                "FExpiryDate": "1900-01-01",
+                "FExtAuxUnitId": {
+                    "FNumber": ""
+                },
+                "FMtoNo": "",
+                "FExtAuxUnitQty": 0,
+                "FExtSecAcctQty": 0,
+                "FExtSecGAINQty": 0,
+                "FProjectNo": "",
+                "FServiceContext": "",
+                "FThirdSrcEntryId": "",
+                "FSerialSubEntity": [
+                    {
+                        "FDetailID": 0,
+                        "FSerialNo": "",
+                        "FSerialNote": ""
+                    }
+                ]
+            }
+        ]
+    }
+}
+
+五、字段说明：
+基本信息：FBillHead 
+	 实体主键：FID 
+	 单据编号：FBillNo 
+	 单据状态：FDocumentStatus 
+	 库存组织：FStockOrgId  (必填项)
+	 日期：FDate  (必填项)
+	 单据类型：FBillTypeID  (必填项)
+	 货主类型：FOwnerTypeIdHead  (必填项)
+	 货主：FOwnerIdHead 
+	 部门：FDeptId 
+	 仓管员：FStockerId 
+	 库存组：FStockerGroupId 
+	 本位币：FBaseCurrId 
+	 盘点来源代码：FStkCountSchemeNo 
+	 盘点来源名称：FStkCountSchemeName 
+	 盘点来源内码：FStkCountSchemeId 
+	 创建人：FCreatorId 
+	 创建日期：FCreateDate 
+	 最后修改人：FModifierId 
+	 最后修改日期：FModifyDate 
+	 审核人：FApproverId 
+	 审核日期：FApproveDate 
+	 备注：FNoteHead 
+	 来源：FSourceType 
+	 周期盘点计划序号：FCyclePlanSeq 
+	 物料盘点作业编码：FStockCountInputNo 
+	 序列号上传：FScanBox 
+	 第三方源单编码：FThirdSrcBillNo 
+	 第三方源单内码：FThirdSrcId 
+	 第三方系统：FThirdSystem 
+	 作废状态：FCANCELSTATUS 
+	 作废人：FCANCELLERID 
+	 作废日期：FCANCELDATE 
+明细信息：FBillEntry 
+	 实体主键：FEntryID 
+	 物料编码：FMaterialId  (必填项)
+	 物料名称：FMaterialName 
+	 规格型号：FMaterialModel 
+	 物料类别：FMaterialType 
+	 单位：FUnitID  (必填项)
+	 账存数量：FAcctQty 
+	 盘点数量：FCountQty 
+	 盘盈数量：FGainQty 
+	 仓库：FStockId  (必填项)
+	 库存状态：FStockStatusId  (必填项)
+	 货主类型：FOwnerTypeId  (必填项)
+	 货主：FOwnerid  (必填项)
+	 保管者类型：FKeeperTypeId  (必填项)
+	 保管者：FKeeperId  (必填项)
+	 成本价：FPrice 
+	 总成本：FAmount 
+	 备注：Fnote 
+	 BOM版本：FBomId 
+	 辅助属性：FAuxPropId 
+	 生产日期：FProduceDate 
+	 保质期单位：FExpUnit 
+	 保质期：FExpPeriod 
+	 到期日：FExpiryDate 
+	 基本单位：FBaseUnitId 
+	 账存数量（基本）：FBaseAcctQty 
+	 盘点数量（基本）：FBaseCountQty 
+	 盘盈数量（基本）：FBaseGainQty 
+	 库存辅单位：FSecUnitId 
+	 账存数量(库存辅单位)：FSecAcctQty 
+	 盘点数量(库存辅单位)：FSecCountQty 
+	 盘盈数量(库存辅单位)：FSecGainQty 
+	 计划跟踪号：FMtoNo 
+	 项目编号：FProjectNo 
+	 库存更新标识：FStockFlag 
+	 仓位：FStockLocId 
+	 批号：FLOT 
+	 入库日期：FBusinessDate 
+	 零售条形码：FCMKBarCode 
+	 序列号单位：FSNUnitID 
+	 序列号单位数量：FSNQty 
+	 辅单位：FExtAuxUnitId 
+	 盘点数量（辅单位）：FExtAuxUnitQty 
+	 账存数量（辅单位）：FExtSecAcctQty 
+	 盘盈数量（辅单位）：FExtSecGAINQty 
+	 服务上下文：FServiceContext 
+	 盘点作业分录序号：FInputEntrySeq 
+	 第三方源单分录编码：FThirdSrcEntryId 
+序列号子单据体：FSerialSubEntity 
+	 实体主键：FDetailID 
+	 序列号：FSerialNo 
+	 序列号：FSerialId 
+	 SN：FSN 
+	 IMEI1：FIMEI 
+	 IMEI2：FIMEI2 
+	 MEID：FMEID 
+	 备注：FSerialNote 
+关联关系表：FBillEntry_Link 
+	 实体主键：FLinkId 
+	 业务流程图：FBillEntry_Link_FFlowId 
+	 推进路线：FBillEntry_Link_FFlowLineId 
+	 转换规则：FBillEntry_Link_FRuleId 
+	 源单表内码：FBillEntry_Link_FSTableId 
+	 源单表：FBillEntry_Link_FSTableName 
+	 源单内码：FBillEntry_Link_FSBillId 
+	 源单分录内码：FBillEntry_Link_FSId

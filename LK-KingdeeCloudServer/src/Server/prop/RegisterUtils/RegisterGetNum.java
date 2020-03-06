@@ -30,7 +30,7 @@ public class RegisterGetNum extends HttpServlet {
         int num =0;
         Lg.e("RegisterCheck得到json：",paramter);
                 //设置最大用户数，程序根据dbother文件的用户数，与设置的对比
-                response.getWriter().write(CommonJson.getCommonJson(true,"50"));
+                response.getWriter().write(CommonJson.getCommonJson(true,"500"));
 
 //                Lg.e("加密"+DesUtils.encrypt("123"));
 //                Lg.e("解密",DesUtils.decrypt(DesUtils.encrypt("123")));

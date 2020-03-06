@@ -9,4 +9,5 @@ public class InStoreNumBean {
 	public String FKFPeriod;
 	public String FOwnerID;//货主id
 	public String FOrgID;//组织id
+	public String FType;//组织id
 }

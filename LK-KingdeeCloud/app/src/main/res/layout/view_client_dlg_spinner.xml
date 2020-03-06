@@ -16,6 +16,7 @@
                 android:layout_weight="1"
                 android:layout_height="match_parent"
                 android:layout_margin="3dp"
+                android:selectAllOnFocus="true"
                 android:background="@drawable/bg_edittext_selector"
                 android:gravity="center_vertical"
                 android:hint="请输入过滤条件"

@@ -16,7 +16,7 @@ public class Info {
 //    public static final String DATABASESETTING = "K3DBConfigerRY";
     public static String getAppNo(){
         if ("1".equals(Hawk.get(Config.PDA_Project_Type,"1"))){
-            return "6.56";
+            return "2.3";
         }else{
             return "1.698";
         }
@@ -38,8 +38,10 @@ public class Info {
 
     public static final int Scan_Pic = 111;//用于识别照片二维码的返回值
 
+    public static final String hasRegister="hasRegister";
     public static final String AutoLogin="AutoLogin";
     public static final String IsRemanber="IsRemanber";
+    public static final String IsOnLine="IsOnLine";
     public static final String MainData="MainData";
     public static final String BatchRemark="BatchRemark";
     public static final String Storage="storage";
@@ -89,6 +91,7 @@ public class Info {
     public static final String FormID_PKui = "STK_StockCountLoss";//盘亏单
     //单据类型
     public static final String BT_PIS = "RKD01_SYS";//采购入库单/采购订单下推采购入库单/收料通知单下推采购入库单
+    public static final String BT_PIS3 = "RKD03_SYS";//采购入库单/采购订单下推采购入库单/收料通知单下推采购入库单(委外类型)
     public static final String BT_SaleOut = "XSCKD01_SYS";//销售出库单/销售订单下推销售出库单/发货通知单下推采购入库单
     public static final String BT_OIS = "QTRKD01_SYS";//其他入库单
 //    public static final String BT_OIS = "QTRKD01_BSB";//其他入库单
@@ -124,7 +127,9 @@ public class Info {
     private static String getFormID(int activity){
         String backString="";
         switch (activity){
+            case Config.OutsourcingInActivity:
             case Config.PdCgOrder2WgrkActivity:
+            case Config.PdCgOrder2WwrkActivity:
             case Config.FLInStoreP1Activity:
             case Config.PurchaseInStoreActivity://采购入库
                 backString=FormID_PIS;
@@ -280,6 +285,10 @@ public class Info {
     public static String getType(int activity){
         String backString="";
         switch (activity){
+            case Config.PdCgOrder2WwrkActivity://采购订单下推外购入库单
+                backString=BT_PIS3;
+                break;
+            case Config.OutsourcingInActivity://采购订单下推外购入库单
             case Config.PdCgOrder2WgrkActivity://采购订单下推外购入库单
             case Config.FLInStoreP1Activity://采购订单下推外购入库单
             case Config.PurchaseInStoreActivity:

@@ -18,10 +18,15 @@ public class InStorageNum {
     public String FStoreOrgID;
     public String FBatchNo;
     public String FUnitID;
-    @Generated(hash = 1788724007)
+    public String FKFDate;
+    public String FKFPeriod;
+    public String FStockPlaceID;
+    public String FHuozhuID;
+    @Generated(hash = 1756249501)
     public InStorageNum(Long _id, String FItemID, String FStockID, String FQty,
-            String FStoreState, String FStoreOrgID, String FBatchNo,
-            String FUnitID) {
+            String FStoreState, String FStoreOrgID, String FBatchNo, String FUnitID,
+            String FKFDate, String FKFPeriod, String FStockPlaceID,
+            String FHuozhuID) {
         this._id = _id;
         this.FItemID = FItemID;
         this.FStockID = FStockID;
@@ -30,6 +35,10 @@ public class InStorageNum {
         this.FStoreOrgID = FStoreOrgID;
         this.FBatchNo = FBatchNo;
         this.FUnitID = FUnitID;
+        this.FKFDate = FKFDate;
+        this.FKFPeriod = FKFPeriod;
+        this.FStockPlaceID = FStockPlaceID;
+        this.FHuozhuID = FHuozhuID;
     }
     @Generated(hash = 471196027)
     public InStorageNum() {
@@ -81,6 +90,30 @@ public class InStorageNum {
     }
     public void setFUnitID(String FUnitID) {
         this.FUnitID = FUnitID;
+    }
+    public String getFKFDate() {
+        return this.FKFDate;
+    }
+    public void setFKFDate(String FKFDate) {
+        this.FKFDate = FKFDate;
+    }
+    public String getFKFPeriod() {
+        return this.FKFPeriod;
+    }
+    public void setFKFPeriod(String FKFPeriod) {
+        this.FKFPeriod = FKFPeriod;
+    }
+    public String getFStockPlaceID() {
+        return this.FStockPlaceID;
+    }
+    public void setFStockPlaceID(String FStockPlaceID) {
+        this.FStockPlaceID = FStockPlaceID;
+    }
+    public String getFHuozhuID() {
+        return this.FHuozhuID;
+    }
+    public void setFHuozhuID(String FHuozhuID) {
+        this.FHuozhuID = FHuozhuID;
     }
 
 }

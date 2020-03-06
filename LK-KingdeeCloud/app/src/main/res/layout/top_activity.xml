@@ -21,17 +21,18 @@
             android:text="合并"
             android:textColor="@color/red" />
 
-        <TextView
+        <android.support.v7.widget.AppCompatTextView
             android:id="@+id/tv_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
             android:text=""
             android:textColor="@color/white"
-            android:textSize="20sp" />
+            android:autoSizeTextType="uniform"
+            android:autoSizeMaxTextSize="20dp"
+            />
 
         <CheckBox
-            android:visibility="gone"
             android:id="@+id/isAutoAdd"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

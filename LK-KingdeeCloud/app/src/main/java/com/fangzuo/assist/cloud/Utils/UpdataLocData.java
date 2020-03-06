@@ -14,6 +14,7 @@ import com.fangzuo.assist.cloud.Activity.Crash.App;
 import com.fangzuo.assist.cloud.Beans.CommonResponse;
 import com.fangzuo.assist.cloud.Beans.DownloadReturnBean;
 import com.fangzuo.assist.cloud.Beans.EventBusEvent.ClassEvent;
+import com.fangzuo.assist.cloud.Beans.InStoreNumBean;
 import com.fangzuo.assist.cloud.R;
 import com.fangzuo.assist.cloud.RxSerivce.MySubscribe;
 import com.fangzuo.assist.cloud.Utils.GreedDaoUtil.GreenDaoManager;
@@ -185,7 +186,7 @@ public class UpdataLocData {
             @Override
             public void onNext(CommonResponse commonResponse) {
                 DownloadReturnBean dBean = new Gson().fromJson(commonResponse.returnJson, DownloadReturnBean.class);
-                insert(dBean);
+                insertBefore(dBean);
             }
 
             @Override
@@ -195,7 +196,36 @@ public class UpdataLocData {
             }
         });
     }
+    //库存表数据获取例外，先下载库存表数据
+    private int storeNum = 0;
+    private void insertBefore(final DownloadReturnBean dBean){
+        final InStoreNumBean storageNum = new InStoreNumBean();
+        storageNum.FType="0";
+        App.getRService().doIOAction("GetStoreNum4sql", new Gson().toJson(storageNum), new MySubscribe<CommonResponse>() {
+            @Override
+            public void onNext(CommonResponse commonResponse) {
+                super.onNext(commonResponse);
+                if (!commonResponse.state)return;
+                DownloadReturnBean dBeanTemp = new Gson().fromJson(commonResponse.returnJson, DownloadReturnBean.class);
+                if (dBeanTemp.InstorageNum != null && dBeanTemp.InstorageNum.size() > 0) {
+                    InStorageNumDao storageNumDao = session.getInStorageNumDao();
+                    storageNumDao.deleteAll();
+                    storageNumDao.insertOrReplaceInTx(dBeanTemp.InstorageNum);
+                    storageNumDao.detachAll();
+                    storeNum = dBeanTemp.InstorageNum.size();
+//                    Toast.showText(mContext,"库存表下载完毕"+dBean.InstorageNum.size());
+                }
+                insert(dBean);
+            }
 
+            @Override
+            public void onError(Throwable e) {
+//                super.onError(e);
+                Toast.showText(mContext,"库存表下载失败"+e.toString());
+                insert(dBean);
+            }
+        });
+    }
     private void insert(final DownloadReturnBean dBean) {
         AsyncSession asyncSession = session.startAsyncSession();
 //        AsyncSession asyncSession2 = session.startAsyncSession();
@@ -206,7 +236,9 @@ public class UpdataLocData {
                 boolean b = insertLocalSQLite(dBean);
                 Log.e("result", b + "");
                 if (b) {
-                    EventBusUtil.sendEvent(new ClassEvent(EventBusInfoCode.Updata_OK,nowTime+"",dBean.size+"",""));
+                    Lg.e("数量1",dBean.size);
+                    Lg.e("数量2",storeNum);
+                    EventBusUtil.sendEvent(new ClassEvent(EventBusInfoCode.Updata_OK,nowTime+"",(dBean.size+storeNum)+"",""));
                 }
             }
         });
@@ -344,12 +376,12 @@ public class UpdataLocData {
             wavehouseDao.insertOrReplaceInTx(dBean.wavehouse);
             wavehouseDao.detachAll();
         }
-        if (dBean.InstorageNum != null && dBean.InstorageNum.size() > 0) {
-            InStorageNumDao storageNumDao = session.getInStorageNumDao();
-            storageNumDao.deleteAll();
-            storageNumDao.insertOrReplaceInTx(dBean.InstorageNum);
-            storageNumDao.detachAll();
-        }
+//        if (dBean.InstorageNum != null && dBean.InstorageNum.size() > 0) {
+//            InStorageNumDao storageNumDao = session.getInStorageNumDao();
+//            storageNumDao.deleteAll();
+//            storageNumDao.insertOrReplaceInTx(dBean.InstorageNum);
+//            storageNumDao.detachAll();
+//        }
         if (dBean.storage != null && dBean.storage.size() > 0) {
             StorageDao storageDao = session.getStorageDao();
             storageDao.deleteAll();

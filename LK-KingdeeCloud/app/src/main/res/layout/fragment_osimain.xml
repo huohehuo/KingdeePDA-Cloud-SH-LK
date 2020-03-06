@@ -1,0 +1,175 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".Fragment.pushdown.ChooseFragment">
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <android.support.v7.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="2dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                android:orientation="vertical">
+
+                <CheckBox
+                    android:visibility="gone"
+                    android:id="@+id/cb_isStorage"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="是否带出默认仓库"
+                    android:textSize="18sp"
+                    android:textColor="@android:color/holo_red_light"/>
+
+                <com.fangzuo.assist.cloud.widget.TextAutoTime
+                    android:id="@+id/tv_date"
+                    app:Time_titile="入库日期:"
+                    app:Time_titile_size="10sp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+
+                <include layout="@layout/line_heng"/>
+                <LinearLayout
+                    android:layout_margin="4dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:weightSum="6">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1.5"
+                        android:gravity="center"
+                        android:text="@string/supplier"
+                        android:textColor="@android:color/black"
+                        android:textSize="18sp" />
+
+                    <EditText
+                        android:id="@+id/ed_supplier"
+                        android:layout_width="0dp"
+                        android:layout_height="40dp"
+                        android:layout_weight="3.5"
+                        android:background="@drawable/bg_edittext_selector"
+                        android:gravity="center"
+                        android:selectAllOnFocus="true"
+                        android:singleLine="true" />
+
+                    <RelativeLayout
+                        android:id="@+id/search_supplier"
+                        android:layout_width="0dp"
+                        android:layout_height="40dp"
+                        android:layout_marginRight="10dp"
+                        android:layout_weight="1">
+
+                        <ImageView
+                            android:layout_width="30dp"
+                            android:layout_height="wrap_content"
+                            android:layout_centerInParent="true"
+                            android:src="@mipmap/search" />
+                    </RelativeLayout>
+
+                </LinearLayout>
+                <include layout="@layout/line_heng"/>
+
+               <!-- <TextView
+                    android:text="@string/business_no"
+                    android:textSize="22sp"
+                    android:textColor="#1e1e1e"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+                <EditText
+                    android:id="@+id/ed_ff_order"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_weight="1"
+                    android:paddingLeft="8dp"
+                    android:gravity="center_horizontal|center_vertical"
+                    android:background="@drawable/bg_edittext_selector"
+                    android:inputType="numberDecimal"
+                    android:singleLine="true"
+                    android:textSize="20sp" />-->
+                <TextView
+                    android:text="采购部门:"
+                    android:textSize="18sp"
+                    android:textColor="#1e1e1e"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+                <com.fangzuo.assist.cloud.widget.SpinnerDepartMent
+                    android:id="@+id/sp_department_buy"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:manspinner_name="采购部门:"
+                    app:manspinner_size="12sp" />
+                <TextView
+                    android:text="收料部门:"
+                    android:textSize="18sp"
+                    android:textColor="#1e1e1e"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+                <com.fangzuo.assist.cloud.widget.SpinnerDepartMent
+                    android:id="@+id/sp_department_get"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:manspinner_name="收料部门:"
+                    app:manspinner_size="12sp" />
+
+                <com.fangzuo.assist.cloud.widget.SpinnerOrg
+                    android:id="@+id/sp_org_buy"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:manspinner_name="采购组织:"
+                    app:manspinner_size="12sp" />
+                <com.fangzuo.assist.cloud.widget.SpinnerOrg
+                    android:id="@+id/sp_org_get"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:manspinner_name="收料组织:"
+                    app:manspinner_size="12sp" />
+                <com.fangzuo.assist.cloud.widget.SpinnerBuyer
+                    android:id="@+id/sp_buyer"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:manspinner_name="采购员:"
+                    app:manspinner_size="12sp" />
+
+                <com.fangzuo.assist.cloud.widget.SpinnerStoreMan
+                    android:id="@+id/sp_storeman"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:manspinner_name="@string/store_man"
+                    app:manspinner_size="12sp" />
+
+                <com.fangzuo.assist.cloud.widget.SpinnerSaleMan
+                    android:visibility="gone"
+                    android:id="@+id/sp_saleman"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:manspinner_name="销售员:"
+                    app:manspinner_size="9sp" />
+                <!--<TextView-->
+                    <!--android:text="@string/note"-->
+                    <!--android:textSize="@dimen/sp_size"-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content" />-->
+                <!--<EditText-->
+                    <!--android:id="@+id/ed_not"-->
+                    <!--android:paddingLeft="8dp"-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:layout_height="100dp"-->
+                    <!--android:background="@drawable/bg_edittext_selector"-->
+                    <!--android:textSize="21sp" />-->
+            </LinearLayout>
+        </android.support.v7.widget.CardView>
+    </ScrollView>
+
+
+</RelativeLayout>

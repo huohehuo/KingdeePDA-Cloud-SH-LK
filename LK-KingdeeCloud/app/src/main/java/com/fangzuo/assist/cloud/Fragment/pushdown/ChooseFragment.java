@@ -40,6 +40,7 @@ import com.fangzuo.assist.cloud.Utils.Toast;
 import com.fangzuo.assist.cloud.Utils.WebApi;
 import com.fangzuo.assist.cloud.widget.LoadingUtil;
 import com.fangzuo.assist.cloud.widget.SpinnerClientDlg;
+import com.fangzuo.assist.cloud.widget.SpinnerSupplierDlg;
 import com.fangzuo.greendao.gen.DaoSession;
 import com.fangzuo.greendao.gen.PGetDataDao;
 import com.fangzuo.greendao.gen.PushDownMainDao;
@@ -85,8 +86,8 @@ public class ChooseFragment extends BaseFragment {
     SwipeRefreshLayout refresh;
     @BindView(R.id.sp_client)
     SpinnerClientDlg spClient;
-    //    @BindView(R.id.sp_supplier)
-//    SpinnerSupplier spSupplier;
+    @BindView(R.id.sp_supplier)
+    SpinnerSupplierDlg spSupplier;
     private FragmentActivity mContext;
     private DaoSession daosession;
     private ArrayList<Boolean> isCheck;
@@ -139,17 +140,18 @@ public class ChooseFragment extends BaseFragment {
         downloadIDs = new ArrayList<PushDownMain>();
         container = new ArrayList<>();
         daosession = GreenDaoManager.getmInstance(mContext).getDaoSession();
-//        if (tag == 1) {
-//            //供应商信息绑定
-//            spClient.setVisibility(View.GONE);
-//            spSupplier.setVisibility(View.VISIBLE);
-//        } else {
-//            //客户信息绑定
-//            spClient.setVisibility(View.VISIBLE);
-//            spSupplier.setVisibility(View.GONE);
-//        }
+        if (tag == 1 || tag== 34) {
+//            供应商信息绑定
+            spClient.setVisibility(View.GONE);
+            spSupplier.setVisibility(View.VISIBLE);
+        } else {
+            //客户信息绑定
+            spClient.setVisibility(View.VISIBLE);
+            spSupplier.setVisibility(View.GONE);
+        }
         initList();
         if (tag == 1) activity = Config.PdCgOrder2WgrkActivity;
+        if (tag == 34) activity = Config.PdCgOrder2WwrkActivity;
         if (tag == 32) activity = Config.FLInStoreP1Activity;
         if (tag == 2) activity = Config.PdSaleOrder2SaleOutActivity;
         if (tag == 31) activity = Config.PdSaleOrder2SaleOut4BoxActivity;
@@ -170,6 +172,11 @@ public class ChooseFragment extends BaseFragment {
 
     }
 
+    @Override
+    public void onPause() {
+        super.onPause();
+        unRegister();
+    }
     @Override
     protected void initData() {
 
@@ -208,12 +215,17 @@ public class ChooseFragment extends BaseFragment {
                     PagerForActivity.start(mContext, Config.PdCgOrder2WgrkActivity, container);
 //                    intent = new Intent(mContext, PdCgOrder2WgrkActivity.class);
                     break;
-                case 32://方料入库
-                    PagerForActivity.start(mContext, Config.FLInStoreP1Activity, container);
+                case 34://采购订单下推委外入库单
+                    PagerForActivity.start(mContext, Config.PdCgOrder2WwrkActivity, container);
 //                    intent = new Intent(mContext, PdCgOrder2WgrkActivity.class);
                     break;
                 case 2://销售订单下推销售出库单
                     PagerForActivity.start(mContext, Config.PdSaleOrder2SaleOutActivity, container);
+                    break;
+
+                case 32://方料入库
+                    PagerForActivity.start(mContext, Config.FLInStoreP1Activity, container);
+//                    intent = new Intent(mContext, PdCgOrder2WgrkActivity.class);
                     break;
                 case 31://销售订单下推销售出库单
                     PagerForActivity.start(mContext, Config.PdSaleOrder2SaleOut4BoxActivity, container);
@@ -470,90 +482,93 @@ public class ChooseFragment extends BaseFragment {
         Lg.e("删除的明细dids：",downloadIDs);
         Lg.e("删除的明细：",list);
         if (list.size() > 0) {
-//            t_detailList = new ArrayList<>();
-//            t_mainsList = new ArrayList<>();
-            pBean = new PurchaseInStoreUploadBean();
-            listBean = pBean.new purchaseInStore();
-            data = new ArrayList<>();
-            String detail = "";
-            listBean.main = "";
-            ArrayList<String> detailContainer = new ArrayList<>();
-            for (int j = 0; j < list.size(); j++) {
-                if (j != 0 && j % 49 == 0) {
-                    Log.e("j%49", j % 49 + "");
-                    T_Detail t_detail = list.get(j);
-                    detail = detail +
-                            t_detail.FBarcode + "|" +
-                            t_detail.FRealQty + "|" +
-                            t_detail.IMIE + "|" +
-                            t_detail.FOrderId + "|";
-                    detail = detail.subSequence(0, detail.length() - 1).toString();
-                    detailContainer.add(detail);
-                    detail = "";
-                } else {
-                    Log.e("j", j + "");
-                    T_Detail t_detail = list.get(j);
-                    detail = detail +
-                            t_detail.FBarcode + "|" +
-                            t_detail.FRealQty + "|" +
-                            t_detail.IMIE + "|" +
-                            t_detail.FOrderId + "|";
-                    Log.e("detail1", detail);
+            for (int i = 0; i < downloadIDs.size(); i++) {
+                List<PushDownSub> pushDownSubs = pushDownSubDao.queryBuilder().where(
+                        PushDownSubDao.Properties.FID.eq(downloadIDs.get(i).FID),
+                        PushDownSubDao.Properties.FAccountID.eq(CommonUtil.getAccountID())
+                ).build().list();
+                Lg.e("删除表体"+pushDownSubs.size(),pushDownSubs);
+                for (int j = 0; j < pushDownSubs.size(); j++) {
+                    pushDownSubDao.delete(pushDownSubs.get(j));
                 }
-            }
-            if (detail.length() > 0) {
-                detail = detail.subSequence(0, detail.length() - 1).toString();
-            }
-            Log.e("detail", detail);
-            detailContainer.add(detail);
-            listBean.detail = detailContainer;
-            data.add(listBean);
-            pBean.list = data;
-            Gson gson = new Gson();
-            App.getRService().doIOAction(WebApi.CodeOnlyDelete, gson.toJson(pBean), new MySubscribe<CommonResponse>() {
-                @Override
-                public void onNext(CommonResponse commonResponse) {
-                    super.onNext(commonResponse);
-                    if (!commonResponse.state) return;
-                    Lg.e("删除请求成功");
-                    for (int i = 0; i < downloadIDs.size(); i++) {
-                        List<PushDownSub> pushDownSubs = pushDownSubDao.queryBuilder().where(
-                                PushDownSubDao.Properties.FID.eq(downloadIDs.get(i).FID),
-                                PushDownSubDao.Properties.FAccountID.eq(CommonUtil.getAccountID())
-                        ).build().list();
-                        Lg.e("删除表体"+pushDownSubs.size(),pushDownSubs);
-                        for (int j = 0; j < pushDownSubs.size(); j++) {
-                            pushDownSubDao.delete(pushDownSubs.get(j));
-                        }
-                        //删掉与该单据相关的明细
-                        t_detailDao.deleteInTx(t_detailDao.queryBuilder().where(
-                                T_DetailDao.Properties.FID.eq(downloadIDs.get(i).FID),
-                                T_DetailDao.Properties.FAccountID.eq(CommonUtil.getAccountID())
-                        ).build().list());
-                        t_mainDao.deleteInTx(t_mainDao.queryBuilder().where(
-                                T_mainDao.Properties.FID.eq(downloadIDs.get(i).FID),
-                                T_mainDao.Properties.FAccountID.eq(CommonUtil.getAccountID())
-                        ).build().list());
-                        pushDownMainDao.delete(downloadIDs.get(i));
-                        if (tag == 30){
-                            pGetDataDao.deleteInTx(pGetDataDao.queryBuilder().where(
-                                    PGetDataDao.Properties.FID.eq(downloadIDs.get(i).FID),
-                                    PGetDataDao.Properties.FAccountID.eq(CommonUtil.getAccountID())
-                            ).build().list());
-                        }
-                        Toast.showText(mContext, "删除成功");
-                    }
-                        initList();
-                        Search();
+                //删掉与该单据相关的明细
+                t_detailDao.deleteInTx(t_detailDao.queryBuilder().where(
+                        T_DetailDao.Properties.FID.eq(downloadIDs.get(i).FID),
+                        T_DetailDao.Properties.FAccountID.eq(CommonUtil.getAccountID())
+                ).build().list());
+                t_mainDao.deleteInTx(t_mainDao.queryBuilder().where(
+                        T_mainDao.Properties.FID.eq(downloadIDs.get(i).FID),
+                        T_mainDao.Properties.FAccountID.eq(CommonUtil.getAccountID())
+                ).build().list());
+                pushDownMainDao.delete(downloadIDs.get(i));
+                if (tag == 30){
+                    pGetDataDao.deleteInTx(pGetDataDao.queryBuilder().where(
+                            PGetDataDao.Properties.FID.eq(downloadIDs.get(i).FID),
+                            PGetDataDao.Properties.FAccountID.eq(CommonUtil.getAccountID())
+                    ).build().list());
                 }
+                Toast.showText(mContext, "删除成功");
+            }
+            initList();
+            Search();
 
-                @Override
-                public void onError(Throwable e) {
-                    super.onError(e);
-                    LoadingUtil.dismiss();
-                    Toast.showText(mContext, "删除失败：" + e.toString());
-                }
-            });
+//
+////            t_detailList = new ArrayList<>();
+////            t_mainsList = new ArrayList<>();
+//            pBean = new PurchaseInStoreUploadBean();
+//            listBean = pBean.new purchaseInStore();
+//            data = new ArrayList<>();
+//            String detail = "";
+//            listBean.main = "";
+//            ArrayList<String> detailContainer = new ArrayList<>();
+//            for (int j = 0; j < list.size(); j++) {
+//                if (j != 0 && j % 49 == 0) {
+//                    Log.e("j%49", j % 49 + "");
+//                    T_Detail t_detail = list.get(j);
+//                    detail = detail +
+//                            t_detail.FBarcode + "|" +
+//                            t_detail.FRealQty + "|" +
+//                            t_detail.IMIE + "|" +
+//                            t_detail.FOrderId + "|";
+//                    detail = detail.subSequence(0, detail.length() - 1).toString();
+//                    detailContainer.add(detail);
+//                    detail = "";
+//                } else {
+//                    Log.e("j", j + "");
+//                    T_Detail t_detail = list.get(j);
+//                    detail = detail +
+//                            t_detail.FBarcode + "|" +
+//                            t_detail.FRealQty + "|" +
+//                            t_detail.IMIE + "|" +
+//                            t_detail.FOrderId + "|";
+//                    Log.e("detail1", detail);
+//                }
+//            }
+//            if (detail.length() > 0) {
+//                detail = detail.subSequence(0, detail.length() - 1).toString();
+//            }
+//            Log.e("detail", detail);
+//            detailContainer.add(detail);
+//            listBean.detail = detailContainer;
+//            data.add(listBean);
+//            pBean.list = data;
+//            Gson gson = new Gson();
+//            App.getRService().doIOAction(WebApi.CodeOnlyDelete, gson.toJson(pBean), new MySubscribe<CommonResponse>() {
+//                @Override
+//                public void onNext(CommonResponse commonResponse) {
+//                    super.onNext(commonResponse);
+//                    if (!commonResponse.state) return;
+//                    Lg.e("删除请求成功");
+//
+//                }
+//
+//                @Override
+//                public void onError(Throwable e) {
+//                    super.onError(e);
+//                    LoadingUtil.dismiss();
+//                    Toast.showText(mContext, "删除失败：" + e.toString());
+//                }
+//            });
 
         } else {
             Lg.e("downLoadIDs",downloadIDs);
@@ -590,13 +605,13 @@ public class ChooseFragment extends BaseFragment {
 
     //查找本地数据
     private void Search() {
-//        if (tag == 1) {
-//            //供应商信息绑定
-//            supplierID=spSupplier.getDataId();
-//        } else {
-        //客户信息绑定
-        supplierID = spClient.getDataName();
-//        }
+        if (tag == 1 || tag== 34) {
+//            供应商信息绑定
+            supplierID=spSupplier.getDataId();
+        } else {
+            //客户信息绑定
+            supplierID = spClient.getDataName();
+        }
 
         container.clear();
         isCheck.clear();

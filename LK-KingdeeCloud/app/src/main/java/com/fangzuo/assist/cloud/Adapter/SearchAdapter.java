@@ -54,8 +54,8 @@ public class SearchAdapter extends BaseAdapter {
             viewHolder = (ViewHolder) view.getTag();
         }
 
-        viewHolder.fID.setText(items.get(i).FName);
-        viewHolder.fname.setText(items.get(i).FModel);
+        viewHolder.fID.setText(items.get(i).FNumber);
+        viewHolder.fname.setText(items.get(i).FName);
         return view;
     }
 

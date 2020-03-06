@@ -20,7 +20,7 @@
             <com.fangzuo.assist.cloud.Utils.PagerSlidingTabStrip
                 android:id="@+id/tabstrip"
                 android:layout_width="match_parent"
-                android:layout_height="40dp" />
+                android:layout_height="33dp" />
         </LinearLayout>
 
 

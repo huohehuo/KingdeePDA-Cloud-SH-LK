@@ -296,70 +296,72 @@ public class ReViewPDActivity extends BaseActivity {
                                         T_DetailDao.Properties.FIndex.eq(list.get(j).FIndex)
                                 ).build().unique();
                                 t_detailList.add(t_detail);
-                                final T_main t_main = t_mainDao.queryBuilder().where(
-                                        T_mainDao.Properties.FIndex.eq(list.get(j).FIndex)
-                                ).build().unique();
-                                t_mainsList.add(t_main);
+//                                final T_main t_main = t_mainDao.queryBuilder().where(
+//                                        T_mainDao.Properties.FIndex.eq(list.get(j).FIndex)
+//                                ).build().unique();
+//                                t_mainsList.add(t_main);
                                 Log.e(TAG, "获取到T_Detail:" + t_detail.toString());
                             }
                         }
-                        String detail = "";
-                        listBean.main = "";
-                        ArrayList<String> detailContainer = new ArrayList<>();
-                        for (int j = 0; j < t_detailList.size(); j++) {
-                            if (j != 0 && j % 49 == 0) {
-                                Log.e("j%49", j % 49 + "");
-                                T_Detail t_detail = t_detailList.get(j);
-                                detail = detail +
-                                        t_detail.FBarcode + "|" +
-                                        t_detail.FRealQty + "|" +
-                                        t_detail.IMIE + "|" +
-                                        t_detail.FOrderId + "|";
-                                detail = detail.subSequence(0, detail.length() - 1).toString();
-                                detailContainer.add(detail);
-                                detail = "";
-                            } else {
-                                Log.e("j", j + "");
-                                T_Detail t_detail = t_detailList.get(j);
-                                detail = detail +
-                                        t_detail.FBarcode + "|" +
-                                        t_detail.FRealQty + "|" +
-                                        t_detail.IMIE + "|" +
-                                        t_detail.FOrderId + "|";
-                                Log.e("detail1", detail);
-                            }
-                        }
-                        if (detail.length() > 0) {
-                            detail = detail.subSequence(0, detail.length() - 1).toString();
-                        }
-                        Log.e("detail", detail);
-                        detailContainer.add(detail);
-                        listBean.detail = detailContainer;
-                        data.add(listBean);
-                        pBean.list = data;
-                        Gson gson = new Gson();
-                        App.getRService().doIOAction(WebApi.CodeOnlyDelete, gson.toJson(pBean), new MySubscribe<CommonResponse>() {
-                            @Override
-                            public void onNext(CommonResponse commonResponse) {
-                                super.onNext(commonResponse);
-                                if (!commonResponse.state) return;
-                                Lg.e("删除请求成功");
-                                deleteMain(t_detailList);
-//                                t_detailDao.deleteInTx(t_detailList);
-//                                t_mainDao.deleteInTx(t_mainsList);
-//                                Toast.showText(mContext, "删除成功");
-//                                initList();
-//                                tableAdapter.notifyDataSetChanged();
-                                LoadingUtil.dismiss();
-                            }
-
-                            @Override
-                            public void onError(Throwable e) {
-                                super.onError(e);
-                                LoadingUtil.dismiss();
-                                Toast.showText(mContext, "删除失败：" + e.toString());
-                            }
-                        });
+                        deleteMain(t_detailList);
+                        LoadingUtil.dismiss();
+//                        String detail = "";
+//                        listBean.main = "";
+//                        ArrayList<String> detailContainer = new ArrayList<>();
+//                        for (int j = 0; j < t_detailList.size(); j++) {
+//                            if (j != 0 && j % 49 == 0) {
+//                                Log.e("j%49", j % 49 + "");
+//                                T_Detail t_detail = t_detailList.get(j);
+//                                detail = detail +
+//                                        t_detail.FBarcode + "|" +
+//                                        t_detail.FRealQty + "|" +
+//                                        t_detail.IMIE + "|" +
+//                                        t_detail.FOrderId + "|";
+//                                detail = detail.subSequence(0, detail.length() - 1).toString();
+//                                detailContainer.add(detail);
+//                                detail = "";
+//                            } else {
+//                                Log.e("j", j + "");
+//                                T_Detail t_detail = t_detailList.get(j);
+//                                detail = detail +
+//                                        t_detail.FBarcode + "|" +
+//                                        t_detail.FRealQty + "|" +
+//                                        t_detail.IMIE + "|" +
+//                                        t_detail.FOrderId + "|";
+//                                Log.e("detail1", detail);
+//                            }
+//                        }
+//                        if (detail.length() > 0) {
+//                            detail = detail.subSequence(0, detail.length() - 1).toString();
+//                        }
+//                        Log.e("detail", detail);
+//                        detailContainer.add(detail);
+//                        listBean.detail = detailContainer;
+//                        data.add(listBean);
+//                        pBean.list = data;
+//                        Gson gson = new Gson();
+//                        App.getRService().doIOAction(WebApi.CodeOnlyDelete, gson.toJson(pBean), new MySubscribe<CommonResponse>() {
+//                            @Override
+//                            public void onNext(CommonResponse commonResponse) {
+//                                super.onNext(commonResponse);
+//                                if (!commonResponse.state) return;
+//                                Lg.e("删除请求成功");
+//                                deleteMain(t_detailList);
+////                                t_detailDao.deleteInTx(t_detailList);
+////                                t_mainDao.deleteInTx(t_mainsList);
+////                                Toast.showText(mContext, "删除成功");
+////                                initList();
+////                                tableAdapter.notifyDataSetChanged();
+//                                LoadingUtil.dismiss();
+//                            }
+//
+//                            @Override
+//                            public void onError(Throwable e) {
+//                                super.onError(e);
+//                                LoadingUtil.dismiss();
+//                                Toast.showText(mContext, "删除失败：" + e.toString());
+//                            }
+//                        });
 
 //                        List<T_Detail> details = new ArrayList<>();
 //                        for (int j = 0; j < list.size(); j++) {
@@ -414,6 +416,10 @@ public class ReViewPDActivity extends BaseActivity {
                     //删除后，更新数据里面的已验收数
                     double result = MathUtil.toD(list.get(j).FRealQty);
                     pushDownSubs.get(0).FQtying = MathUtil.doubleSub(MathUtil.toD(pushDownSubs.get(0).FQtying), result) + "";
+                    if (activity == Config.PdSaleOrder2SaleOutActivity){
+                        double result2 = MathUtil.toD(list.get(j).FAuxQty);
+                        pushDownSubs.get(0).FAuxQtying = MathUtil.doubleSub(MathUtil.toD(pushDownSubs.get(0).FAuxQtying), result2) + "";
+                    }
                     Lg.e("减掉得到：", pushDownSubs.get(0).FQtying);
                     pushDownSubDao.update(pushDownSubs.get(0));
                 }

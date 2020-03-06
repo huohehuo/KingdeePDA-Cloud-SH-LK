@@ -28,6 +28,8 @@ public class WaveHouseDao extends AbstractDao<WaveHouse, Void> {
         public final static Property FNumber = new Property(1, String.class, "FNumber", false, "FNUMBER");
         public final static Property FName = new Property(2, String.class, "FName", false, "FNAME");
         public final static Property FOrg = new Property(3, String.class, "FOrg", false, "FORG");
+        public final static Property FStorageID = new Property(4, String.class, "FStorageID", false, "FSTORAGE_ID");
+        public final static Property FSEQ = new Property(5, String.class, "FSEQ", false, "FSEQ");
     }
 
 
@@ -46,7 +48,9 @@ public class WaveHouseDao extends AbstractDao<WaveHouse, Void> {
                 "\"FSPID\" TEXT," + // 0: FSPID
                 "\"FNUMBER\" TEXT," + // 1: FNumber
                 "\"FNAME\" TEXT," + // 2: FName
-                "\"FORG\" TEXT);"); // 3: FOrg
+                "\"FORG\" TEXT," + // 3: FOrg
+                "\"FSTORAGE_ID\" TEXT," + // 4: FStorageID
+                "\"FSEQ\" TEXT);"); // 5: FSEQ
     }
 
     /** Drops the underlying database table. */
@@ -78,6 +82,16 @@ public class WaveHouseDao extends AbstractDao<WaveHouse, Void> {
         if (FOrg != null) {
             stmt.bindString(4, FOrg);
         }
+ 
+        String FStorageID = entity.getFStorageID();
+        if (FStorageID != null) {
+            stmt.bindString(5, FStorageID);
+        }
+ 
+        String FSEQ = entity.getFSEQ();
+        if (FSEQ != null) {
+            stmt.bindString(6, FSEQ);
+        }
     }
 
     @Override
@@ -103,6 +117,16 @@ public class WaveHouseDao extends AbstractDao<WaveHouse, Void> {
         if (FOrg != null) {
             stmt.bindString(4, FOrg);
         }
+ 
+        String FStorageID = entity.getFStorageID();
+        if (FStorageID != null) {
+            stmt.bindString(5, FStorageID);
+        }
+ 
+        String FSEQ = entity.getFSEQ();
+        if (FSEQ != null) {
+            stmt.bindString(6, FSEQ);
+        }
     }
 
     @Override
@@ -116,7 +140,9 @@ public class WaveHouseDao extends AbstractDao<WaveHouse, Void> {
             cursor.isNull(offset + 0) ? null : cursor.getString(offset + 0), // FSPID
             cursor.isNull(offset + 1) ? null : cursor.getString(offset + 1), // FNumber
             cursor.isNull(offset + 2) ? null : cursor.getString(offset + 2), // FName
-            cursor.isNull(offset + 3) ? null : cursor.getString(offset + 3) // FOrg
+            cursor.isNull(offset + 3) ? null : cursor.getString(offset + 3), // FOrg
+            cursor.isNull(offset + 4) ? null : cursor.getString(offset + 4), // FStorageID
+            cursor.isNull(offset + 5) ? null : cursor.getString(offset + 5) // FSEQ
         );
         return entity;
     }
@@ -127,6 +153,8 @@ public class WaveHouseDao extends AbstractDao<WaveHouse, Void> {
         entity.setFNumber(cursor.isNull(offset + 1) ? null : cursor.getString(offset + 1));
         entity.setFName(cursor.isNull(offset + 2) ? null : cursor.getString(offset + 2));
         entity.setFOrg(cursor.isNull(offset + 3) ? null : cursor.getString(offset + 3));
+        entity.setFStorageID(cursor.isNull(offset + 4) ? null : cursor.getString(offset + 4));
+        entity.setFSEQ(cursor.isNull(offset + 5) ? null : cursor.getString(offset + 5));
      }
     
     @Override

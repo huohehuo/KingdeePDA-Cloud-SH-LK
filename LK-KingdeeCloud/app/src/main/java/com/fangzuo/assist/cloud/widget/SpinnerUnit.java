@@ -45,6 +45,7 @@ public class SpinnerUnit extends RelativeLayout {
     private String unitId = "";
     private String unitName = "";
     private String unitNumber = "";
+    private String UnitGroupID = "";
     private Unit thisunit;
     public static final String Name = "name";
     public static final String Id = "id";
@@ -129,7 +130,7 @@ public class SpinnerUnit extends RelativeLayout {
         return unitNumber;
     }
     public Unit getDataObject() {
-        return thisunit==null?new Unit("","","",""):thisunit;
+        return thisunit==null?new Unit("","","","",""):thisunit;
     }
     public UnitSpAdapter getAdapter() {
         return adapter;
@@ -202,16 +203,22 @@ public class SpinnerUnit extends RelativeLayout {
         }
 
     }
-
+    public void setAuto(String autoStr, final String type) {}
     //自动设置保存的值
     //type: 根据什么字段定位：number，id，name
-    public void setAuto(String autoStr, final String type) {
+    public void setAuto(String group,String autoStr, final String type) {
         unitId = "";
         unitName = "";
         unitNumber = "";
         thisunit = null;
         Lg.e(TGP+"setAuto:" + autoStr);
         autoString = autoStr;
+        if (null==group || "".equals(group)){
+            UnitGroupID = "";
+            Lg.e("单位组不存在");
+        }else{
+            UnitGroupID=group;
+        }
 //        autoOrg = org==null?"":org.FOrgID;
         final List<Unit> listTemp =getLocData();
         Lg.e("单位本地过滤：",listTemp);
@@ -256,16 +263,10 @@ public class SpinnerUnit extends RelativeLayout {
     }
 
     private List<Unit> getLocData(){
-        UnitDao unitDao = daoSession.getUnitDao();
-//        return unitDao.queryBuilder().where(
-//                UnitDao.Properties.FMeasureUnitID.eq(unitGroupID)
-//        ).build().list();
-        return unitDao.loadAll();
-    }
-    private List<Unit> getLocData(String org){
+        Lg.e("过滤单位组" + UnitGroupID);
         UnitDao unitDao = daoSession.getUnitDao();
         return unitDao.queryBuilder().where(
-                UnitDao.Properties.FOrg.eq(org)
+                UnitDao.Properties.FUnitGroupID.eq(UnitGroupID)
         ).build().list();
 //        return unitDao.loadAll();
     }
@@ -285,6 +286,7 @@ public class SpinnerUnit extends RelativeLayout {
                 mSp.setAdapter(adapter);
                 adapter.notifyDataSetChanged();
             if (list.size()==1){//当只有一个的时候，重新适配器，为了spinner的监听能响应
+                Lg.e("单位"+autoString,list.get(0));
                 unitId = list.get(0).FMeasureUnitID;
                 unitName=list.get(0).FName;
                 unitNumber=list.get(0).FNumber;
@@ -300,7 +302,7 @@ public class SpinnerUnit extends RelativeLayout {
                     if (Number.equals(type)) {
                         for (int j = 0; j < list.size(); j++) {
                             if (list.get(j).FNumber.equals(autoString)) {
-                                Lg.e("单位定位（自定义控件：" + autoString);
+                                Lg.e("单位"+autoString,list.get(j));
                                 unitId = list.get(j).FMeasureUnitID;
                                 unitName=list.get(j).FName;
                                 unitNumber=list.get(j).FNumber;
@@ -312,7 +314,7 @@ public class SpinnerUnit extends RelativeLayout {
                     } else if (Name.equals(type)) {
                         for (int j = 0; j < list.size(); j++) {
                             if (list.get(j).FName.equals(autoString)) {
-                                Lg.e("单位定位（自定义控件：" + autoString);
+                                Lg.e("单位"+autoString,list.get(j));
                                 unitId = list.get(j).FMeasureUnitID;
                                 unitName=list.get(j).FName;
                                 unitNumber=list.get(j).FNumber;
@@ -324,7 +326,7 @@ public class SpinnerUnit extends RelativeLayout {
                     } else if (Id.equals(type)) {
                         for (int j = 0; j < list.size(); j++) {
                             if (list.get(j).FMeasureUnitID.equals(autoString)) {
-                                Lg.e("单位定位（自定义控件：" + autoString);
+                                Lg.e("单位"+autoString,list.get(j));
                                 unitId = list.get(j).FMeasureUnitID;
                                 unitName=list.get(j).FName;
                                 unitNumber=list.get(j).FNumber;
@@ -335,6 +337,7 @@ public class SpinnerUnit extends RelativeLayout {
                         }
                     }
                     if ("".equals(unitId) && "".equals(unitName)){
+                        Lg.e("单位"+autoString,list.get(0));
                         unitId = list.get(0).FMeasureUnitID;
                         unitName=list.get(0).FName;
                         unitNumber=list.get(0).FNumber;

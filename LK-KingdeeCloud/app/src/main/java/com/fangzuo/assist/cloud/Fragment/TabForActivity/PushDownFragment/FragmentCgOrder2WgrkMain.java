@@ -221,16 +221,16 @@ public class FragmentCgOrder2WgrkMain extends BaseFragment {
                 Hawk.put(getString(R.string.spOrgBuy_cg2wg)+activityPager.getActivityMain(), activityPager.getOrgOut().FName);
 //                spDepartmentSend.setAuto(getString(R.string.spDepartmentBuy_cg2wg)+activityPager.getActivityMain(), Hawk.get(getString(R.string.spDepartmentBuy_cg2wg)+activityPager.getActivityMain(), ""), activityPager.getOrgOut(), activityPager.getActivity());
 //                spBuyer.setAuto(getString(R.string.spBuyer_cg2wg)+activityPager.getActivityMain(), Hawk.get(getString(R.string.spBuyer_cg2wg)+activityPager.getActivityMain(), ""), activityPager.getOrgOut());
-//                EventBusUtil.sendEvent(new ClassEvent(EventBusInfoCode.UpdataView, ""));
+                EventBusUtil.sendEvent(new ClassEvent(EventBusInfoCode.UpdataView, ""));
 
             }
         });
-        cbIsStorage.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
-                activityPager.setStorage(b);
-            }
-        });
+//        cbIsStorage.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+//            @Override
+//            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+//                activityPager.setStorage(b);
+//            }
+//        });
 
     }
 
@@ -257,7 +257,7 @@ public class FragmentCgOrder2WgrkMain extends BaseFragment {
     @Override
     public void onDestroyView() {
         super.onDestroyView();
-        Hawk.put(Info.Storage + activityPager, cbIsStorage.isChecked());
+//        Hawk.put(Info.Storage + activityPager, cbIsStorage.isChecked());
         unbinder.unbind();
     }
 

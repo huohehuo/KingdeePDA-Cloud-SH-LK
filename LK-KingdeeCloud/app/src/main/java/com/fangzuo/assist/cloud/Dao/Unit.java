@@ -12,13 +12,16 @@ public class Unit {
     public String FNumber;
     public String FName;
     public String FOrg;
+    public String FUnitGroupID;
 
-    @Generated(hash = 1034157639)
-    public Unit(String FMeasureUnitID, String FNumber, String FName, String FOrg) {
+    @Generated(hash = 1591658111)
+    public Unit(String FMeasureUnitID, String FNumber, String FName, String FOrg,
+            String FUnitGroupID) {
         this.FMeasureUnitID = FMeasureUnitID;
         this.FNumber = FNumber;
         this.FName = FName;
         this.FOrg = FOrg;
+        this.FUnitGroupID = FUnitGroupID;
     }
 
     @Generated(hash = 1236212320)
@@ -66,5 +69,13 @@ public class Unit {
 
     public void setFOrg(String FOrg) {
         this.FOrg = FOrg;
+    }
+
+    public String getFUnitGroupID() {
+        return this.FUnitGroupID;
+    }
+
+    public void setFUnitGroupID(String FUnitGroupID) {
+        this.FUnitGroupID = FUnitGroupID;
     }
 }

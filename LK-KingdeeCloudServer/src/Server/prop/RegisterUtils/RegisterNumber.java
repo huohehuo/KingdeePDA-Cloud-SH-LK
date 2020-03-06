@@ -43,7 +43,7 @@ public class RegisterNumber extends HttpServlet {
                 e.printStackTrace();
             } catch (SQLException e) {
                 e.printStackTrace();
-                response.getWriter().write(CommonJson.getCommonJson(false,"1"));
+                response.getWriter().write(CommonJson.getCommonJson(false,"2"));
             }finally {
                 JDBCUtil.close(rs,sta,conn);
             }

@@ -153,7 +153,7 @@ public class SpinnerUser extends RelativeLayout {
 
             @Override
             public void onError(Throwable e) {
-                super.onError(e);
+//                super.onError(e);
             }
         });
 

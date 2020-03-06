@@ -1825,42 +1825,71 @@ public class CommonUtil {
     批次条码:大于16小于20位
                批次和备注  11位到空格是批次*/
 
-    /*if (CommonUtil.ScanBack(code).size()>0){
-            List<String> list = CommonUtil.ScanBack(code);
+    /*        List<String> list = CommonUtil.ScanBack(code);
+    if (list.size()>0){
             edNum.setText(list.get(1));
             ScanBarCode(list.get(0));
         }*/
     public static List<String> ScanBack(String code) {
         List<String> list = new ArrayList<>();
-        if (code.contains("/")) {
-            String[] split = code.split("/", 3);
-            Log.e("code:", split.length + "");
-            if (split.length == 3) {
-                String fcode = split[0];
-                if (fcode.length() > 12) {
-                    try {
-                        String barcode = fcode.substring(0, 12);
-                        list.add(barcode);
-                        String num = fcode.substring(12, fcode.length());
-                        list.add(num);
-                        list.add(split[1]);
-                        return list;
-                    } catch (Exception e) {
-                        Toast.showText(App.getContext(), "条码有误");
-                        return new ArrayList<>();
-                    }
-                } else {
-                    Toast.showText(App.getContext(), "条码有误");
-                    return new ArrayList<>();
+        if (code.startsWith("01")){
+            try {
+                if (code.length()>=26){
+                    list.add(code.substring(2,16));//物料码
+                    list.add((MathUtil.toD(code.substring(21,26))/100)+"");//数量
+                    list.add(code.substring(28,34));
+                }else{
+                    Toast.showText(App.getContext(), "条码长度有误");
                 }
-            } else {
-                Toast.showText(App.getContext(), "条码有误");
-                return new ArrayList<>();
+            }catch (Exception e){
+                Toast.showText(App.getContext(), "条码长度截取有误");
             }
-        } else {
-            Toast.showText(App.getContext(), "条码有误");
-            return new ArrayList<>();
+
+        }else{
+            try {
+                list.add(code.substring(0,13));//物料码
+                list.add(code.substring(13,21));//批号
+                list.add(code.substring(21,29));//生产日期
+                list.add(code.substring(29,code.length()));//数量
+            }catch (Exception e){
+                Toast.showText(App.getContext(),"条码长度截取有误");
+            }
         }
+
+        Lg.e("返回解析",list);
+        return list;
+
+
+//
+//        if (code.contains("/")) {
+//            String[] split = code.split("/", 3);
+//            Log.e("code:", split.length + "");
+//            if (split.length == 3) {
+//                String fcode = split[0];
+//                if (fcode.length() > 12) {
+//                    try {
+//                        String barcode = fcode.substring(0, 12);
+//                        list.add(barcode);
+//                        String num = fcode.substring(12, fcode.length());
+//                        list.add(num);
+//                        list.add(split[1]);
+//                        return list;
+//                    } catch (Exception e) {
+//                        Toast.showText(App.getContext(), "条码有误");
+//                        return new ArrayList<>();
+//                    }
+//                } else {
+//                    Toast.showText(App.getContext(), "条码有误");
+//                    return new ArrayList<>();
+//                }
+//            } else {
+//                Toast.showText(App.getContext(), "条码有误");
+//                return new ArrayList<>();
+//            }
+//        } else {
+//            Toast.showText(App.getContext(), "条码有误");
+//            return new ArrayList<>();
+//        }
 
 //        List<String> list = new ArrayList<>();
 //        if (code.length()>22){

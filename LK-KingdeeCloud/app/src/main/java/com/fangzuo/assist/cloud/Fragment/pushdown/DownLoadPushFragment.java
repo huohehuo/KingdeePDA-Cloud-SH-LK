@@ -23,7 +23,9 @@ import android.widget.TextView;
 
 import com.fangzuo.assist.cloud.ABase.BaseFragment;
 import com.fangzuo.assist.cloud.Activity.Crash.App;
+import com.fangzuo.assist.cloud.Activity.ProductSearchActivity;
 import com.fangzuo.assist.cloud.Activity.PushDownPagerActivity;
+import com.fangzuo.assist.cloud.Activity.SearchDataActivity;
 import com.fangzuo.assist.cloud.Adapter.PushDownListAdapter;
 import com.fangzuo.assist.cloud.Beans.CommonBean;
 import com.fangzuo.assist.cloud.Beans.CommonResponse;
@@ -44,12 +46,15 @@ import com.fangzuo.assist.cloud.Utils.Asynchttp;
 import com.fangzuo.assist.cloud.Utils.BasicShareUtil;
 import com.fangzuo.assist.cloud.Utils.CommonUtil;
 import com.fangzuo.assist.cloud.Utils.Config;
+import com.fangzuo.assist.cloud.Utils.EventBusInfoCode;
 import com.fangzuo.assist.cloud.Utils.GreedDaoUtil.GreenDaoManager;
+import com.fangzuo.assist.cloud.Utils.Info;
 import com.fangzuo.assist.cloud.Utils.Lg;
 import com.fangzuo.assist.cloud.Utils.Toast;
 import com.fangzuo.assist.cloud.Utils.WebApi;
 import com.fangzuo.assist.cloud.widget.LoadingUtil;
 import com.fangzuo.assist.cloud.widget.SpinnerClientDlg;
+import com.fangzuo.assist.cloud.widget.SpinnerSupplierDlg;
 import com.fangzuo.greendao.gen.DaoSession;
 import com.fangzuo.greendao.gen.PGetDataDao;
 import com.fangzuo.greendao.gen.PushDownMainDao;
@@ -94,8 +99,8 @@ public class DownLoadPushFragment extends BaseFragment {
     SwipeRefreshLayout refresh;
     @BindView(R.id.sp_client)
     SpinnerClientDlg spClient;
-//    @BindView(R.id.sp_supplier)
-//    SpinnerSupplier spSupplier;
+    @BindView(R.id.sp_supplier)
+    SpinnerSupplierDlg spSupplier;
     private int tag;
     private FragmentActivity mContext;
     private ArrayList<Boolean> isCheck;
@@ -124,6 +129,7 @@ public class DownLoadPushFragment extends BaseFragment {
         pushDownSubDao = daosession.getPushDownSubDao();
 
         if (tag == 1) activity = Config.PdCgOrder2WgrkActivity;
+        if (tag == 34) activity = Config.PdCgOrder2WwrkActivity;
         if (tag == 32) activity = Config.FLInStoreP1Activity;
         if (tag == 2) activity = Config.PdSaleOrder2SaleOutActivity;
         if (tag == 31) activity = Config.PdSaleOrder2SaleOut4BoxActivity;
@@ -137,15 +143,15 @@ public class DownLoadPushFragment extends BaseFragment {
         if (tag == 30) activity = Config.P1PdProductGet2Cprk2Activity;
         if (tag == 33) activity = Config.WgDryingInStoreActivity;
 
-//        if (tag == 1) {
-            //供应商信息绑定
-//            spClient.setVisibility(View.GONE);
-//            spSupplier.setVisibility(View.VISIBLE);
-//        } else {
-//            //客户信息绑定
-//            spClient.setVisibility(View.VISIBLE);
-//            spSupplier.setVisibility(View.GONE);
-//        }
+        if (tag == 1 || tag== 34) {
+//            供应商信息绑定
+            spClient.setVisibility(View.GONE);
+            spSupplier.setVisibility(View.VISIBLE);
+        } else {
+            //客户信息绑定
+            spClient.setVisibility(View.VISIBLE);
+            spSupplier.setVisibility(View.GONE);
+        }
     }
 
     @Override
@@ -162,16 +168,13 @@ public class DownLoadPushFragment extends BaseFragment {
         pBean.id = tag;
         pBean.code = barCode;
         pBean.FAccountID = CommonUtil.getAccountID();
-        Asynchttp.post(
-                mContext,
-                BasicShareUtil.getInstance(mContext).getBaseURL() + WebApi.SCANTODLPDLIST,
-                new Gson().toJson(pBean),
-                new Asynchttp.Response() {
+        App.getRService().doIOAction(WebApi.SCANTODLPDLIST, new Gson().toJson(pBean), new MySubscribe<CommonResponse>() {
             @Override
-            public void onSucceed(CommonResponse cBean, AsyncHttpClient client) {
+            public void onNext(CommonResponse commonResponse) {
+                super.onNext(commonResponse);if (!commonResponse.state)return;
                 pg.dismiss();
-                Log.e(TAG,"OnReceive-获取数据:"+cBean.returnJson);
-                ScanDLReturnBean sBean = new Gson().fromJson(cBean.returnJson,ScanDLReturnBean.class);
+                Lg.e("OnReceive-获取数据:",commonResponse);
+                ScanDLReturnBean sBean = new Gson().fromJson(commonResponse.returnJson,ScanDLReturnBean.class);
                 List<PushDownMain> list = pushDownMainDao.queryBuilder().where(
                         PushDownMainDao.Properties.FBillNo.eq(sBean.list1.get(0).FBillNo),
                         PushDownMainDao.Properties.FAccountID.eq(CommonUtil.getAccountID())
@@ -257,15 +260,16 @@ public class DownLoadPushFragment extends BaseFragment {
                         getActivity().finish();
                     }
                 },200);
-
             }
 
             @Override
-            public void onFailed(String Msg, AsyncHttpClient client) {
+            public void onError(Throwable e) {
+                super.onError(e);
                 pg.dismiss();
-                Toast.showText(mContext,Msg);
+                Toast.showText(mContext,e.toString());
             }
         });
+
     }
 
     @Override
@@ -283,7 +287,22 @@ public class DownLoadPushFragment extends BaseFragment {
                 refresh.setRefreshing(false);
             }
         });
-
+//        btnSearch.setOnLongClickListener(new View.OnLongClickListener() {
+//            @Override
+//            public boolean onLongClick(View v) {
+////                ProductSearchActivity.start(mContext,edCode.getText().toString(),activityPager.getOrgOut(1), Info.SEARCHPRODUCT,activity);
+//                SearchDataActivity.start(mContext,"","139882", EventBusInfoCode.WaveHouse);
+//                return true;
+//            }
+//        });
+//        btnDownload.setOnLongClickListener(new View.OnLongClickListener() {
+//            @Override
+//            public boolean onLongClick(View v) {
+//                ProductSearchActivity.start(mContext,"","1", Info.SEARCHPRODUCT,Config.OutsourcingInActivity);
+////                SearchDataActivity.start(mContext,"","139882", EventBusInfoCode.WaveHouse);
+//                return true;
+//            }
+//        });
 
         //列表下载的选择处理
         lvPushdownDownload.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -345,8 +364,11 @@ public class DownLoadPushFragment extends BaseFragment {
         return view;
     }
 
-
-
+    @Override
+    public void onPause() {
+        unRegister();
+        super.onPause();
+    }
 
     @Override
     public void onDestroyView() {
@@ -552,11 +574,14 @@ public class DownLoadPushFragment extends BaseFragment {
         pBean.StartTime = startTime;
         pBean.endTime = endtime;
         pBean.FAccountID = CommonUtil.getAccountID();
-//        if (tag == 1) {
-//            pBean.FWLUnitID = spSupplier.getDataId();
-//        } else {
+
+        if (tag == 1 || tag== 34) {
+//            供应商信息绑定
+            pBean.FWLUnitID = spSupplier.getDataNumber();
+        } else {
+            //客户信息绑定
             pBean.FWLUnitID = spClient.getDataNumber();
-//        }
+        }
         String Json = new Gson().toJson(pBean);
         //获取单据信息
         App.getRService().doIOAction(WebApi.PUSHDOWNLIST, Json, new MySubscribe<CommonResponse>() {

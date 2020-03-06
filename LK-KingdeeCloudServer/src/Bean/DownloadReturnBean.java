@@ -352,6 +352,8 @@ public class DownloadReturnBean {
         public String FNumber;
         public String FName;
         public String FOrg;
+        public String FStorageID;
+        public String FSEQ;
 //        public String FSPGroupID;
 //        public String FFullName;
 //        public String FLevel;
@@ -370,6 +372,10 @@ public class DownloadReturnBean {
         public String FStoreOrgID;
         public String FBatchNo;
         public String FUnitID;
+        public String FKFDate;
+        public String FKFPeriod;
+        public String FStockPlaceID;
+        public String FHuozhuID;
 
     }
 
@@ -395,7 +401,7 @@ public class DownloadReturnBean {
         public String FNumber;
         public String FName;
         public String FOrg;
-//        public String FUnitGroupID;
+        public String FUnitGroupID;
 //        public String FCoefficient;
     }
 
@@ -427,6 +433,7 @@ public class DownloadReturnBean {
         public String FOrg;
         public String FNote;
         public String FMASTERID;
+        public String FSupplyClassIfy;
 //        public String FItemClassID;
 //        public String FParentID;
 //        public String FLevel;
@@ -462,12 +469,23 @@ public class DownloadReturnBean {
 
     public class product {
         public String FProduceUnitID;
+        public String FProduceUnitNumber;
         public String FPurchaseUnitID;
+        public String FPurchaseUnitNumber;
         public String FPurchasePriceUnitID;
+        public String FPurchasePriceUnitNumber;
         public String FSaleUnitID;
+        public String FSaleUnitNumber;
         public String FSalePriceUnitID;
+        public String FSalePriceUnitNumber;
         public String FStoreUnitID;
+        public String FStoreUnitNumber;
         public String FAuxUnitID;
+        public String FAuxUnitNumber;
+        public String FBaseUnitID;
+        public String FBaseUnitNumber;
+        public String FUnitGroupID;
+
         public String FStockID;
         public String FStockPlaceID;
         public String FIsBatchManage;
@@ -480,7 +498,6 @@ public class DownloadReturnBean {
         public String FIsProduce;
         public String FIsSubContract;
         public String FIsAsset;
-        public String FBaseUnitID;
         public String FFWeightUnitID;
         public String FVolumeUnitID;
         public String FBarcode;

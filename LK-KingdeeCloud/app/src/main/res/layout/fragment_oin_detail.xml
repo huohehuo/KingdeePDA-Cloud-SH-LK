@@ -19,38 +19,49 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:orientation="vertical">
-
-
-                <RelativeLayout
+                <LinearLayout
+                    android:layout_margin="4dp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="4dp"
-                    android:layout_marginTop="5dp"
-                    android:orientation="horizontal">
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:weightSum="6">
 
                     <TextView
-                        android:id="@+id/tv_print"
-                        android:layout_width="wrap_content"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_alignParentRight="true"
-                        android:layout_marginLeft="@dimen/dp_5"
-                        android:layout_marginRight="10dp"
-                        android:text=""
+                        android:layout_weight="1.5"
+                        android:gravity="center"
+                        android:text="物料选择"
                         android:textColor="@android:color/black"
-                        android:textSize="15sp" />
-                </RelativeLayout>
+                        android:textSize="18sp" />
 
-                <TextView
-                    android:id="@+id/search"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_horizontal"
-                    android:layout_marginBottom="5dp"
-                    android:background="@drawable/btn_check"
-                    android:drawableLeft="@mipmap/find"
-                    android:gravity="center_vertical"
-                    android:text="  物料选择  "
-                    android:textSize="22sp" />
+                    <EditText
+                        android:hint="输入查询条件"
+                        android:id="@+id/ed_code"
+                        android:layout_width="0dp"
+                        android:layout_height="40dp"
+                        android:layout_weight="3.5"
+                        android:background="@drawable/bg_edittext_selector"
+                        android:gravity="center"
+                        android:selectAllOnFocus="true"
+                        android:singleLine="true" />
+
+                    <RelativeLayout
+                        android:id="@+id/search_code"
+                        android:layout_width="0dp"
+                        android:layout_height="40dp"
+                        android:layout_marginRight="10dp"
+                        android:layout_weight="1">
+
+                        <ImageView
+                            android:layout_width="30dp"
+                            android:layout_height="wrap_content"
+                            android:layout_centerInParent="true"
+                            android:src="@mipmap/find" />
+                    </RelativeLayout>
+
+                </LinearLayout>
 
 
                 <LinearLayout
@@ -158,6 +169,133 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="horizontal">
+                        <com.fangzuo.assist.cloud.widget.TextViewTitle
+                            android:layout_width="0dp"
+                            android:layout_weight="4"
+                            android:layout_height="wrap_content"
+                            app:TextView_Title_justone="true"
+                            app:TextView_Title_one="批号"
+                            app:TextView_Title_size="@dimen/size_detail" />
+                        <EditText
+                            android:hint="输入批号"
+                            android:id="@+id/ed_pihao"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="6"
+                            android:gravity="center_horizontal|center_vertical"
+                            android:background="@drawable/bg_edittext_selector"
+                            android:singleLine="true"
+                            android:textSize="22sp" />
+                    </LinearLayout>
+                    <include layout="@layout/line_heng"/>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal"
+                        >
+
+                        <TextView
+                            android:gravity="center"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="单位"
+                            android:textColor="@android:color/black"
+                            android:textSize="18sp" />
+                        <View
+                            android:layout_width="1dp"
+                            android:layout_height="match_parent"
+                            android:background="@color/divider_color"/>
+
+                        <TextView
+                            android:gravity="center"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="数量"
+                            android:textColor="@android:color/black"
+                            android:textSize="18sp" />
+
+                    </LinearLayout>
+                    <include layout="@layout/line_heng"/>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+                        <com.fangzuo.assist.cloud.widget.SpinnerUnit
+                            android:id="@+id/sp_unit"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="6"
+                            app:Uspinner_title="请选择单位" />
+                        <EditText
+                            android:hint="输入数量"
+                            android:id="@+id/ed_num"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="6"
+                            android:gravity="center_horizontal|center_vertical"
+                            android:background="@drawable/bg_edittext_selector"
+                            android:inputType="numberDecimal"
+                            android:singleLine="true"
+                            android:textSize="22sp" />
+                    </LinearLayout>
+                    <include layout="@layout/line_heng"/>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal"
+                        >
+                        <TextView
+                            android:gravity="center"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="仓库"
+                            android:textColor="@android:color/black"
+                            android:textSize="18sp" />
+                        <View
+                            android:layout_width="1dp"
+                            android:layout_height="match_parent"
+                            android:background="@color/divider_color"/>
+
+                        <TextView
+                            android:gravity="center"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="仓位"
+                            android:textColor="@android:color/black"
+                            android:textSize="18sp" />
+                    </LinearLayout>
+                    <include layout="@layout/line_heng"/>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+                        <com.fangzuo.assist.cloud.widget.SpinnerStorage
+                            android:id="@+id/sp_which_storage"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="6"
+                            app:Uspinner_title="@string/storage_hint"/>
+                        <include layout="@layout/line_shu"/>
+                        <com.fangzuo.assist.cloud.widget.MyWaveHouseSpinner
+                            android:id="@+id/sp_wavehouse"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="6"
+                            android:singleLine="true"
+                            app:Uspinner_title="请选择仓位"/>
+                    </LinearLayout>
+                    <include layout="@layout/line_heng"/>
+
+                    <!--<LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
 
                         <com.fangzuo.assist.cloud.widget.TextViewTitle
                             android:layout_width="0dp"
@@ -197,7 +335,7 @@
                             android:gravity="center"
                             android:singleLine="true"
                             android:textSize="@dimen/size_product" />
-                        <!--<EditText
+                        &lt;!&ndash;<EditText
                             android:id="@+id/ed_storenum"
                             android:layout_width="0dp"
                             android:layout_height="match_parent"
@@ -208,9 +346,9 @@
                             android:gravity="center_horizontal|center_vertical"
                             android:inputType="numberDecimal"
                             android:singleLine="true"
-                            android:textSize="22sp" />-->
+                            android:textSize="22sp" />&ndash;&gt;
                     </LinearLayout>
-                    <!-- <include layout="@layout/line_heng"/>
+                    &lt;!&ndash; <include layout="@layout/line_heng"/>
                      <LinearLayout
                          android:layout_width="match_parent"
                          android:layout_height="wrap_content"
@@ -228,7 +366,7 @@
                              android:layout_height="wrap_content"
                              android:layout_weight="6"
                              app:Uspinner_title="请选择辅助单位"/>
-                     </LinearLayout>-->
+                     </LinearLayout>&ndash;&gt;
                     <include layout="@layout/line_heng" />
 
                     <LinearLayout
@@ -274,7 +412,7 @@
                             android:gravity="center"
                             android:singleLine="true"
                             android:textSize="@dimen/size_product" />
-                        <!--<EditText
+                        &lt;!&ndash;<EditText
                             android:id="@+id/ed_basenum"
                             android:layout_width="0dp"
                             android:layout_height="match_parent"
@@ -285,8 +423,8 @@
                             android:gravity="center_horizontal|center_vertical"
                             android:inputType="numberDecimal"
                             android:singleLine="true"
-                            android:textSize="22sp" />-->
-                    </LinearLayout>
+                            android:textSize="22sp" />&ndash;&gt;
+                    </LinearLayout>-->
                     <!--<include layout="@layout/line_heng"/>
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -308,32 +446,10 @@
                     </LinearLayout>-->
                     <include layout="@layout/line_heng" />
 
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal">
-
-                        <com.fangzuo.assist.cloud.widget.TextViewTitle
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="4"
-                            app:TextView_Title_justone="true"
-                            app:TextView_Title_one="仓位"
-                            app:TextView_Title_size="@dimen/size_detail" />
-
-                        <com.fangzuo.assist.cloud.widget.MyWaveHouseSpinner
-                            android:id="@+id/sp_wavehouse"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="6"
-                            android:singleLine="true"
-                            app:Uspinner_title="请选择仓位" />
-                    </LinearLayout>
-
-                    <include layout="@layout/line_heng" />
                 </LinearLayout>
                 <include layout="@layout/line_heng" />
                 <LinearLayout
+                    android:visibility="gone"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal">
@@ -357,6 +473,7 @@
                 <include layout="@layout/line_heng" />
 
                 <LinearLayout
+                    android:visibility="gone"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal">
@@ -378,33 +495,6 @@
                 </LinearLayout>
 
                 <include layout="@layout/line_heng" />
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal">
-
-                    <com.fangzuo.assist.cloud.widget.TextViewTitle
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="4"
-                        app:TextView_Title_justone="true"
-                        app:TextView_Title_one="实收数量"
-                        app:TextView_Title_size="@dimen/size_detail" />
-
-                    <EditText
-                        android:id="@+id/ed_num"
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="6"
-                        android:background="@drawable/bg_edittext_selector"
-                        android:gravity="center_horizontal|center_vertical"
-                        android:hint="请输入数量"
-                        android:inputType="numberDecimal"
-                        android:singleLine="true"
-                        android:textSize="22sp" />
-                </LinearLayout>
-
 
                 <!--   <com.fangzuo.assist.cloud.widget.TextViewTitle
                        android:layout_width="match_parent"

@@ -44,8 +44,10 @@ public class SupplerSearchLike extends HttpServlet {
                 SearchBean.S2Product s2Product = new Gson().fromJson(searchBean.json,SearchBean.S2Product.class);
                 Lg.e("查找供应商：json",s2Product);
                 if (!"".equals(s2Product.FOrg))con+=con+" and t0.FUSEORGID="+s2Product.FOrg;
+                if (null != s2Product.FVal1 && !"".equals(s2Product.FVal1))con+=con+" and (t2.FSUPPLYCLASSIFY "+s2Product.FVal1+")";
 //              SQL = "select top 50 FSecCoefficient,FSecUnitID,FIsSnManage,FItemID,FISKFPeriod,convert(INT,FKFPeriod) as FKFPeriod,FNumber,FModel,FName,FFullName,FUnitID,FUnitGroupID,FDefaultLoc,isnull(FProfitRate,0) as FProfitRate,isnull(FTaxRate,1) as FTaxRate,isnull(FOrderPrice,0) as FOrderPrice,isnull(FSalePrice,0) as FSalePrice,isnull(FPlanPrice,0) as FPlanPrice,FBarcode,FSPID,FBatchManager from t_ICItem where FErpClsID not in (6,8) and FDeleted = 0 and (FNumber like '%"+parameter+"%' or FName like '%"+parameter+"%') order by FNumber";//旗舰版和k3
-                SQL = "SELECT t0.FMASTERID,t1.FSHORTNAME as 简称,t0.FUSEORGID,t0.FSUPPLIERID as 供应商ID,t0.FNUMBER as 供应商编码,t1.FNAME as 供应商名称 FROM t_BD_Supplier t0 LEFT OUTER JOIN t_BD_Supplier_L t1 ON (t0.FSUPPLIERID = t1.FSUPPLIERID AND t1.FLocaleId = 2052) WHERE ((t0.FFORBIDSTATUS = 'A')) and (t0.FNUMBER like '%"+s2Product.likeOr+"%' or t1.FNAME like '%"+s2Product.likeOr+"%' or t0.FMASTERID like '%"+s2Product.likeOr+"%' or t0.FSUPPLIERID like '%"+s2Product.likeOr+"%')" +con;
+//                SQL = "SELECT TOP 30 t2.FSUPPLYCLASSIFY,t0.FMASTERID,t1.FSHORTNAME as 简称,t0.FUSEORGID,t0.FSUPPLIERID as 供应商ID,t0.FNUMBER as 供应商编码,t1.FNAME as 供应商名称 FROM t_BD_Supplier t0 LEFT OUTER JOIN t_BD_Supplier_L t1 ON (t0.FSUPPLIERID = t1.FSUPPLIERID AND t1.FLocaleId = 2052) LEFT OUTER JOIN t_BD_SupplierBase t2 ON t0.FSUPPLIERID = t2.FSUPPLIERID WHERE ((t0.FFORBIDSTATUS = 'A')) and (t0.FNUMBER like '%"+s2Product.likeOr+"%' or t1.FNAME like '%"+s2Product.likeOr+"%')" +con;
+                SQL = "SELECT TOP 30 t2.FSUPPLYCLASSIFY,t0.FMASTERID,t1.FSHORTNAME as 简称,t0.FUSEORGID,t0.FSUPPLIERID as 供应商ID,t0.FNUMBER as 供应商编码,t1.FNAME as 供应商名称 FROM t_BD_Supplier t0 LEFT OUTER JOIN t_BD_Supplier_L t1 ON (t0.FSUPPLIERID = t1.FSUPPLIERID AND t1.FLocaleId = 2052) LEFT OUTER JOIN t_BD_SupplierBase t2 ON t0.FSUPPLIERID = t2.FSUPPLIERID WHERE (t0.FFORBIDSTATUS = 'A') and (t0.FNUMBER like '%"+s2Product.likeOr+"%' or t1.FNAME like '%"+s2Product.likeOr+"%')" +con;
 
                 sta = conn.prepareStatement(SQL);
                 Lg.e("Suppliers:SQL:"+SQL);
@@ -62,6 +64,7 @@ public class SupplerSearchLike extends HttpServlet {
                         bean.FOrg = rs.getString("FUSEORGID");
                         bean.FNote = rs.getString("简称");
                         bean.FMASTERID = rs.getString("FMASTERID");
+                        bean.FSupplyClassIfy = rs.getString("FSUPPLYCLASSIFY");
 
                         container.add(bean);
                     }

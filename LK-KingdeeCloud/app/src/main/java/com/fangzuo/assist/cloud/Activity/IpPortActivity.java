@@ -26,6 +26,7 @@ import com.fangzuo.assist.cloud.Utils.Info;
 import com.fangzuo.assist.cloud.Utils.RegisterUtil;
 import com.fangzuo.assist.cloud.Utils.Toast;
 import com.fangzuo.assist.cloud.Utils.WebApi;
+import com.fangzuo.assist.cloud.widget.LoadingUtil;
 import com.google.gson.Gson;
 import com.orhanobut.hawk.Hawk;
 
@@ -78,12 +79,12 @@ public class IpPortActivity extends BaseActivity {
 //            edUrl.setText(Hawk.get(Config.Cloud_Url, "http://120.77.206.67/K3Cloud/"));
         }
 //        else {
-            if (App.DataBaseSetting.equals("K3DBConfigerRY")) {
-                edUrl.setText(Hawk.get(Config.Cloud_Url, "http://120.77.206.67/K3Cloud/"));
+            if (App.DataBaseSetting.equals("K3DBConfiger201910115049165")) {
+                edUrl.setText(Hawk.get(Config.Cloud_Url, "http://sanger.gnway.cc:8090/K3Cloud/"));
 //                edIp.setText("120.77.206.67");
 //                edPort.setText("8080");
             } else {
-                edUrl.setText(Hawk.get(Config.Cloud_Url, "http://192.168.0.201/K3Cloud/"));
+                edUrl.setText(Hawk.get(Config.Cloud_Url, "http://sanger.gnway.cc:8090/K3Cloud/"));
 //                edIp.setText("192.168.0.136");
 //                edPort.setText("8082");
             }
@@ -143,9 +144,9 @@ public class IpPortActivity extends BaseActivity {
         btnSave.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
             public boolean onLongClick(View v) {
-                if (App.DataBaseSetting.equals("K3DBConfigerRY")){
-                    Hawk.put(Config.DataBase,"K3DBConfiger201811123395555");
-                    App.DataBaseSetting = "K3DBConfiger201811123395555";
+                if (App.DataBaseSetting.equals("K3DBConfiger201910115049165")){
+                    Hawk.put(Config.DataBase,"K3DBConfiger201910115049165");
+                    App.DataBaseSetting = "K3DBConfiger201910115049165";
                 }else{
                     Hawk.put(Config.DataBase,"K3DBConfigerRY");
                     App.DataBaseSetting = "K3DBConfigerRY";
@@ -188,7 +189,7 @@ public class IpPortActivity extends BaseActivity {
         super.onDestroy();
     }
 
-    @OnClick({R.id.btn_save, R.id.btn_back, R.id.tv_title, R.id.btn_loginout})
+    @OnClick({R.id.btn_save, R.id.btn_back, R.id.tv_title, R.id.btn_loginout, R.id.iv_check})
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.btn_back:
@@ -230,6 +231,29 @@ public class IpPortActivity extends BaseActivity {
                     share.setPort(edPort.getText().toString());
                     finish();
                 }
+                break;
+            case R.id.iv_check:
+                if (!edPort.getText().toString().equals("") && !edIp.getText().toString().equals("")) {
+                    share.setIP(edIp.getText().toString());
+                    share.setPort(edPort.getText().toString());
+//                    finish();
+                }
+                LoadingUtil.showDialog(mContext, "正在检测服务端是否连通...");
+                App.getRService().doIOAction("TestServlet", "检测服务端是否连通", new MySubscribe<CommonResponse>() {
+                    @Override
+                    public void onNext(CommonResponse commonResponse) {
+                        super.onNext(commonResponse);
+                        LoadingUtil.dismiss();
+                        LoadingUtil.showAlter(mContext, "连接成功");
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        super.onError(e);
+                        LoadingUtil.dismiss();
+                        LoadingUtil.showAlter(mContext, "连接失败");
+                    }
+                });
                 break;
         }
     }

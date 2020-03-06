@@ -174,11 +174,15 @@ public class UpLoadModel {
             case Config.P1PdCgrk2ProductGetActivity://简单产品入库下推生产领料
                 DataModel.upload(Config.C_BatcnSave,Info.getJson(activity,JsonDealUtils.JSonP1Cgrk2PrG(mains,details)));
                 break;
+            case Config.OutsourcingInActivity://采购入库
+                DataModel.upload(Config.C_BatcnSave,Info.getJson(activity,JsonDealUtils.JSonOSI(mains,details)));
+                break;
             case Config.PurchaseInStoreActivity://采购入库
                 DataModel.upload(Config.C_BatcnSave,Info.getJson(activity,JsonDealUtils.JSonPIS(mains,details)));
                 break;
             case Config.FLInStoreP1Activity://采购订单下推外购入库单
             case Config.PdCgOrder2WgrkActivity://采购订单下推外购入库单
+            case Config.PdCgOrder2WwrkActivity://采购订单下推外购入库单
                 DataModel.upload(Config.C_BatcnSave,Info.getJson(activity,JsonDealUtils.JSonCgOrder2Wgrk(mains,details)));
                 break;
             case Config.PurchaseOrderActivity://采购订单

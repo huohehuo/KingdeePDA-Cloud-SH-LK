@@ -7,6 +7,19 @@ public class SearchBean {
     public static String product_for_like="product_for_like";
     public String searchType;
     public String json;
+    public String val1;
+    public String val2;
+    public String val3;
+    public String val4;
+    public String val5;
+    public String val6;
+    public String val7;
+    public String val8;
+    public String val9;
+    public String val10;
+
+    public SearchBean() {
+    }
 
     public SearchBean(String searchType, String json){
         this.searchType=searchType;
@@ -22,6 +35,9 @@ public class SearchBean {
         public String FIsSubContract;
         public String FIsAsset;
         public String FOrg;
+        public String FVal1;
+        public String FVal2;
+        public String FVal3;
 
         public S2Product(){}
         public S2Product(String string,String org){

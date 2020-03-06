@@ -132,7 +132,7 @@ public class SpinnerWaveHouse extends RelativeLayout {
         return waveHouseNumber;
     }
     public WaveHouse getwaveHouseObject(){
-        return waveHouseObject==null?new WaveHouse("0","","",""):waveHouseObject;
+        return waveHouseObject==null?new WaveHouse("0","","","","",""):waveHouseObject;
     }
     public WaveHouseSpAdapter getAdapter() {
         return waveHouseSpAdapter;

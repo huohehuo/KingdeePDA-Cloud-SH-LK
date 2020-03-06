@@ -35,6 +35,9 @@ public class T_Detail {
     public String FUnit;
     public String FSupplier;
     public String FQuantity;            //
+    public String FAuxQty;            //
+    public String FAuxUnit;            //
+    public String FAuxUnitID;            //
 
     public String FTaxPrice;            //含税单价
     public String FTaxRate;//税率
@@ -129,27 +132,30 @@ public class T_Detail {
     public long FBoxCodeOrder;//箱码单号
     public int FIsInBox;//是否已装箱   0 未装箱，1已装箱
 
+    public String FProduceDate;//生产日期
+    public String FExpPeriod;//保质期
     public String FStr1;
     public String FStr2;
     public String FStr3;
     public String FStr4;
     public String FStr5;
 
-    @Generated(hash = 697933368)
+    @Generated(hash = 14734432)
     public T_Detail(String FIndex, String FBarcode, String IMIE, String FBillerID, long FOrderId, String FAccountID, int activity, String FEntryID, String FID,
             String FProductName, String model, String FStorageId, String FStoragePDId, String FStorage, String FWaveHouse, String FWaveHouseId,
-            String FWaveHousePDId, String FUnit, String FSupplier, String FQuantity, String FTaxPrice, String FTaxRate, String FHuoZhuNumber, String FHuoZhu,
-            String FBackDate, String FBackType, String FSOEntryId, String FB2CORDERDETAILID, String FStorageOutId, String FStorageOut, String FStorageInId,
-            String FStorageIn, String FWaveHouseOutId, String FWaveHouseOut, String FWaveHouseInId, String FWaveHouseIn, String FBatch, boolean FIsFree,
-            String FIsGift, String FWorkShopId1, String FRemainInStockQty, String FRealQty, String FRemainInStockUnitId, String FPriceUnitID, String FMaterialId,
-            String FItemID, String FMaterialIdForPD, String FUnitID, String FUnitIDForPD, String AuxSign, String ActualModel, String FProductNo, String FStoreNum,
-            String FBaseNum, String FStoreUnit, String FStoreUnitID, String FBaseUnit, String FBaseUnitID, String FBillNo, String FAllowAddMaterial,
-            String FZeroStockInCount, String FBillTypeID, String FCheckQtyDefault, String FNotIncludeForbidMat, String FStockOrgId, String FDocumentStatus,
-            String FCloseStatus, String FNote, String FOWnerTypeID, String FOwnerId, String FKeeperTypeId, String FKeeperId, String FLevel, String FYmLenght,
-            String FYmDiameter, String FBLenght, String FBWide, String FCLWide, String FBThick, String FVolume, int FCfLenght, String FCfLenghtAny, String FCfThick,
-            String FCfWide, int FCountNumber, String FCfAveMax, String FCfBoxCode, String FCfProductID, String FCfProductNumber, String FCfUnitID, String FCfQty,
-            String FCfQtySum, String FCfM2, String FCfM2Sum, String FCfStorageID, String FCfWaveHouseID, String FCfStoreOrgID, String FCfHuozhuID,
-            long FBoxCodeOrder, int FIsInBox, String FStr1, String FStr2, String FStr3, String FStr4, String FStr5) {
+            String FWaveHousePDId, String FUnit, String FSupplier, String FQuantity, String FAuxQty, String FAuxUnit, String FAuxUnitID, String FTaxPrice,
+            String FTaxRate, String FHuoZhuNumber, String FHuoZhu, String FBackDate, String FBackType, String FSOEntryId, String FB2CORDERDETAILID,
+            String FStorageOutId, String FStorageOut, String FStorageInId, String FStorageIn, String FWaveHouseOutId, String FWaveHouseOut, String FWaveHouseInId,
+            String FWaveHouseIn, String FBatch, boolean FIsFree, String FIsGift, String FWorkShopId1, String FRemainInStockQty, String FRealQty,
+            String FRemainInStockUnitId, String FPriceUnitID, String FMaterialId, String FItemID, String FMaterialIdForPD, String FUnitID, String FUnitIDForPD,
+            String AuxSign, String ActualModel, String FProductNo, String FStoreNum, String FBaseNum, String FStoreUnit, String FStoreUnitID, String FBaseUnit,
+            String FBaseUnitID, String FBillNo, String FAllowAddMaterial, String FZeroStockInCount, String FBillTypeID, String FCheckQtyDefault,
+            String FNotIncludeForbidMat, String FStockOrgId, String FDocumentStatus, String FCloseStatus, String FNote, String FOWnerTypeID, String FOwnerId,
+            String FKeeperTypeId, String FKeeperId, String FLevel, String FYmLenght, String FYmDiameter, String FBLenght, String FBWide, String FCLWide,
+            String FBThick, String FVolume, int FCfLenght, String FCfLenghtAny, String FCfThick, String FCfWide, int FCountNumber, String FCfAveMax,
+            String FCfBoxCode, String FCfProductID, String FCfProductNumber, String FCfUnitID, String FCfQty, String FCfQtySum, String FCfM2, String FCfM2Sum,
+            String FCfStorageID, String FCfWaveHouseID, String FCfStoreOrgID, String FCfHuozhuID, long FBoxCodeOrder, int FIsInBox, String FProduceDate,
+            String FExpPeriod, String FStr1, String FStr2, String FStr3, String FStr4, String FStr5) {
         this.FIndex = FIndex;
         this.FBarcode = FBarcode;
         this.IMIE = IMIE;
@@ -170,6 +176,9 @@ public class T_Detail {
         this.FUnit = FUnit;
         this.FSupplier = FSupplier;
         this.FQuantity = FQuantity;
+        this.FAuxQty = FAuxQty;
+        this.FAuxUnit = FAuxUnit;
+        this.FAuxUnitID = FAuxUnitID;
         this.FTaxPrice = FTaxPrice;
         this.FTaxRate = FTaxRate;
         this.FHuoZhuNumber = FHuoZhuNumber;
@@ -250,6 +259,8 @@ public class T_Detail {
         this.FCfHuozhuID = FCfHuozhuID;
         this.FBoxCodeOrder = FBoxCodeOrder;
         this.FIsInBox = FIsInBox;
+        this.FProduceDate = FProduceDate;
+        this.FExpPeriod = FExpPeriod;
         this.FStr1 = FStr1;
         this.FStr2 = FStr2;
         this.FStr3 = FStr3;
@@ -324,7 +335,7 @@ public class T_Detail {
     //设置仓位基础信息
     public void setWaveHouse(WaveHouse waveHouse){
         if (null==waveHouse){
-            this.FWaveHouseId = "";
+            this.FWaveHouseId = "0";
             this.FWaveHousePDId= "0";
             this.FWaveHouse= "";
             return;
@@ -1233,6 +1244,46 @@ public class T_Detail {
 
     public void setFIsGift(String FIsGift) {
         this.FIsGift = FIsGift;
+    }
+
+    public String getFProduceDate() {
+        return this.FProduceDate;
+    }
+
+    public void setFProduceDate(String FProduceDate) {
+        this.FProduceDate = FProduceDate;
+    }
+
+    public String getFExpPeriod() {
+        return this.FExpPeriod;
+    }
+
+    public void setFExpPeriod(String FExpPeriod) {
+        this.FExpPeriod = FExpPeriod;
+    }
+
+    public String getFAuxQty() {
+        return this.FAuxQty;
+    }
+
+    public void setFAuxQty(String FAuxQty) {
+        this.FAuxQty = FAuxQty;
+    }
+
+    public String getFAuxUnit() {
+        return this.FAuxUnit;
+    }
+
+    public void setFAuxUnit(String FAuxUnit) {
+        this.FAuxUnit = FAuxUnit;
+    }
+
+    public String getFAuxUnitID() {
+        return this.FAuxUnitID;
+    }
+
+    public void setFAuxUnitID(String FAuxUnitID) {
+        this.FAuxUnitID = FAuxUnitID;
     }
     
 

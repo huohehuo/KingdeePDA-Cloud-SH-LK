@@ -2,13 +2,17 @@ package com.fangzuo.assist.cloud.ABase;
 
 import android.app.Activity;
 import android.app.DatePickerDialog;
+import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,6 +25,7 @@ import com.fangzuo.assist.cloud.Utils.EventBusInfoCode;
 import com.fangzuo.assist.cloud.Utils.EventBusUtil;
 import com.fangzuo.assist.cloud.Utils.Info;
 import com.fangzuo.assist.cloud.Utils.Lg;
+import com.fangzuo.assist.cloud.Utils.MathUtil;
 import com.fangzuo.assist.cloud.Utils.Toast;
 import com.fangzuo.assist.cloud.zxing.RGBLuminanceSource;
 import com.google.zxing.BinaryBitmap;
@@ -75,19 +80,70 @@ public abstract class BaseFragment extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
-    }
 
+        IntentFilter filter = new IntentFilter("com.android.server.scannerservice.broadcast");
+//        filter.setPriority(Integer.MAX_VALUE);
+        getActivity().registerReceiver(receiverDJ, filter);
+        Lg.e("进入onResume");
+//                G02A
+//        IntentFilter scanDataIntentFilter = new IntentFilter();
+//        scanDataIntentFilter.addAction(ACTION_DISPLAY_SCAN_RESULT);
+//        getActivity().registerReceiver(mScanDataReceiverForG02A, scanDataIntentFilter);
+    }
+    /**
+     * 需要自定义的广播接收器
+     */
+    // 自定义扫描工具内开发者项内广播名称value；登录页面的时候自定义设置
+    private BroadcastReceiver receiverDJ = new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+//            if (intent.getAction().equals(Info.SCANACTION)) {
+                String code = intent.getStringExtra("scannerdata");
+                OnReceive(code);
+//            }
+        }
+    };
     @Override
     public void onPause() {
         super.onPause();
-//        mContext.unregisterReceiver(mScanDataReceiver);
+        Lg.e("进入onPause");
+
+        try {
+            getActivity().unregisterReceiver(receiverDJ);
+////            mContext.unregisterReceiver(mScanDataReceiverForG02A);
+//
+        }catch (Exception e){}
+//        mContext.unregisterReceiver(mScanDataReceiverForG02A);
     }
+
+    //用于手动反注册扫描头
+    public void unRegister(){
+        try {
+        getActivity().unregisterReceiver(receiverDJ);
+//            mContext.unregisterReceiver(mScanDataReceiverForG02A);
+
+        }catch (Exception e){}
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        try {
+//        getActivity().unregisterReceiver(receiverDJ);
+//            mContext.unregisterReceiver(mScanDataReceiverForG02A);
+
+        }catch (Exception e){}
+
+    }
+
+
     //onCreateView是创建的时候调用，onViewCreated是在onCreateView后被触发的事件，前后关系
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         mContext = getActivity();
 //        registerBroadCast(mScanDataReceiver);
+
         initView();
         initData();
         initListener();
@@ -102,11 +158,6 @@ public abstract class BaseFragment extends Fragment {
     private String date;
 
 
-    @Override
-    public void onDestroy() {
-        super.onDestroy();
-
-    }
 
     public String datePicker(final TextView v) {
         final DatePickerDialog datePickerDialog = new DatePickerDialog(mContext, new DatePickerDialog.OnDateSetListener() {
@@ -130,6 +181,65 @@ public abstract class BaseFragment extends Fragment {
         datePickerDialog.show();
         return date;
     }
+
+    public String dateDealString(String string){
+        StringBuffer buffer= new StringBuffer();
+        try {
+            if (string.length() == 8){//20190101
+                buffer.append(string.substring(0,4)).append("-");
+                buffer.append(string.substring(4,6)).append("-");
+                buffer.append(string.substring(6,string.length()));
+            }else if (string.length() == 6){
+                buffer.append("20");
+                buffer.append(string.substring(0,2)).append("-");
+                buffer.append(string.substring(2,4)).append("-");
+                buffer.append(string.substring(4,string.length()));
+            }
+        }catch (Exception e){}
+
+        return buffer.toString();
+    }
+
+    public String datePickerWithData(final TextView v,String time) {
+        if (time.length()==10){
+            year = MathUtil.toInt(time.substring(0,4));
+            month = MathUtil.toInt(time.substring(5,7))-1;
+            day = MathUtil.toInt(time.substring(8,time.length()));
+        }else if (time.length() == 8){
+            year = MathUtil.toInt(time.substring(0,4));
+            month = MathUtil.toInt(time.substring(4,6))-1;
+            day = MathUtil.toInt(time.substring(6,time.length()));
+        }else if (time.length() == 6){
+            year = MathUtil.toInt("20"+time.substring(0,2));
+            month = MathUtil.toInt(time.substring(2,4))-1;
+            day = MathUtil.toInt(time.substring(4,time.length()));
+        }
+        Lg.e("获取时间1"+year);
+        Lg.e("获取时间2"+month);
+        Lg.e("获取时间3"+day);
+        final DatePickerDialog datePickerDialog = new DatePickerDialog(mContext, new DatePickerDialog.OnDateSetListener() {
+            @Override
+            public void onDateSet(DatePicker datePicker, int i, int i1, int i2) {
+            }
+        }, year, month, day);
+        datePickerDialog.setButton("确定", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                int year = datePickerDialog.getDatePicker().getYear();
+                int month = datePickerDialog.getDatePicker().getMonth();
+                int day = datePickerDialog.getDatePicker().getDayOfMonth();
+                date = year + "-" + ((month < 10) ? "0" + (month + 1) : (month + 1)) + "-" + ((day < 10) ? "0" + day : day);
+                Toast.showText(mContext, date);
+                v.setText(date);
+                EventBusUtil.sendEvent(new ClassEvent(EventBusInfoCode.UpdataDate,date));
+                datePickerDialog.dismiss();
+
+            }
+        });
+        datePickerDialog.show();
+        return date;
+    }
+
 
     public final void startNewActivity(Class<? extends Activity> target,
                                        Bundle mBundle) {
@@ -328,17 +438,17 @@ public abstract class BaseFragment extends Fragment {
 //            }
 //        }
 //    };
-//    //G02A
-//    private BroadcastReceiver mScanDataReceiverForG02A = new BroadcastReceiver() {
-//        @Override
-//        public void onReceive(Context context, Intent intent) {
-//            String action = intent.getAction();
-//            if (action.equals(ACTION_DISPLAY_SCAN_RESULT)) {
-//                String str = intent.getStringExtra("decode_data");
-//                OnReceive(str);
-//            }
-//        }
-//    };
+    //G02A
+    public BroadcastReceiver mScanDataReceiverForG02A = new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            String action = intent.getAction();
+            if (action.equals(ACTION_DISPLAY_SCAN_RESULT)) {
+                String str = intent.getStringExtra("decode_data");
+                OnReceive(str);
+            }
+        }
+    };
 //    //  M60
 //    private static final String ACTION_M60 = "com.mobilead.tools.action.scan_result";
 //    private BroadcastReceiver mScanDataReceiverForM60 = new BroadcastReceiver() {

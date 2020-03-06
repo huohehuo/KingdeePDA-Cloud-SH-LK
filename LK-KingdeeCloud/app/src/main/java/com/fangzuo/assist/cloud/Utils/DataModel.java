@@ -21,6 +21,7 @@ import com.fangzuo.assist.cloud.Dao.Product;
 import com.fangzuo.assist.cloud.Dao.Storage;
 import com.fangzuo.assist.cloud.Dao.T_Detail;
 import com.fangzuo.assist.cloud.Dao.T_main;
+import com.fangzuo.assist.cloud.Dao.WaveHouse;
 import com.fangzuo.assist.cloud.RxSerivce.MySubscribe;
 import com.fangzuo.assist.cloud.RxSerivce.ToSubscribe;
 import com.fangzuo.assist.cloud.Service.DataService;
@@ -304,6 +305,11 @@ public class DataModel {
                 "FBILL_NO," +
                 "FBILL_TYPE_ID," +
                 "FSTOCK_ORG_ID," +
+                "FPRODUCE_DATE," +
+                "FEXP_PERIOD," +
+                "FAUX_QTY," +
+                "FAUX_UNIT," +
+                "FAUX_UNIT_ID," +
                 "SUM(FREMAIN_IN_STOCK_QTY) AS FREMAIN_IN_STOCK_QTYALL," +
                 "SUM(FREAL_QTY) AS FREAL_QTYALL " +
                 "FROM T__DETAIL " +
@@ -315,6 +321,8 @@ public class DataModel {
                 "FSTORAGE_ID," +
                 "FWAVE_HOUSE_ID," +
                 "FBATCH," +
+                "FPRODUCE_DATE," +
+                "FEXP_PERIOD," +
                 "FMATERIAL_ID," +
                 "FUNIT_ID ORDER BY FENTRY_ID", new String[]{orderID+"", Activity+"",CommonUtil.getAccountID()});
         while (cursor.moveToNext()){
@@ -369,6 +377,12 @@ public class DataModel {
             t_detail.FBThick = cursor.getString(cursor.getColumnIndex("FBTHICK"));
             t_detail.FVolume = cursor.getString(cursor.getColumnIndex("FVOLUME"));
 
+            t_detail.FProduceDate = cursor.getString(cursor.getColumnIndex("FPRODUCE_DATE"));
+            t_detail.FExpPeriod = cursor.getString(cursor.getColumnIndex("FEXP_PERIOD"));
+            t_detail.FAuxUnitID = cursor.getString(cursor.getColumnIndex("FAUX_UNIT_ID"));
+            t_detail.FAuxUnit = cursor.getString(cursor.getColumnIndex("FAUX_UNIT"));
+            t_detail.FAuxQty = cursor.getString(cursor.getColumnIndex("FAUX_QTY"));
+
 
             list.add(t_detail);
         }
@@ -403,6 +417,8 @@ public class DataModel {
         Cursor cursor;
         if (Activity == Config.WgDryingInStoreActivity){
             cursor = daoSession.getDatabase().rawQuery("SELECT " +
+                    "FSTR2," +
+                    "FPRODUCE_DATE," +
                     "FACCOUNT_ID," +
                     "FVOLUME," +
                     "FBTHICK," +
@@ -464,6 +480,12 @@ public class DataModel {
                     "FUNIT_ID ORDER BY FENTRY_ID", new String[]{orderID+"", Activity+"",CommonUtil.getAccountID(),fid});
         }else{
             cursor = daoSession.getDatabase().rawQuery("SELECT " +
+                    "FSTR2," +
+                    "FPRODUCE_DATE," +
+                    "FEXP_PERIOD," +
+                    "FAUX_QTY," +
+                    "FAUX_UNIT," +
+                    "FAUX_UNIT_ID," +
                     "FACCOUNT_ID," +
                     "FVOLUME," +
                     "FBTHICK," +
@@ -517,17 +539,22 @@ public class DataModel {
                     "FORDER_ID = ? AND ACTIVITY = ? AND FACCOUNT_ID = ? AND FID = ?" +
                     "GROUP BY " +
                     "FORDER_ID," +
+                    "FID," +
+                    "FENTRY_ID," +
                     "FWORK_SHOP_ID1," +
                     "FSTORAGE_ID," +
                     "FWAVE_HOUSE_ID," +
                     "FBATCH," +
                     "FMATERIAL_ID," +
+                    "FPRODUCE_DATE," +
+                    "FEXP_PERIOD," +
                     "FUNIT_ID ORDER BY FENTRY_ID", new String[]{orderID+"", Activity+"",CommonUtil.getAccountID(),fid});
         }
         while (cursor.moveToNext()){
             T_Detail t_detail = new T_Detail();
             t_detail.activity = cursor.getInt(cursor.getColumnIndex("ACTIVITY"));
             t_detail.FOrderId = cursor.getLong(cursor.getColumnIndex("FORDER_ID"));
+//            t_detail.FBarcode = cursor.getString(cursor.getColumnIndex("FBARCODE"));
             t_detail.FAccountID = cursor.getString(cursor.getColumnIndex("FACCOUNT_ID"));
             t_detail.FStorageId = cursor.getString(cursor.getColumnIndex("FSTORAGE_ID"));
             t_detail.FWorkShopId1 = cursor.getString(cursor.getColumnIndex("FWORK_SHOP_ID1"));
@@ -577,6 +604,12 @@ public class DataModel {
             t_detail.FBThick = cursor.getString(cursor.getColumnIndex("FBTHICK"));
             t_detail.FVolume = cursor.getString(cursor.getColumnIndex("FVOLUME"));
 
+            t_detail.FStr2 = cursor.getString(cursor.getColumnIndex("FSTR2"));
+            t_detail.FProduceDate = cursor.getString(cursor.getColumnIndex("FPRODUCE_DATE"));
+            t_detail.FExpPeriod = cursor.getString(cursor.getColumnIndex("FEXP_PERIOD"));
+            t_detail.FAuxUnitID = cursor.getString(cursor.getColumnIndex("FAUX_UNIT_ID"));
+            t_detail.FAuxUnit = cursor.getString(cursor.getColumnIndex("FAUX_UNIT"));
+            t_detail.FAuxQty = cursor.getString(cursor.getColumnIndex("FAUX_QTY"));
 
             list.add(t_detail);
         }
@@ -1192,7 +1225,64 @@ public class DataModel {
         alertDialog.show();
 
     }
+    //获取库存
+    public static void getStoreNum(Product product, Storage storage, WaveHouse waveHouse,String batch, Context mContext, final TextView textView, Org org,String date){
+        if (product == null || storage == null || org == null){
+            textView.setText("0");
+            return;
+        }
+        Lg.e("库存查找条件：",product.FMASTERID+"-"+storage.FItemID+"-"+(waveHouse==null?"0":waveHouse.FSPID)+"-"+batch+"-"+org.FOrgID+"-"+date);
+        if (BasicShareUtil.getInstance(mContext).getIsOL()) {
+            InStoreNumBean storageNum = new InStoreNumBean(product.FMASTERID,storage.FItemID,waveHouse==null?"0":waveHouse.FSPID,batch,org.FOrgID,org.FOrgID,date);
+            storageNum.FType="1";
+            App.getRService().doIOAction("GetStoreNum4sql", new Gson().toJson(storageNum), new MySubscribe<CommonResponse>() {
+                @Override
+                public void onNext(CommonResponse commonResponse) {
+                    super.onNext(commonResponse);
+                    if (!commonResponse.state)return;
+                    DownloadReturnBean dBean = new Gson().fromJson(commonResponse.returnJson, DownloadReturnBean.class);
+                    if (dBean.InstorageNum.size()>0){
+                        textView.setText(dBean.InstorageNum.get(0).FQty);
+                    }else{
+                        textView.setText("0");
+                    }
+                }
 
+                @Override
+                public void onError(Throwable e) {
+//                    super.onError(e);
+                    textView.setText("0");
+                }
+            });
+        }
+//        else{
+//            List<InStorageNum> container = new ArrayList<>();
+//            String con="";
+//            if (!"".equals(storage.FItemID)){
+//                con+=" and FSTOCK_ID='"+storage.FItemID+"'";
+//            }
+//            if (!"".equals(product.FMaterialid)){
+//                con+=" and FITEM_ID='"+product.FMaterialid+"'";
+//            }
+//            if (!"".equals(batch)){
+//                con+=" and FBATCH_NO='"+batch+"'";
+//            }
+//            String SQL = "SELECT * FROM IN_STORAGE_NUM WHERE 1=1 "+con;
+//            Lg.e("库存查询SQL:"+SQL);
+//            Cursor cursor = GreenDaoManager.getmInstance(mContext).getDaoSession().getDatabase().rawQuery(SQL, null);
+//            while (cursor.moveToNext()) {
+//                InStorageNum f = new InStorageNum();
+//                f.FQty = cursor.getString(cursor.getColumnIndex("FQTY"));
+//                Lg.e("库存查询存在FQty："+f.FQty);
+//                container.add(f);
+//            }
+//            if (container.size() > 0) {
+//                textView.setText(container.get(0).FQty);
+//            } else {
+//                textView.setText("0");
+//            }
+//        }
+    }
 
     //获取库存
     public static void getStoreNum(Product product, Storage storage, String batch, Context mContext, final TextView textView,Org org,Org huozhu){

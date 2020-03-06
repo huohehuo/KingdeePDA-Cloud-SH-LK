@@ -83,7 +83,9 @@ public class BaseUtilService extends IntentService {
     }
     //重登录请求
     private void handleActionTT() {
-        if ("".equals(Hawk.get(Info.user_name,"")))return;
+        if ("".equals(Hawk.get(Info.user_name,""))){
+
+        }
         JSONArray jParas = new JSONArray();
         jParas.put(Hawk.get(Config.Cloud_ID, ""));// 帐套Id
         jParas.put(Hawk.get(Info.user_name,""));// 用户名
@@ -97,20 +99,25 @@ public class BaseUtilService extends IntentService {
                         Hawk.put(Info.user_org, bean.getContext().getCurrentOrganizationInfo().getName());
                         Hawk.put(Info.user_id, bean.getContext().getUserId() + "");
                         Hawk.put(Info.user_data, bean.getContext().getDataCenterName() + "");
+                        EventBusUtil.sendEvent(new ClassEvent(EventBusInfoCode.Login_User,"OK"));
                         EventBusUtil.sendEvent(new ClassEvent(EventBusInfoCode.Updata_Account,"更新主页的数据中心名称"));
 //                        Toast.showText(App.getContext(),"重登录成功");
 //                        Lg.e("登录成功：");
                     } else {
-                        Toast.showTextLong(App.getContext(),"重登录失败"+bean.getMessage());
+                        EventBusUtil.sendEvent(new ClassEvent(EventBusInfoCode.Login_User,bean.getMessage()));
+//                        Toast.showTextLong(App.getContext(),"重登录失败"+bean.getMessage());
 //                        Lg.e("登录错误：" + bean.toString());
                     }
                 } catch (Exception e) {
+                    EventBusUtil.sendEvent(new ClassEvent(EventBusInfoCode.Login_User,e.getMessage()));
 //                        Lg.e("登录错误：" + bean.toString());
                 }
             }
 
             @Override
             public void onError(Throwable e) {
+                EventBusUtil.sendEvent(new ClassEvent(EventBusInfoCode.Login_User,e.getMessage()));
+
 //                Lg.e("登录错误：" + e.toString());
             }
         });

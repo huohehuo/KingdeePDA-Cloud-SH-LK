@@ -116,4 +116,11 @@
         </attr>
     </declare-styleable>
 
+
+
+    <declare-styleable name="Style_Time_Choose">
+        <attr name="Time_titile" format="string"/>
+        <attr name="Time_titile_size" format="dimension"/>
+    </declare-styleable>
+
 </resources>
